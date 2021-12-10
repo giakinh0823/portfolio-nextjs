@@ -11,7 +11,7 @@ export default function DeverloperSection(props: DeverloperProps) {
   const mode = useAppSelector(selectMode);
 
   return (
-    <Box component="section" pt={{ xs: 4, md: 20 }} pb={{ xs: 7, md: 9 }}>
+    <Box component="section" pt={{ xs: 6, md: 20 }} pb={{ xs: 7, md: 9 }}>
       <Container>
         <Grid container spacing={3}>
           <Grid

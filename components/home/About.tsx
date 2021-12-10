@@ -7,7 +7,7 @@ export interface AboutProps {}
 
 export default function AboutSection(props: AboutProps) {
   return (
-    <Box component="section" pt={{ xs: 4, md: 20 }} pb={{ xs: 7, md: 9 }}>
+    <Box component="section" pt={{ xs: 4, md: 20 }} pb={{ xs: 7, md: 15 }}>
       <Container maxWidth="xl">
         <Stack
           direction={{ xs: "column-reverse", md: "row" }}

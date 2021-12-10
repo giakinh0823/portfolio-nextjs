@@ -34,7 +34,7 @@ export const HeaderDesktop = () => {
     <Slide direction="down" in={true}>
       <Box
         display={{ xs: "none", md: "block" }}
-        py={3}
+        py={2}
         sx={
           fixed
             ? {
