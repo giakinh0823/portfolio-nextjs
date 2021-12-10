@@ -1,8 +1,39 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { AppPropsWithLayout } from "@/models/index";
+import { CacheProvider } from "@emotion/react";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Provider } from "react-redux";
+import { SWRConfig } from "swr";
+import axiosClient from "../api-client/axios-client";
+import { store } from "../app/store";
+import { EmptyLayout } from "../components/layout/empty";
+import ToggleColorMode from "../components/layout/ToggleMode";
+import "../styles/globals.css";
+import { createEmotionCache } from "../utils";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const clientSideEmotionCache = createEmotionCache();
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const Layout = Component.Layout ?? EmptyLayout;
+
+  return (
+    <Provider store={store}>
+      <CacheProvider value={clientSideEmotionCache}>
+        <ToggleColorMode>
+          <CssBaseline />
+          <SWRConfig
+            value={{
+              fetcher: (url) => axiosClient.get(url),
+              shouldRetryOnError: false,
+            }}
+          >
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </SWRConfig>
+        </ToggleColorMode>
+      </CacheProvider>
+    </Provider>
+  );
 }
 
-export default MyApp
+export default MyApp;
