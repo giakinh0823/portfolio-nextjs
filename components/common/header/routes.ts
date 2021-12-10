@@ -11,4 +11,8 @@ export const ROUTE_LIST = [
 		label: 'Blog',
 		path: '/blog',
 	},
+	{
+		label: 'New Post',
+		path: '/blog/new-blog',
+	},
 ]
