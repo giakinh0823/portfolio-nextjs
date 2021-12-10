@@ -4,19 +4,41 @@ import { Container, Link as MuiLink, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Link from "next/link";
 import * as React from "react";
+import { useIntersection } from "../../utils/useIntersection";
 
 export interface HeroProps {}
 
-export default function HeroSection(props: HeroProps) {
+const HeroSection = (props: HeroProps) => {
+  const ref = React.useRef(null);
+  const inViewport = useIntersection(ref, 0.1);
+ 
   return (
-    <Box component="section" pt={{ xs: 4, md: 20 }} pb={{ xs: 7, md: 15 }}>
+    <Box
+      component="section"
+      pt={{ xs: 4, md: 20 }}
+      pb={{ xs: 7, md: 15 }}
+      ref={ref}
+      sx={inViewport ? { opacity: 1 } : { opacity: 0 }}
+    >
       <Container maxWidth="xl">
         <Stack
           direction={{ xs: "column-reverse", md: "row" }}
           alignItems={{ xs: "center" }}
           justifyContent={{ xs: "center", md: "space-around" }}
         >
-          <Stack>
+          <Stack
+            sx={
+              inViewport
+                ? {
+                    "@keyframes fadeFromLeft": {
+                      from: { opacity: 0, transform: "translateX(-100px)" },
+                      to: { opacity: 1, transform: "translateY(0)" },
+                    },
+                    animation: "fadeFromLeft 0.5s ease-in-out",
+                  }
+                : {}
+            }
+          >
             <Box
               sx={{ maxWidth: { xs: "100%", md: "600px" } }}
               mt={{ xs: 6, md: 0 }}
@@ -49,10 +71,22 @@ export default function HeroSection(props: HeroProps) {
               </Box>
             </Box>
           </Stack>
-          <Box>
+          <Box
+            sx={
+              inViewport
+                ? {
+                    "@keyframes fadeFromRight": {
+                      from: { opacity: 0, transform: "translateX(100px)" },
+                      to: { opacity: 1, transform: "translateY(0)" },
+                    },
+                    animation: "fadeFromRight 0.5s ease-in-out",
+                  }
+                : {}
+            }
+          >
             <Box
               sx={{
-                width:"420px",
+                width: "420px",
                 borderRadius: "100%",
                 overflow: "hidden",
               }}
@@ -72,4 +106,6 @@ export default function HeroSection(props: HeroProps) {
       </Container>
     </Box>
   );
-}
+};
+
+export default React.memo(HeroSection);

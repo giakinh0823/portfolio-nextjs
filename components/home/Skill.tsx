@@ -13,6 +13,7 @@ import { Box } from "@mui/system";
 import * as React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
+import { useIntersection } from "../../utils/useIntersection";
 
 interface LinkTabProps {
   label?: string;
@@ -33,15 +34,33 @@ function LinkTab(props: LinkTabProps) {
 
 export interface SkillProps {}
 
-export default function SkillSection(props: SkillProps) {
+const SkillSection = (props: SkillProps) => {
   const [value, setValue] = React.useState(0);
+  const ref = React.useRef(null);
+  const inViewport = useIntersection(ref, 0.1); //Kích hoạt ngay khi phần tử hiển thị
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   return (
-    <Box component="section" pt={{ xs: 4, md: 15 }} pb={{ xs: 7, md: 9 }}>
+    <Box
+      component="section"
+      pt={{ xs: 4, md: 15 }}
+      pb={{ xs: 7, md: 9 }}
+      ref={ref}
+      sx={
+        inViewport
+          ? {
+              "@keyframes fadeIn": {
+                from: { opacity: 0, transform: "translateY(100px)" },
+                to: { opacity: 1, transform: "translateY(0)" },
+              },
+              animation: "fadeIn 2s ease-in-out",
+            }
+          : { transform: "translateY(100px)"}
+      }
+    >
       <Container>
         <Stack alignItems="center">
           <Box fontSize={{ xs: "h3", md: "h4" }}>
@@ -92,7 +111,9 @@ export default function SkillSection(props: SkillProps) {
       </Container>
     </Box>
   );
-}
+};
+
+export default React.memo(SkillSection);
 
 function createData(tech: string, framework: string, content: string) {
   return {
@@ -162,11 +183,7 @@ interface CollapsibleTableProps {
   value?: string;
 }
 
-function CollapsibleTable({
-  rows,
-  title,
-  value,
-}: CollapsibleTableProps) {
+function CollapsibleTable({ rows, title, value }: CollapsibleTableProps) {
   return (
     <TableContainer>
       <Table aria-label="collapsible table">
@@ -196,8 +213,8 @@ function CollapsibleTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.tech} row={row} />
+          {rows.map((row, index) => (
+            <Row key={index} row={row} />
           ))}
         </TableBody>
       </Table>

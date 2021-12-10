@@ -1,24 +1,37 @@
-import { Container, Stack, Typography, Link as MuiLink } from "@mui/material";
-import { Box } from "@mui/system";
-import Image from "next/image";
-import * as React from "react";
-import footerImage from "../../../assets/image/footer.jpg";
-import Link from "next/link";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import footerVideo from "../../../assets/video/footer.mp4";
-import { selectMode } from "../../../redux/mode/modeSlice";
+import { Container, Link as MuiLink, Stack, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import Link from "next/link";
+import * as React from "react";
 import { useAppSelector } from "../../../app/hooks";
+import { selectMode } from "../../../redux/mode/modeSlice";
+import { useIntersection } from '../../../utils/useIntersection';
 
-export function Footer() {
+export const Footer = React.memo(function Footer() {
   const mode = useAppSelector(selectMode);
+  const ref = React.useRef(null);
+  const inViewport = useIntersection(ref, 0.1);
+
   return (
     <Box
       component="footer"
       pt={12}
       pb={8}
       textAlign="center"
-      sx={{ backgroundColor: mode=="dark"? "#121212" : "#f5f7fe" }}
+      ref={ref}
+      sx={
+        inViewport
+          ? {
+              backgroundColor: mode=="dark"? "#121212" : "#f5f7fe",
+              "@keyframes fadeIn": {
+                from: { opacity: 0, transform: "translateY(100px)" },
+                to: { opacity: 1, transform: "translateY(0)" },
+              },
+              animation: "fadeIn 2s linear",
+            }
+          : { transform: "translateY(100px)",  backgroundColor: mode=="dark"? "#121212" : "#f5f7fe"}
+      }
     >
       <Container>
         <Stack justifyContent="center" alignItems="center">
@@ -72,4 +85,4 @@ export function Footer() {
       </Container>
     </Box>
   );
-}
+});

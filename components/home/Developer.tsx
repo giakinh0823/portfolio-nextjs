@@ -4,14 +4,22 @@ import { Box } from "@mui/system";
 import * as React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
+import { useIntersection } from "../../utils/useIntersection";
 
 export interface DeverloperProps {}
 
-export default function DeverloperSection(props: DeverloperProps) {
+const DeverloperSection = (props: DeverloperProps) => {
   const mode = useAppSelector(selectMode);
+  const ref = React.useRef(null);
+  const inViewport = useIntersection(ref, 0.1);
 
   return (
-    <Box component="section" pt={{ xs: 6, md: 20 }} pb={{ xs: 7, md: 9 }}>
+    <Box
+      component="section"
+      pt={{ xs: 6, md: 20 }}
+      pb={{ xs: 7, md: 9 }}
+      ref={ref}
+    >
       <Container>
         <Grid container spacing={3}>
           <Grid
@@ -20,12 +28,27 @@ export default function DeverloperSection(props: DeverloperProps) {
             md={mode == "dark" ? 8 : 4}
             sx={{ transition: "all 0.8s ease-in-out" }}
           >
-            <DeveloperItem
-              color="#7451cb"
-              title="Android Developer"
-              subtitle="React Native Developer"
-              video={mode == "dark" ? "/video/dev.mp4" : undefined}
-            />
+            <Box
+              component="div"
+              sx={
+                inViewport
+                  ? {
+                      "@keyframes fadeFromLeft": {
+                        from: { opacity: 0, transform: "translateX(-100px)" },
+                        to: { opacity: 1, transform: "translateY(0)" },
+                      },
+                      animation: "fadeFromLeft 0.5s ease-in-out",
+                    }
+                  : {}
+              }
+            >
+              <DeveloperItem
+                color="#7451cb"
+                title="Android Developer"
+                subtitle="React Native Developer"
+                video={mode == "dark" ? "/video/dev.mp4" : undefined}
+              />
+            </Box>
           </Grid>
           <Grid
             item
@@ -33,12 +56,27 @@ export default function DeverloperSection(props: DeverloperProps) {
             md={mode == "dark" ? 4 : 8}
             sx={{ transition: "all 0.8s ease-in-out" }}
           >
-            <DeveloperItem
-              color="#ffab66"
-              title="Web Developer"
-              subtitle="Fullstack Developer"
-              video={mode == "dark" ? undefined : "/video/dev.mp4"}
-            />
+            <Box
+              component="div"
+              sx={
+                inViewport
+                  ? {
+                      "@keyframes fadeFromRight": {
+                        from: { opacity: 0, transform: "translateX(100px)" },
+                        to: { opacity: 1, transform: "translateY(0)" },
+                      },
+                      animation: "fadeFromRight 0.5s ease-in-out",
+                    }
+                  : {}
+              }
+            >
+              <DeveloperItem
+                color="#ffab66"
+                title="Web Developer"
+                subtitle="Fullstack Developer"
+                video={mode == "dark" ? undefined : "/video/dev.mp4"}
+              />
+            </Box>
           </Grid>
           <Grid
             item
@@ -46,12 +84,27 @@ export default function DeverloperSection(props: DeverloperProps) {
             md={mode == "dark" ? 4 : 8}
             sx={{ transition: "all 0.8s ease-in-out" }}
           >
-            <DeveloperItem
-              color="#8cd3ff"
-              title="Backend Developer"
-              subtitle="Java Developer"
-              video={mode == "dark" ? undefined : "/video/hero2.mp4"}
-            />
+            <Box
+              component="div"
+              sx={
+                inViewport
+                  ? {
+                      "@keyframes fadeFromLeft": {
+                        from: { opacity: 0, transform: "translateX(-100px)" },
+                        to: { opacity: 1, transform: "translateY(0)" },
+                      },
+                      animation: "fadeFromLeft 0.5s ease-in-out",
+                    }
+                  : {}
+              }
+            >
+              <DeveloperItem
+                color="#8cd3ff"
+                title="Backend Developer"
+                subtitle="Java Developer"
+                video={mode == "dark" ? undefined : "/video/hero2.mp4"}
+              />
+            </Box>
           </Grid>
           <Grid
             item
@@ -59,18 +112,33 @@ export default function DeverloperSection(props: DeverloperProps) {
             md={mode == "dark" ? 8 : 4}
             sx={{ transition: "all 0.8s ease-in-out" }}
           >
-            <DeveloperItem
-              color="#7451cb"
-              title="Tool Developer"
-              subtitle="Python Developer"
-              video={mode == "dark" ? "/video/hero2.mp4" : undefined}
-            />
+            <Box
+              component="div"
+              sx={
+                inViewport
+                  ? {
+                      "@keyframes fadeFromRight": {
+                        from: { opacity: 0, transform: "translateX(100px)" },
+                        to: { opacity: 1, transform: "translateY(0)" },
+                      },
+                      animation: "fadeFromRight 0.5s ease-in-out",
+                    }
+                  : {}
+              }
+            >
+              <DeveloperItem
+                color="#7451cb"
+                title="Tool Developer"
+                subtitle="Python Developer"
+                video={mode == "dark" ? "/video/hero2.mp4" : undefined}
+              />
+            </Box>
           </Grid>
         </Grid>
       </Container>
     </Box>
   );
-}
+};
 
 interface DeveloperItemProps {
   color: string;
@@ -112,11 +180,11 @@ const DeveloperItem = React.memo(function DeveloperItem({
       {video && (
         <Box
           sx={{
-            width: { 
+            width: {
               xs: "180px",
               md: "220px",
             },
-            height: { 
+            height: {
               xs: "180px",
               md: "220px",
             },
@@ -143,3 +211,5 @@ const DeveloperItem = React.memo(function DeveloperItem({
     </Box>
   );
 });
+
+export default React.memo(DeverloperSection);
