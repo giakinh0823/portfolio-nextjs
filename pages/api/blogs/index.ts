@@ -1,18 +1,21 @@
 import { initializeApp } from "firebase/app";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { firebaseConfig } from "../../../constants/common";
 import {
   addDoc,
   collection,
-  getDoc,
   getDocs,
   getFirestore,
+  limit,
   orderBy,
   query,
-  Timestamp,
-  where,
+  startAfter,
 } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage } from "firebase/storage";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { firebaseConfig } from "../../../constants/common";
+import formidable from "formidable";
+import { v4 as uuidv4 } from "uuid";
+import slugify from "slugify";
+import firebase from "firebase/app";
 
 initializeApp(firebaseConfig);
 
@@ -31,17 +34,38 @@ export default async function handler(
 ) {
   if (req.method !== "GET") {
     try {
-      await addDoc(collection(db, "blogs"), req.body);
+      const id = uuidv4();
+      await addDoc(collection(db, "blogs"), {
+        ...req.body,
+        slug: slugify(req.body.title) + "-" + id,
+        id,
+      });
       return res.status(200).json({ name: "Success" });
     } catch (error) {
       return res.status(400).json({ name: "Error" });
     }
   }
 
-  const response = await fetch(
-    `https://api-gateway.fullstack.edu.vn/api/blog-posts?page=${req.query.page}`
-  );
-  const responseJSON = await response.json();
+  const number = req.query.limit ? Number.parseInt(req.query.limit as string) : 6;
+  console.log(number);
 
-  res.status(200).json(responseJSON);
+  const docRef = await query(collection(db, "blogs"), limit(number));
+
+  const docSnap = await getDocs(docRef);
+  const data: any[] = [];
+  docSnap.forEach((doc: any) => {
+    data.push({ ...doc.data() });
+  });
+
+  // console.log(data);
+
+  res.status(200).json({ data });
 }
+
+const post = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  const form = new formidable.IncomingForm();
+  form.parse(req, async function (err: any, fields: any, files: any) {
+    console.log(files);
+  });
+  return res.status(200).json({ name: "Success" });
+};

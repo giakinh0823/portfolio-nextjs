@@ -1,12 +1,13 @@
-import { AppPropsWithLayout } from "@/models/index";
 import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Provider } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
 import { SWRConfig } from "swr";
 import axiosClient from "../api-client/axios-client";
 import { store } from "../app/store";
 import { EmptyLayout } from "../components/layout/empty";
 import ToggleColorMode from "../components/layout/ToggleMode";
+import { AppPropsWithLayout } from "../models";
 import "../styles/globals.css";
 import { createEmotionCache } from "../utils";
 

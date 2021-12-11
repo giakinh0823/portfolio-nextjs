@@ -1,11 +1,12 @@
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
+  Backdrop,
+  CircularProgress,
   Container,
   FormControlLabel,
   FormGroup,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import Dialog from "@mui/material/Dialog";
@@ -14,30 +15,38 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/system";
+import Image from "next/image";
 import * as React from "react";
 import { createReactEditorJS } from "react-editor-js";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
 import { blogApi } from "../../api-client/blogApi";
 import { EDITOR_JS_TOOLS } from "../../constants/editor-js-tools";
+import { uploadImage } from "../../utils/uploadImage";
 import ButtonPrimary from "../common/button/ButtonPrimary";
 import { useCategorys } from "../swr/useCategory";
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+const ReactEditorJS = createReactEditorJS();
 
 const CustomEditor = () => {
+  const editorJS = React.useRef<any>(null);
   const { mutate } = useSWRConfig();
-  const ReactEditorJS = createReactEditorJS();
   const [data, setData] = React.useState<any>({});
   const [isContent, setIsContent] = React.useState<boolean>(false);
   const [open, setOpen] = React.useState<boolean>(false);
   const categorys = useCategorys();
+  const [image, setImage] = React.useState<any>();
+  const [preview, setPreview] = React.useState<any>();
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const toastId = React.useRef<any>(null);
+  const imageRef = React.useRef<any>(null);
 
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -48,8 +57,6 @@ const CustomEditor = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const editorJS = React.useRef<any>(null);
 
   const handleInitialize = React.useCallback((instance) => {
     editorJS.current = instance;
@@ -65,29 +72,85 @@ const CustomEditor = () => {
     }
   }, []);
 
-  const handlePublic = (data: any) => {
-    const blog = {
-      author: data.name,
-      categorys: data.categorys,
-      ...data,
-    };
+  const notiLoading = () => (toastId.current = toast.loading("🦄 Uploading!"));
+
+  const notiSucces = () =>
+    toast.update(toastId.current, {
+      render: "🦄 Success",
+      type: toast.TYPE.SUCCESS,
+      autoClose: 5000,
+      isLoading: false,
+    });
+
+  const notiError = () =>
+    toast.update(toastId.current, {
+      render: "🦄 Error",
+      type: toast.TYPE.ERROR,
+      autoClose: 5000,
+      isLoading: false,
+    });
+
+  const handlePublic = (from: any) => {
     (async () => {
       try {
-        await mutate(`blogs`, () => blogApi.createBlog(blog));
-        editorJS.current.clear();
+        if (image) {
+          setLoading(true);
+          notiLoading();
+          const url = await uploadImage(image);
+          const blog = {
+            title: from.title,
+            author: from.fullname,
+            categorys: from.categorys,
+            description: from.description,
+            image: url,
+            ...data,
+          };
+          await mutate(`blogs`, () => blogApi.createBlog(blog));
+          editorJS.current.clear();
+          reset();
+          handleClose();
+          notiSucces();
+          imageRef.current.value = "";
+          setImage(null);
+          setPreview(null);
+          setLoading(false);
+          setIsContent(false);
+          setOpen(false);
+          mutate(null, false);
+        } else {
+          toast.error("🦄 Please choose image!");
+        }
       } catch (e) {
-        console.log(e);
+        notiError();
       }
     })();
-    handleClose();
   };
 
   const onSubmit = (data: any) => {
     handlePublic(data);
   };
 
+  React.useEffect(() => {
+    return () => {
+      URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
+
+  const handleChangeImage = (event: any) => {
+    const image = event.target.files[0];
+    const preview = URL.createObjectURL(image);
+    setImage(image);
+    setPreview(preview);
+  };
+
   return (
     <Box component="section" pt={{ xs: 8, md: 5 }} pb={{ xs: 6, md: 20 }}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 100000 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Container>
         <Stack sx={{ minHeight: "70vh" }}>
           <Box sx={{ textAlign: "center" }}>
@@ -119,7 +182,7 @@ const CustomEditor = () => {
         disableEscapeKeyDown={true}
         sx={{ height: "fit-content", top: "30px" }}
       >
-        <DialogTitle>Author</DialogTitle>
+        <DialogTitle></DialogTitle>
         <DialogContent>
           <DialogContentText>
             Please enter your name here. Thank you for contributing a part to
@@ -128,6 +191,18 @@ const CustomEditor = () => {
           <Box mt={2}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box mb={5}>
+                <Box mb={2}>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="title"
+                    label="Title"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                    {...register("title", { required: true })}
+                  />
+                </Box>
                 <Box mb={5}>
                   <TextField
                     autoFocus
@@ -140,11 +215,75 @@ const CustomEditor = () => {
                     {...register("fullname", { required: true })}
                   />
                 </Box>
+                <Box mb={3}>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Description"
+                    type="text"
+                    multiline
+                    rows={4}
+                    fullWidth
+                    variant="standard"
+                    {...register("description", { required: true })}
+                  />
+                </Box>
+                <Box mb={2} mt={4}>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/*"
+                    type="file"
+                    id="image"
+                    onChange={handleChangeImage}
+                    ref={imageRef}
+                  />
+
+                  <Box
+                    component="label"
+                    htmlFor="image"
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <CloudUploadIcon
+                      sx={{ cursor: "pointer", color: "#7451cb" }}
+                    />{" "}
+                    <Box
+                      component="span"
+                      ml={1}
+                      sx={{ fontWeight: "bold", cursor: "pointer" }}
+                    >
+                      Upload Image
+                    </Box>
+                  </Box>
+                  <Stack direction="row" justifyContent="center">
+                    <Box
+                      sx={{
+                        height: "fit-content",
+                        width: "fit-content",
+                      }}
+                      mt={3}
+                    >
+                      {image && (
+                        <Image
+                          src={preview}
+                          alt="Image blog"
+                          width="500%"
+                          height="400%"
+                          objectFit="contain"
+                        />
+                      )}
+                    </Box>
+                  </Stack>
+                </Box>
                 <Box>
                   <Box>
                     <Typography>Category</Typography>
                   </Box>
-                  <FormGroup sx={{flexDirection: "row"}}>
+                  <FormGroup sx={{ flexDirection: "row" }}>
                     {categorys && (
                       <>
                         {categorys?.categorys?.data.map((category: any) => (
@@ -152,7 +291,15 @@ const CustomEditor = () => {
                             {category?.name && (
                               <FormControlLabel
                                 key={category?.id}
-                                control={<Checkbox color="primary" value={category?.id}  {...register("categorys[]", {required: true})}/>}
+                                control={
+                                  <Checkbox
+                                    color="primary"
+                                    value={category?.id}
+                                    {...register("categorys[]", {
+                                      required: true,
+                                    })}
+                                  />
+                                }
                                 label={category?.name}
                               />
                             )}

@@ -70,10 +70,16 @@ const SkillSection = (props: SkillProps) => {
               variant="h3"
               color="primary"
               textAlign="center"
+              fontWeight="600"
             >
               Work hard.
             </Typography>
-            <Typography component="h2" variant="h3" textAlign="center">
+            <Typography
+              component="h2"
+              variant="h3"
+              textAlign="center"
+              fontWeight="600"
+            >
               Play hard
             </Typography>
           </Box>

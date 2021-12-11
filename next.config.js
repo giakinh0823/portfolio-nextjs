@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  optimizeFonts: false,
   images: {
-    domains: ['cdn.fullstack.edu.vn'],
+    domains: ['firebasestorage.googleapis.com'],
   },
 }

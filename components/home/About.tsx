@@ -72,7 +72,7 @@ const AboutSection = (props: AboutProps) => {
             }
           >
             <Typography component="h1" variant="h3">
-              <Box component="span" sx={{ color: "primary.main" }}>
+              <Box component="span" sx={{ color: "primary.main" }} fontWeight="500">
                 Specialist
               </Box>{" "}
               in creative digital products
@@ -83,6 +83,7 @@ const AboutSection = (props: AboutProps) => {
               mt={2}
               sx={{ fontSize: "1.3rem" }}
               color="#6c6c6c"
+              fontWeight="500"
             >
               I am a software engineer major who is passionate about
               people-centered development as well as strategic decision-making.
@@ -93,6 +94,7 @@ const AboutSection = (props: AboutProps) => {
               mt={2}
               sx={{ fontSize: "1.3rem" }}
               color="#6c6c6c"
+              fontWeight="500"
             >
               I am a full-stack developer with a passion for building
               beautiful,intuitive, and performant user interfaces.

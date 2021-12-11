@@ -1,3 +1,4 @@
 export interface Param {
-    page: number;
+    page?: number;
+    limit?: number;
 }

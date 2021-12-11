@@ -7,6 +7,7 @@ import {
 import * as React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectMode, modeAction } from "../../redux/mode/modeSlice";
+import { ToastContainer } from "react-toastify";
 
 export default function ToggleColorMode({ children }: any) {
   const mode = useAppSelector(selectMode);
@@ -59,5 +60,21 @@ export default function ToggleColorMode({ children }: any) {
     [mode]
   );
   theme = responsiveFontSizes(theme);
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      {children}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={mode as any}
+      />
+    </ThemeProvider>
+  );
 }

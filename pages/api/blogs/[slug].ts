@@ -1,12 +1,22 @@
 import { initializeApp } from "firebase/app";
+import {
+  collection,
+  getDocs,
+  getFirestore, query,
+  where
+} from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { firebaseConfig } from "../../../constants/common";
 
 initializeApp(firebaseConfig);
 
+const storage = getStorage();
+const db = getFirestore();
+
 type Data =
   | {
-      data: any[];
+      data: any;
     }
   | { name: string };
 
@@ -18,9 +28,16 @@ export default async function handler(
     return res.status(404).json({ name: "method not supported" });
   }
 
-  const response = await fetch(
-    `https://api-gateway.fullstack.edu.vn/api/blog-posts/${req.query.slug}`
+  const docRef = await query(
+    collection(db, "blogs"),
+    where("slug", "==", req.query.slug)
   );
-  const responseJSON = await response.json();
-  res.status(200).json(responseJSON);
+
+  const docSnap = await getDocs(docRef);
+  const data: any[] = [];
+  docSnap.forEach((doc: any) => {
+    data.push({ ...doc.data() });
+  });
+
+  res.status(200).json({ data: data[0] });
 }

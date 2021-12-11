@@ -48,10 +48,11 @@ const HeroSection = (props: HeroProps) => {
                 component="h1"
                 variant="h2"
                 sx={{ color: "primary.main" }}
+                fontWeight="500"
               >
                 Hà Gia Kính -
               </Typography>
-              <Typography component="h1" variant="h2">
+              <Typography component="h1" variant="h2" fontWeight="500">
                 Developer from Ha Noi Viet Nam
               </Typography>
             </Box>

@@ -9,14 +9,14 @@ import { useBlogs } from "../swr/useBlog";
 export interface IMyBlogProps {}
 
 export default function MyBlog(props: IMyBlogProps) {
-  const { blogs } = useBlogs(1);
+  const { blogs } = useBlogs({limit: 3});
 
   return (
-    <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 20 }}>
+    <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 8 }}>
       <Container>
         <Box mb={5}>
-          <Typography variant="h3" component="h2">
-            News
+          <Typography variant="h3" component="h2" fontWeight="900">
+            Best Blogs
           </Typography>
         </Box>
         <Stack direction="row">
@@ -25,7 +25,7 @@ export default function MyBlog(props: IMyBlogProps) {
               <Grid item xs={12} md={6}>
                 <Box>
                   <Grid container spacing={3}>
-                    {blogs?.data.slice(7, 10).map((blog: any) => (
+                    {(Boolean(blogs)) && blogs?.data?.map((blog: any) => (
                       <Grid item xs={12} key={blog.id}>
                         <Box display="flex" justifyContent="flex-start">
                           <Box
@@ -33,50 +33,73 @@ export default function MyBlog(props: IMyBlogProps) {
                               minWidth: "fit-content",
                               borderRadius: "20px",
                               overflow: "hidden",
+                              maxHeight: "130px",
                             }}
                           >
-                            {blog.thumbnail_cdn && (
+                            {blog?.image && (
                               <Image
-                                src={blog.thumbnail_cdn}
-                                alt={blog.title}
-                                width={120}
-                                height={120}
+                                src={blog?.image}
+                                alt={blog?.title}
+                                width={140}
+                                height={130}
                               />
                             )}
                           </Box>
 
                           <Box sx={{ padding: "6px 15px" }}>
-                            <Link href={`/blog/${blog.slug}`} passHref>
+                            <Link href={`/blog/${blog?.slug}`} passHref>
                               <Typography
                                 variant="h6"
                                 component="h2"
                                 sx={{
                                   fontSize: "18px!important",
-                                  fontWeight: "bold",
+                                  fontWeight: "900",
                                   overflow: "hidden",
                                   textOverflow: "ellipsis",
                                   display: "-webkit-box",
                                   WebkitLineClamp: 1,
                                   WebkitBoxOrient: "vertical",
                                   cursor: "pointer",
+                                  margin: 0,
+                                  padding: 0,
                                 }}
                                 mb={1}
                               >
-                                {blog.title}
+                                {blog?.title}
                               </Typography>
                             </Link>
+                            <Box>
+                              <Typography
+                                variant="h6"
+                                component="h2"
+                                sx={{
+                                  fontSize: "14px!important",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                  display: "-webkit-box",
+                                  WebkitLineClamp: 1,
+                                  WebkitBoxOrient: "vertical",
+                                  cursor: "pointer",
+                                  marginBottom: "10px",
+                                  padding: 0,
+                                  fontWeight: "400",
+                                }}
+                                mb={1}
+                              >
+                                {blog?.author}
+                              </Typography>
+                            </Box>
                             <Box
                               sx={{
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
                                 display: "-webkit-box",
-                                WebkitLineClamp: 3,
+                                WebkitLineClamp: 2,
                                 WebkitBoxOrient: "vertical",
+                                fontWeight: "500",
                               }}
                             >
-                              {blog.description
-                                ? blog.description
-                                : blog.meta_description}
+                              {blog?.description}
                             </Box>
                           </Box>
                         </Box>
@@ -104,8 +127,3 @@ export default function MyBlog(props: IMyBlogProps) {
     </Box>
   );
 }
-
-
-
-
-

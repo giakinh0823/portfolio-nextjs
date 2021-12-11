@@ -1,8 +1,9 @@
 import { blogApi } from "../../api-client/blogApi";
 import useSWR, { useSWRConfig } from "swr";
+import {Param} from '../../models';
 
-export function useBlogs(page = 1) {
-  const { data, error } = useSWR(`blogs`, () => blogApi.getAll({page}));
+export function useBlogs(param: Param) {
+  const { data, error } = useSWR(`blogs?limit${param.limit ? param.limit : 6}`, () => blogApi.getAll(param));
   
   return {
     blogs: data,
@@ -13,7 +14,7 @@ export function useBlogs(page = 1) {
 
 
 export function useBlog(slug: string) {
-  const { data, error } = useSWR(`blog`, () => blogApi.getBySlug(slug));
+  const { data, error } = useSWR(`blog/${slug}`, () => blogApi.getBySlug(slug));
   
   return {
     blog: data,
