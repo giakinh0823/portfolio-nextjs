@@ -154,10 +154,10 @@ const CustomEditor = () => {
       <Container>
         <Stack sx={{ minHeight: "70vh" }}>
           <Box sx={{ textAlign: "center" }}>
-            <Typography variant="h3">New Post</Typography>
+            <Typography variant="h3">Tại bài viết mới</Typography>
           </Box>
           <Box sx={{ textAlign: "center" }}>
-            <Typography variant="h6" mt={2} sx={{opacity: 0.7, fontWeight: "400"}}>Hãy chia sẽ những kiến thức của bản tại đây</Typography>
+            <Typography variant="h6" mt={2} sx={{opacity: 0.7, fontWeight: "400"}}>Hãy chia sẽ những kiến thức của bạn tại đây</Typography>
           </Box>
           <Box sx={{ width: "100%" }} mt={8}>
             <ReactEditorJS
