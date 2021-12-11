@@ -17,3 +17,5 @@ const Blog = (props: BlogProps) => {
 Blog.Layout = MainLayout;
 
 export default Blog;
+
+

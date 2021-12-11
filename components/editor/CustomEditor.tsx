@@ -156,6 +156,9 @@ const CustomEditor = () => {
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="h3">New Post</Typography>
           </Box>
+          <Box sx={{ textAlign: "center" }}>
+            <Typography variant="h6" mt={2} sx={{opacity: 0.7, fontWeight: "400"}}>Hãy chia sẽ những kiến thức của bản tại đây</Typography>
+          </Box>
           <Box sx={{ width: "100%" }} mt={8}>
             <ReactEditorJS
               onInitialize={handleInitialize}
@@ -168,7 +171,7 @@ const CustomEditor = () => {
           </Box>
         </Stack>
         {isContent && (
-          <Stack direction="row" justifyContent="flex-end">
+          <Stack direction="row" justifyContent="center">
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <ButtonPrimary onClick={handleClickOpen}>
                 <Typography>Public</Typography>

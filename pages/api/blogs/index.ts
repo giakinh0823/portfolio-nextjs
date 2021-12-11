@@ -4,18 +4,14 @@ import {
   collection,
   getDocs,
   getFirestore,
-  limit,
-  orderBy,
-  query,
-  startAfter,
+  limit, query
 } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { firebaseConfig } from "../../../constants/common";
 import formidable from "formidable";
-import { v4 as uuidv4 } from "uuid";
+import type { NextApiRequest, NextApiResponse } from "next";
 import slugify from "slugify";
-import firebase from "firebase/app";
+import { v4 as uuidv4 } from "uuid";
+import { firebaseConfig } from "../../../constants/common";
 
 initializeApp(firebaseConfig);
 
