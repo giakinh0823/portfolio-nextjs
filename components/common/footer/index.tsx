@@ -7,6 +7,7 @@ import * as React from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { selectMode } from "../../../redux/mode/modeSlice";
 import { useIntersection } from "../../../utils/useIntersection";
+import { isMobile } from "react-device-detect";
 
 export const Footer = React.memo(function Footer() {
   const mode = useAppSelector(selectMode);
@@ -14,10 +15,17 @@ export const Footer = React.memo(function Footer() {
   const inViewport = useIntersection(ref, 0.1);
 
   return (
-    <Box component="footer" pt={12} pb={8} textAlign="center" ref={ref} sx={{ backgroundColor: mode == "dark" ? "#121212" : "#f5f7fe",}}>
+    <Box
+      component="footer"
+      pt={12}
+      pb={8}
+      textAlign="center"
+      ref={ref}
+      sx={{ backgroundColor: mode == "dark" ? "#121212" : "#f5f7fe" }}
+    >
       <Container
         sx={
-          inViewport
+          inViewport && !isMobile
             ? {
                 "@keyframes fadeIn": {
                   from: { opacity: 0, transform: "translateY(100px)" },

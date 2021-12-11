@@ -5,6 +5,7 @@ import { Box } from "@mui/system";
 import Link from "next/link";
 import * as React from "react";
 import { useIntersection } from "../../utils/useIntersection";
+import { isMobile } from "react-device-detect";
 
 export interface HeroProps {}
 
@@ -18,7 +19,7 @@ const HeroSection = (props: HeroProps) => {
       pt={{ xs: 4, md: 20 }}
       pb={{ xs: 7, md: 15 }}
       ref={ref}
-      sx={inViewport ? { opacity: 1 } : { opacity: 0 }}
+      sx={(inViewport && !isMobile) ? { opacity: 1 } : { opacity: 0 }}
     >
       <Container maxWidth="xl">
         <Stack
@@ -28,7 +29,7 @@ const HeroSection = (props: HeroProps) => {
         >
           <Stack
             sx={
-              inViewport
+              (inViewport && !isMobile)
                 ? {
                     "@keyframes fadeFromLeft": {
                       from: { opacity: 0, transform: "translateX(-100px)" },
@@ -73,7 +74,7 @@ const HeroSection = (props: HeroProps) => {
           </Stack>
           <Box
             sx={
-              inViewport
+              (inViewport && !isMobile)
                 ? {
                     "@keyframes fadeFromRight": {
                       from: { opacity: 0, transform: "translateX(100px)" },

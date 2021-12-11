@@ -1,7 +1,7 @@
 import { topicApi } from './../../api-client/topicApi';
 import useSWR from "swr";
 
-export function useTopics(page = 1) {
+export function useTopics() {
   const { data, error } = useSWR(`topics`, () => topicApi.getAll());
   
   return {

@@ -2,6 +2,7 @@ import { Container, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import * as React from "react";
 import { useIntersection } from "../../utils/useIntersection";
+import { isMobile } from "react-device-detect";
 
 export interface AboutProps {}
 
@@ -15,7 +16,7 @@ const AboutSection = (props: AboutProps) => {
       pt={{ xs: 4, md: 20 }}
       pb={{ xs: 7, md: 15 }}
       ref={ref}
-      sx={inViewport ? { opacity: 1 } : { opacity: 0 }}
+      sx={inViewport && !isMobile ? { opacity: 1 } : { opacity: 0 }}
     >
       <Container maxWidth="xl">
         <Stack
@@ -26,7 +27,7 @@ const AboutSection = (props: AboutProps) => {
           <Box
             px={2}
             sx={
-              inViewport
+              inViewport && !isMobile
                 ? {
                     "@keyframes fadeFromLeft": {
                       from: { opacity: 0, transform: "translateX(-100px)" },
@@ -58,7 +59,7 @@ const AboutSection = (props: AboutProps) => {
           <Box
             mb={{ xs: 6, md: 0 }}
             sx={
-              inViewport
+              inViewport && !isMobile
                 ? {
                     maxWidth: { xs: "100%", md: "550px" },
                     "@keyframes fadeFromRight": {

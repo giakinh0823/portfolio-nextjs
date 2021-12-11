@@ -1,7 +1,7 @@
-import { GifBoxSharp } from "@mui/icons-material";
 import { Container, Grid, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import * as React from "react";
+import { isMobile } from "react-device-detect";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
 import { useIntersection } from "../../utils/useIntersection";
@@ -31,7 +31,7 @@ const DeverloperSection = (props: DeverloperProps) => {
             <Box
               component="div"
               sx={
-                inViewport
+                (inViewport && !isMobile)
                   ? {
                       "@keyframes fadeFromLeft": {
                         from: { opacity: 0, transform: "translateX(-100px)" },
@@ -59,7 +59,7 @@ const DeverloperSection = (props: DeverloperProps) => {
             <Box
               component="div"
               sx={
-                inViewport
+                (inViewport && !isMobile)
                   ? {
                       "@keyframes fadeFromRight": {
                         from: { opacity: 0, transform: "translateX(100px)" },
@@ -87,7 +87,7 @@ const DeverloperSection = (props: DeverloperProps) => {
             <Box
               component="div"
               sx={
-                inViewport
+                (inViewport && !isMobile)
                   ? {
                       "@keyframes fadeFromLeft": {
                         from: { opacity: 0, transform: "translateX(-100px)" },
@@ -115,7 +115,7 @@ const DeverloperSection = (props: DeverloperProps) => {
             <Box
               component="div"
               sx={
-                inViewport
+                (inViewport && !isMobile)
                   ? {
                       "@keyframes fadeFromRight": {
                         from: { opacity: 0, transform: "translateX(100px)" },

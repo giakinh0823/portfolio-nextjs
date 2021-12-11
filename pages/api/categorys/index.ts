@@ -1,12 +1,18 @@
-import { initializeApp } from "firebase/app";
+import type { NextApiRequest, NextApiResponse } from "next";
 import "firebase/auth";
 import {
-  collection, getDocs,
-  getFirestore,
-  orderBy,
-  query
+    addDoc,
+    collection,
+    getDoc,
+    getDocs,
+    getFirestore,
+    orderBy,
+    query,
+    Timestamp,
+    where
 } from "firebase/firestore";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../../constants/common";
 
 initializeApp(firebaseConfig);
@@ -27,13 +33,16 @@ export default async function handler(
     return res.status(404).json({ name: "method not supported" });
   }
 
-  const docRef = await query(collection(db, "topic"), orderBy("id", "asc"));
+  const docRef = await query(
+    collection(db, "category"),
+    orderBy("id", "asc")
+  );
 
   const docSnap = await getDocs(docRef);
   const data: any[] = [];
   docSnap.forEach((doc: any) => {
-    data.push({ ...doc.data() });
+    data.push({...doc.data() });
   });
-
+  
   res.status(200).json({data: data});
 }

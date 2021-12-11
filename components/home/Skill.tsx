@@ -14,6 +14,7 @@ import * as React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
 import { useIntersection } from "../../utils/useIntersection";
+import { isMobile } from "react-device-detect";
 
 interface LinkTabProps {
   label?: string;
@@ -50,7 +51,7 @@ const SkillSection = (props: SkillProps) => {
       pb={{ xs: 7, md: 9 }}
       ref={ref}
       sx={
-        inViewport
+        inViewport && !isMobile
           ? {
               "@keyframes fadeIn": {
                 from: { opacity: 0, transform: "translateY(100px)" },
@@ -58,7 +59,7 @@ const SkillSection = (props: SkillProps) => {
               },
               animation: "fadeIn 2s ease-in-out",
             }
-          : { transform: "translateY(100px)"}
+          : { transform: "translateY(100px)" }
       }
     >
       <Container>

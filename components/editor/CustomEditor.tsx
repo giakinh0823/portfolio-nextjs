@@ -1,4 +1,13 @@
-import { Container, Stack, Typography } from "@mui/material";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import {
+  Container,
+  FormControlLabel,
+  FormGroup,
+  Stack,
+  Typography
+} from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -10,8 +19,12 @@ import { createReactEditorJS } from "react-editor-js";
 import { useForm } from "react-hook-form";
 import { useSWRConfig } from "swr";
 import { blogApi } from "../../api-client/blogApi";
+import { EDITOR_JS_TOOLS } from "../../constants/editor-js-tools";
 import ButtonPrimary from "../common/button/ButtonPrimary";
-import {EDITOR_JS_TOOLS} from "../../constants/editor-js-tools";
+import { useCategorys } from "../swr/useCategory";
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const CustomEditor = () => {
   const { mutate } = useSWRConfig();
@@ -19,6 +32,8 @@ const CustomEditor = () => {
   const [data, setData] = React.useState<any>({});
   const [isContent, setIsContent] = React.useState<boolean>(false);
   const [open, setOpen] = React.useState<boolean>(false);
+  const categorys = useCategorys();
+
   const {
     register,
     handleSubmit,
@@ -50,9 +65,10 @@ const CustomEditor = () => {
     }
   }, []);
 
-  const handlePublic = (name: any) => {
+  const handlePublic = (data: any) => {
     const blog = {
-      author: name,
+      author: data.name,
+      categorys: data.categorys,
       ...data,
     };
     (async () => {
@@ -67,7 +83,7 @@ const CustomEditor = () => {
   };
 
   const onSubmit = (data: any) => {
-    handlePublic(data.fullname);
+    handlePublic(data);
   };
 
   return (
@@ -111,16 +127,42 @@ const CustomEditor = () => {
           </DialogContentText>
           <Box mt={2}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Your name"
-                type="text"
-                fullWidth
-                variant="standard"
-                {...register("fullname", { required: true })}
-              />
+              <Box mb={5}>
+                <Box mb={5}>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Your name"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                    {...register("fullname", { required: true })}
+                  />
+                </Box>
+                <Box>
+                  <Box>
+                    <Typography>Category</Typography>
+                  </Box>
+                  <FormGroup sx={{flexDirection: "row"}}>
+                    {categorys && (
+                      <>
+                        {categorys?.categorys?.data.map((category: any) => (
+                          <>
+                            {category?.name && (
+                              <FormControlLabel
+                                key={category?.id}
+                                control={<Checkbox color="primary" value={category?.id}  {...register("categorys[]", {required: true})}/>}
+                                label={category?.name}
+                              />
+                            )}
+                          </>
+                        ))}
+                      </>
+                    )}
+                  </FormGroup>
+                </Box>
+              </Box>
               <Stack direction="row" mt={3} justifyContent="flex-end">
                 <Box mr={1}>
                   <ButtonPrimary
