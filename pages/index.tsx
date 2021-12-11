@@ -15,7 +15,6 @@ const Home: NextPageWithLayout = () => {
         title="Hà Gia Kính"
         metaTitle="Hà Gia Kính - Trang chủ"
         metaDescription="Ha Gia Kinh a full-stack developer with a passion for building beautiful,intuitive, and performant user interfaces."
-        metaKeywords="Ha Gia Kinh, Ha Gia Kinh Blog, Ha Gia Kinh Blog Home, Ha Gia Kinh Blog Home Page, Ha Gia Kinh Blog Home Page Home, Ha Gia Kinh Blog Home Page Home Page"
       />
       <HeroSection />
       <AboutSection />
