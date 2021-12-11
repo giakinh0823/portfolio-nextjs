@@ -10,17 +10,18 @@ export interface IBlogContentProps {
 const ReactEditorJS = createReactEditorJS();
 
 export default function BlogContent({ data }: IBlogContentProps) {
+  console.log(data);
   const [blocks, setBlocks] = React.useState({
-    time: data?.blog?.data?.time,
-    version: data?.blog?.data?.version,
-    blocks: data?.blog?.data?.blocks,
+    time: data?.time,
+    version: data?.version,
+    blocks: data?.blocks,
   });
 
   React.useEffect(() => {
     setBlocks({
-      time: data?.blog?.data?.time,
-      version: data?.blog?.data?.version,
-      blocks: data?.blog?.data?.blocks,
+      time: data?.time,
+      version: data?.version,
+      blocks: data?.blocks,
     });
   }, [data]);
 
@@ -34,13 +35,13 @@ export default function BlogContent({ data }: IBlogContentProps) {
             gutterBottom
             fontWeight="bold"
           >
-            {data?.blog?.data?.title}
+            {data?.title}
           </Typography>
         </Box>
         <Box component="div" sx={{ fontWeight: "500" }}>
           {blocks.blocks && (
             <ReactEditorJS
-              defaultValue={data?.blog?.data?.blocks}
+              defaultValue={data?.blocks}
               data={blocks}
               tools={EDITOR_JS_TOOLS}
               holder="content"
