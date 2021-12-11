@@ -16,7 +16,6 @@ export default function MyBlog(props: IMyBlogProps) {
     (async () => {
       try {
         const blogs = await getPost({ limit: 3 });
-        setBlogs(blogs);
       } catch (err) {
         console.log(err);
       }

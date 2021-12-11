@@ -21,7 +21,6 @@ export default function ListNew(props: IListNewProps) {
     (async () => {
       try {
         const blogs = await getPost({ limit: 1000 });
-        setBlogs(blogs);
       } catch (err) {
         console.log(err);
       }

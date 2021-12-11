@@ -10,7 +10,6 @@ export interface IBlogContentProps {
 const ReactEditorJS = createReactEditorJS();
 
 export default function BlogContent({ data }: IBlogContentProps) {
-  console.log(data);
   const [blocks, setBlocks] = React.useState({
     time: data?.time,
     version: data?.version,
