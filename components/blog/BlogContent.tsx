@@ -48,7 +48,6 @@ export default function BlogContent({ data }: IBlogContentProps) {
         <Box sx={{ "& code": { fontSize: "20px" } }}>
           <ReactMarkdown
             rehypePlugins={[rehypeRaw, remarkGfm]}
-            escapeHtml={false}
             components={{
               code({ node, inline, className, children, ...props }: any) {
                 const match = /language-(\w+)/.exec(className || "");
