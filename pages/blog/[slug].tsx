@@ -3,11 +3,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { getAllPost, getPostBySlug } from "../../api-client/strapiApi";
 import { MainLayout } from "../../components/layout";
-
-const BlogContentNoSSR = dynamic(
-  () => import("../../components/blog/BlogContent"),
-  { ssr: false }
-);
+import BlogContent from '../../components/blog/BlogContent';
 
 export interface IBlogDetailProps {
   blog: any;
@@ -31,7 +27,7 @@ export default function BlogDetail({blog}: IBlogDetailProps) {
 
   return (
     <>
-      <BlogContentNoSSR data={blog} />
+      <BlogContent data={blog} />
     </>
   );
 }

@@ -36,7 +36,7 @@ export const getPostBySlug = async (slug: any) => {
   const data = {
     ...response?.attributes,
     image: baseURL + response?.attributes.image.data.attributes.url,
-    author: response?.attributes?.author?.data?.attributes?.fullname,
+    author: response?.attributes?.author?.data?.attributes?.fullname ? response?.attributes?.author?.data?.attributes?.fullname : '',
     topics: response?.attributes.topics.data.map((topic: any) => {
       return {
         ...topic.attributes,
