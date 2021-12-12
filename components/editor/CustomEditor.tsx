@@ -23,10 +23,12 @@ import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
 import { blogApi } from "../../api-client/blogApi";
 import { getCategorys, upPost } from "../../api-client/firebaseApi";
+import { createPostBySlug, getAllTopic } from "../../api-client/strapiApi";
 import { tools_editor_js } from "../../constants/editor-js-tools";
 import { uploadImage } from "../../utils/uploadImage";
 import ButtonPrimary from "../common/button/ButtonPrimary";
 import { useCategorys } from "../swr/useCategory";
+
 
 const ReactEditorJS = createReactEditorJS();
 
@@ -48,7 +50,7 @@ const CustomEditor = () => {
   React.useEffect(() => {
     (async () => {
       try {
-        const categorys = await getCategorys();
+        const categorys = await getAllTopic();
         setCategorys(categorys);
       } catch (error) {
         console.log(error);
@@ -114,13 +116,13 @@ const CustomEditor = () => {
           const blog = {
             title: from.title,
             author: from.fullname,
-            categorys: from.categorys,
+            topics: from.topics,
             description: from.description,
             image: url,
-            ...data,
+            content: JSON.stringify(data),
           };
           // await mutate(`blogs`, () => blogApi.createBlog(blog));
-          await mutate(`blogs`, () => upPost(blog));
+          await mutate(`blogs`, () => createPostBySlug(blog));
           editorJS.current.clear();
           reset();
           handleClose();
@@ -320,7 +322,7 @@ const CustomEditor = () => {
                                   <Checkbox
                                     color="primary"
                                     value={category?.id}
-                                    {...register("categorys[]", {
+                                    {...register("topics[]", {
                                       required: true,
                                     })}
                                   />

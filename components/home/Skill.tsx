@@ -54,8 +54,8 @@ const SkillSection = (props: SkillProps) => {
         inViewport && !isMobile
           ? {
               "@keyframes fadeIn": {
-                from: { opacity: 0, transform: "translateY(100px)" },
-                to: { opacity: 1, transform: "translateY(0)" },
+                from: { opacity: 0, },
+                to: { opacity: 1,  },
               },
               animation: "fadeIn 2s ease-in-out",
             }

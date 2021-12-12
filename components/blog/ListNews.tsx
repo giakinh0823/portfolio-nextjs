@@ -8,29 +8,13 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import { getPost } from "../../api-client/firebaseApi";
-import { useBlogs } from "../swr/useBlog";
 
 export interface IListNewProps {
   blogs: any;
 }
 
-export default function ListNew({blogs}: IListNewProps) {
+export default function ListNew({ blogs }: IListNewProps) {
   const ref = React.useRef<HTMLDivElement>(null);
-
-  
-  // const [blogs, setBlogs] = React.useState<any[]>([]);
-
-  // React.useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const blogs = await getPost({ limit: 1000 });
-  //       setBlogs(blogs);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   })();
-  // }, []);
 
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 15 }}>
@@ -52,10 +36,10 @@ export default function ListNew({blogs}: IListNewProps) {
                       borderRadius: "40px",
                       overflow: "hidden",
                     }}
-                    mb={3}
+                    mb={1}
                   >
                     <Image
-                      src={blog.image}
+                      src={blog?.image}
                       alt={blog.title}
                       width={500}
                       height={350}
@@ -66,16 +50,39 @@ export default function ListNew({blogs}: IListNewProps) {
                       <Typography
                         variant="h5"
                         component="h2"
-                        mb={2}
                         sx={{
                           cursor: "pointer",
                           fontWeight: "700",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 1,
+                          WebkitBoxOrient: "vertical",
                         }}
                       >
                         {blog.title}
                       </Typography>
                     </MuiLink>
                   </Link>
+                  <Typography
+                    variant="h6"
+                    component="h2"
+                    sx={{
+                      fontSize: "15px!important",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 1,
+                      WebkitBoxOrient: "vertical",
+                      cursor: "pointer",
+                      marginBottom: "10px",
+                      padding: 0,
+                      fontWeight: "400",
+                    }}
+                    mb={1}
+                  >
+                    {blog?.author}
+                  </Typography>
                   <Typography
                     variant="body1"
                     component="p"

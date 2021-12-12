@@ -1,10 +1,9 @@
-import { blogApi } from "../../api-client/blogApi";
-import useSWR, { useSWRConfig } from "swr";
-import {Param} from '../../models';
+import useSWR from "swr";
+import { getAllPost, getPostBySlug } from "../../api-client/strapiApi";
 
-export function useBlogs(param: Param) {
-  const { data, error } = useSWR(`blogs?limit${param.limit ? param.limit : 6}`, () => blogApi.getAll(param));
-  
+export function useBlogs(param?: any) {
+  const { data, error } = useSWR(`blogs`, () => getAllPost());
+
   return {
     blogs: data,
     isLoading: !error && !data,
@@ -12,15 +11,12 @@ export function useBlogs(param: Param) {
   };
 }
 
-
 export function useBlog(slug: string) {
-  const { data, error } = useSWR(`blog/${slug}`, () => blogApi.getBySlug(slug));
-  
+  const { data, error } = useSWR(`blog/${slug}`, () => getPostBySlug(slug));
+
   return {
     blog: data,
     isLoading: !error && !data,
     isError: error,
   };
 }
-
-

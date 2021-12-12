@@ -15,7 +15,7 @@ export default function NewBlog (props: IWriteProps) {
   
   return (
     <>
-      {CustomEditor && <CustomEditor />}
+      {/* {CustomEditor && <CustomEditor />} */}
     </>
   );
 }

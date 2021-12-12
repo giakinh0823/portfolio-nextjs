@@ -9,7 +9,6 @@ export interface IMyBlogProps {
 }
 
 export default function MyBlog({ blogs }: IMyBlogProps) {
-
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 8 }}>
       <Container>
@@ -25,7 +24,7 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
                 <Box>
                   <Grid container spacing={3}>
                     {Boolean(blogs) &&
-                      blogs?.map((blog: any) => (
+                      blogs?.slice(-3)?.map((blog: any) => (
                         <Grid item xs={12} key={blog.id}>
                           <Box display="flex" justifyContent="flex-start">
                             <Box
@@ -115,12 +114,7 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
                     height: "100%",
                   }}
                 >
-                  <video
-                    autoPlay
-                    loop
-                    width="100%"
-                    height="100%"
-                  >
+                  <video autoPlay loop width="100%" height="100%">
                     <source src={"/video/reactjs.mp4"} type="video/mp4" />
                   </video>
                 </Box>

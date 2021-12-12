@@ -1,7 +1,13 @@
 import { Box, Container, Typography } from "@mui/material";
 import * as React from "react";
 import { createReactEditorJS } from "react-editor-js";
-import { EDITOR_JS_TOOLS } from "../../constants/editor-js-tools";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { github, vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
+import { useAppSelector } from "../../app/hooks";
+import { selectMode } from "../../redux/mode/modeSlice";
 
 export interface IBlogContentProps {
   data: any;
@@ -10,6 +16,7 @@ export interface IBlogContentProps {
 const ReactEditorJS = createReactEditorJS();
 
 export default function BlogContent({ data }: IBlogContentProps) {
+  const mode = useAppSelector(selectMode);
   const [blocks, setBlocks] = React.useState({
     time: data?.time,
     version: data?.version,
@@ -37,17 +44,35 @@ export default function BlogContent({ data }: IBlogContentProps) {
             {data?.title}
           </Typography>
         </Box>
-        <Box component="div" sx={{ fontWeight: "500" }}>
-          {blocks.blocks && (
-            <ReactEditorJS
-              defaultValue={data?.blocks}
-              data={blocks}
-              tools={EDITOR_JS_TOOLS}
-              holder="content"
-            >
-              <Box component="div" id="content" sx={{ fontFamily: "Roboto" }}/>
-            </ReactEditorJS>
-          )}
+  
+        <Box sx={{ "& code": { fontSize: "20px" } }}>
+          <ReactMarkdown
+            rehypePlugins={[rehypeRaw, remarkGfm]}
+            escapeHtml={false}
+            components={{
+              code({ node, inline, className, children, ...props }: any) {
+                const match = /language-(\w+)/.exec(className || "");
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    style={mode == "dark" ? vscDarkPlus : github}
+                    language={match[1]}
+                    PreTag="div"
+                    wrapLines={true}
+                    {...props}
+                    customStyle={{ borderRadius: "10px", fontWeight: "500", padding: "20px" }}
+                  >
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          >
+            {data?.content}
+          </ReactMarkdown>
         </Box>
       </Container>
     </Box>
