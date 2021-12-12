@@ -16,7 +16,6 @@ const AboutSection = (props: AboutProps) => {
       pt={{ xs: 4, md: 20 }}
       pb={{ xs: 7, md: 15 }}
       ref={ref}
-      sx={inViewport && !isMobile ? { opacity: 1 } : { opacity: 0 }}
     >
       <Container maxWidth="xl">
         <Stack
