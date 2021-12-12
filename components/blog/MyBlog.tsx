@@ -7,21 +7,24 @@ import { getPost } from "../../api-client/firebaseApi";
 import developerImage from "../../assets/image/developer.png";
 import { useBlogs } from "../swr/useBlog";
 
-export interface IMyBlogProps {}
+export interface IMyBlogProps {
+  blogs: any;
+}
 
-export default function MyBlog(props: IMyBlogProps) {
-  const [blogs, setBlogs] = React.useState<any[]>([]);
+export default function MyBlog({blogs}: IMyBlogProps) {
 
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const blogs = await getPost({ limit: 3 });
-        setBlogs(blogs);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
+  // const [blogs, setBlogs] = React.useState<any[]>([]);
+
+  // React.useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const blogs = await getPost({ limit: 3 });
+  //       setBlogs(blogs);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   })();
+  // }, []);
 
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 8 }}>

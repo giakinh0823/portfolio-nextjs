@@ -11,22 +11,26 @@ import * as React from "react";
 import { getPost } from "../../api-client/firebaseApi";
 import { useBlogs } from "../swr/useBlog";
 
-export interface IListNewProps {}
+export interface IListNewProps {
+  blogs: any;
+}
 
-export default function ListNew(props: IListNewProps) {
+export default function ListNew({blogs}: IListNewProps) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const [blogs, setBlogs] = React.useState<any[]>([]);
 
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const blogs = await getPost({ limit: 1000 });
-        setBlogs(blogs);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
+  
+  // const [blogs, setBlogs] = React.useState<any[]>([]);
+
+  // React.useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const blogs = await getPost({ limit: 1000 });
+  //       setBlogs(blogs);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   })();
+  // }, []);
 
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 15 }}>
