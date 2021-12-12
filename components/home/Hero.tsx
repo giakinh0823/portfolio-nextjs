@@ -19,7 +19,6 @@ const HeroSection = (props: HeroProps) => {
       pt={{ xs: 4, md: 20 }}
       pb={{ xs: 7, md: 15 }}
       ref={ref}
-      sx={(inViewport && !isMobile) ? { opacity: 1 } : { opacity: isMobile ? 1 : 0 }}
     >
       <Container maxWidth="xl">
         <Stack

@@ -34,7 +34,7 @@ export const Footer = React.memo(function Footer() {
                 animation: "fadeIn 2s linear",
               }
             : {
-                transform: isMobile ? undefined : "translateY(100px)",
+                transform: !isMobile ? "translateY(100px)" : "translateY(opx)",
               }
         }
       >
