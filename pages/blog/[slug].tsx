@@ -56,6 +56,7 @@ export async function getStaticProps(context: any) {
     // - When a request comes in
     // - At most once every 10 seconds
     revalidate: 10, // In seconds
+    notFound: !blog,
   };
 }
 
