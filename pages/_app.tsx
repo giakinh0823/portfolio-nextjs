@@ -8,8 +8,9 @@ import { store } from "../app/store";
 import { EmptyLayout } from "../components/layout/empty";
 import ToggleColorMode from "../components/layout/ToggleMode";
 import { AppPropsWithLayout } from "../models";
-import "../styles/globals.css";
 import { createEmotionCache } from "../utils";
+import "../styles/globals.css";
+import "../styles/editor.css";
 
 const clientSideEmotionCache = createEmotionCache();
 

@@ -21,6 +21,16 @@ const DeverloperSection = (props: DeverloperProps) => {
       ref={ref}
     >
       <Container>
+        <Typography
+          display={{ xs: "block", md: "none" }}
+          variant="h2"
+          component="h2"
+          fontWeight="900"
+          textAlign="center"
+          mb={6}
+        >
+          Developer
+        </Typography>
         <Grid container spacing={3}>
           <Grid
             item
@@ -31,7 +41,7 @@ const DeverloperSection = (props: DeverloperProps) => {
             <Box
               component="div"
               sx={
-                (inViewport && !isMobile)
+                inViewport && !isMobile
                   ? {
                       "@keyframes fadeFromLeft": {
                         from: { opacity: 0, transform: "translateX(-100px)" },
@@ -59,7 +69,7 @@ const DeverloperSection = (props: DeverloperProps) => {
             <Box
               component="div"
               sx={
-                (inViewport && !isMobile)
+                inViewport && !isMobile
                   ? {
                       "@keyframes fadeFromRight": {
                         from: { opacity: 0, transform: "translateX(100px)" },
@@ -87,7 +97,7 @@ const DeverloperSection = (props: DeverloperProps) => {
             <Box
               component="div"
               sx={
-                (inViewport && !isMobile)
+                inViewport && !isMobile
                   ? {
                       "@keyframes fadeFromLeft": {
                         from: { opacity: 0, transform: "translateX(-100px)" },
@@ -115,7 +125,7 @@ const DeverloperSection = (props: DeverloperProps) => {
             <Box
               component="div"
               sx={
-                (inViewport && !isMobile)
+                inViewport && !isMobile
                   ? {
                       "@keyframes fadeFromRight": {
                         from: { opacity: 0, transform: "translateX(100px)" },

@@ -12,7 +12,7 @@ export interface HeroProps {}
 const HeroSection = (props: HeroProps) => {
   const ref = React.useRef(null);
   const inViewport = useIntersection(ref, 0.1);
- 
+
   return (
     <Box
       component="section"
@@ -28,7 +28,7 @@ const HeroSection = (props: HeroProps) => {
         >
           <Stack
             sx={
-              (inViewport && !isMobile)
+              inViewport && !isMobile
                 ? {
                     "@keyframes fadeFromLeft": {
                       from: { opacity: 0, transform: "translateX(-100px)" },
@@ -48,14 +48,23 @@ const HeroSection = (props: HeroProps) => {
                 variant="h2"
                 sx={{ color: "primary.main" }}
                 fontWeight="500"
+                textAlign={{ xs: "center", md: "left" }}
               >
                 Hà Gia Kính -
               </Typography>
-              <Typography component="h1" variant="h2" fontWeight="500">
-                Developer from Ha Noi Viet Nam
+              <Typography
+                component="h1"
+                variant="h2"
+                fontWeight="500"
+                textAlign={{ xs: "center", md: "left" }}
+              >
+                Developer Ha Noi .Viet Nam
               </Typography>
             </Box>
-            <Box mt={3}>
+            <Stack mt={3} direction="row" justifyContent={{
+              xs: "center",
+              md: "flex-start"
+            }}>
               <Box component="span">
                 <Link href="https://www.linkedin.com/in/giakinh0823/" passHref>
                   <MuiLink target="blank">
@@ -70,11 +79,11 @@ const HeroSection = (props: HeroProps) => {
                   </MuiLink>
                 </Link>
               </Box>
-            </Box>
+            </Stack>
           </Stack>
           <Box
             sx={
-              (inViewport && !isMobile)
+              inViewport && !isMobile
                 ? {
                     "@keyframes fadeFromRight": {
                       from: { opacity: 0, transform: "translateX(100px)" },
@@ -87,7 +96,14 @@ const HeroSection = (props: HeroProps) => {
           >
             <Box
               sx={{
-                width: "420px",
+                width: {
+                  xs: "320px",
+                  md: "420px",
+                },
+                height: {
+                  xs: "320px",
+                  md: "420px",
+                },
                 borderRadius: "100%",
                 overflow: "hidden",
               }}
@@ -95,8 +111,8 @@ const HeroSection = (props: HeroProps) => {
               <video
                 autoPlay
                 loop
-                width="420px"
-                height="420px"
+                width="100%"
+                height="100%"
                 style={{ transform: "scale(1.5)" }}
               >
                 <source src={"/video/hero.mp4"} type="video/mp4" />

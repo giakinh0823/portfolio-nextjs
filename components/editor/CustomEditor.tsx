@@ -23,7 +23,7 @@ import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
 import { blogApi } from "../../api-client/blogApi";
 import { getCategorys } from "../../api-client/firebaseApi";
-import { EDITOR_JS_TOOLS } from "../../constants/editor-js-tools";
+import { tools_editor_js } from "../../constants/editor-js-tools";
 import { uploadImage } from "../../utils/uploadImage";
 import ButtonPrimary from "../common/button/ButtonPrimary";
 import { useCategorys } from "../swr/useCategory";
@@ -176,7 +176,7 @@ const CustomEditor = () => {
           <Box sx={{ width: "100%" }} mt={8}>
             <ReactEditorJS
               onInitialize={handleInitialize}
-              tools={EDITOR_JS_TOOLS}
+              tools={tools_editor_js}
               defaultValue={data?.blocks}
               onChange={handleSave}
               autofocus={true}

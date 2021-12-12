@@ -39,7 +39,14 @@ const AboutSection = (props: AboutProps) => {
           >
             <Box
               sx={{
-                width: "420px",
+                width: {
+                  xs: "320px",
+                  md: "420px",
+                },
+                height: {
+                  xs: "320px",
+                  md: "420px",
+                },
                 borderRadius: "40px",
                 overflow: "hidden",
               }}
@@ -47,8 +54,8 @@ const AboutSection = (props: AboutProps) => {
               <video
                 autoPlay
                 loop
-                width="420px"
-                height="420px"
+                width="100%"
+                height="100%"
                 style={{ transform: "scale(1.4)" }}
               >
                 <source src={"/video/about2.mp4"} type="video/mp4" />
@@ -70,11 +77,30 @@ const AboutSection = (props: AboutProps) => {
                 : { maxWidth: { xs: "100%", md: "550px" } }
             }
           >
-            <Typography component="h1" variant="h3">
-              <Box component="span" sx={{ color: "primary.main" }} fontWeight="500">
-                Specialist
+            <Typography
+              display={{ xs: "block", md: "none" }}
+              variant="h2"
+              component="h2"
+              fontWeight="900"
+              textAlign="center"
+              mb={6}
+            >
+              Giới thiệu
+            </Typography>
+            <Typography
+              component="h1"
+              variant="h3"
+              textAlign={{ xs: "center", md: "left" }}
+            >
+              <Box
+                component="span"
+                sx={{ color: "primary.main" }}
+                fontWeight="400"
+                textAlign={{ xs: "center", md: "left" }}
+              >
+                Chuyên gia
               </Box>{" "}
-              in creative digital products
+              lập trình web app
             </Typography>
             <Typography
               component="p"
@@ -82,10 +108,10 @@ const AboutSection = (props: AboutProps) => {
               mt={2}
               sx={{ fontSize: "1.3rem" }}
               color="#6c6c6c"
-              fontWeight="500"
+              fontWeight="400"
+              textAlign={{ xs: "center", md: "left" }}
             >
-              I am a software engineer major who is passionate about
-              people-centered development as well as strategic decision-making.
+              Tôi là một kỹ sư phần mềm chuyên ngành, người đam mê phát triển lấy con người làm trung tâm cũng như ra quyết định chiến lược.
             </Typography>
             <Typography
               component="p"
@@ -93,10 +119,10 @@ const AboutSection = (props: AboutProps) => {
               mt={2}
               sx={{ fontSize: "1.3rem" }}
               color="#6c6c6c"
-              fontWeight="500"
+              fontWeight="400"
+              textAlign={{ xs: "center", md: "left" }}
             >
-              I am a full-stack developer with a passion for building
-              beautiful,intuitive, and performant user interfaces.
+              Tôi là một nhà phát triển full-stack với niềm đam mê xây dựng giao diện người dùng đẹp, trực quan và hiệu quả.
             </Typography>
           </Box>
         </Stack>

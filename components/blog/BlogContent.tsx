@@ -44,9 +44,8 @@ export default function BlogContent({ data }: IBlogContentProps) {
               data={blocks}
               tools={EDITOR_JS_TOOLS}
               holder="content"
-              hideToolbar={true}
             >
-              <Box component="div" id="content" sx={{ fontFamily: "Roboto" }} />
+              <Box component="div" id="content" sx={{ fontFamily: "Roboto" }}/>
             </ReactEditorJS>
           )}
         </Box>

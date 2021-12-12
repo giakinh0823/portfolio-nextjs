@@ -11,8 +11,7 @@ export interface IMyBlogProps {
   blogs: any;
 }
 
-export default function MyBlog({blogs}: IMyBlogProps) {
-
+export default function MyBlog({ blogs }: IMyBlogProps) {
   // const [blogs, setBlogs] = React.useState<any[]>([]);
 
   // React.useEffect(() => {
@@ -125,7 +124,7 @@ export default function MyBlog({blogs}: IMyBlogProps) {
                 </Box>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Box
+                {/* <Box
                   component="div"
                   sx={{
                     borderRadius: "20px",
@@ -134,6 +133,21 @@ export default function MyBlog({blogs}: IMyBlogProps) {
                   }}
                 >
                   <Image src={developerImage} alt="developer" height={1000} />
+                </Box> */}
+                <Box
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <video
+                    autoPlay
+                    loop
+                    width="100%"
+                    height="100%"
+                  >
+                    <source src={"/video/reactjs.mp4"} type="video/mp4" />
+                  </video>
                 </Box>
               </Grid>
             </Grid>
