@@ -22,6 +22,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
 import { blogApi } from "../../api-client/blogApi";
+import { getCategorys } from "../../api-client/firebaseApi";
 import { EDITOR_JS_TOOLS } from "../../constants/editor-js-tools";
 import { uploadImage } from "../../utils/uploadImage";
 import ButtonPrimary from "../common/button/ButtonPrimary";
@@ -35,12 +36,25 @@ const CustomEditor = () => {
   const [data, setData] = React.useState<any>({});
   const [isContent, setIsContent] = React.useState<boolean>(false);
   const [open, setOpen] = React.useState<boolean>(false);
-  const categorys = useCategorys();
+  // const categorys = useCategorys();
   const [image, setImage] = React.useState<any>();
   const [preview, setPreview] = React.useState<any>();
   const [loading, setLoading] = React.useState<boolean>(false);
   const toastId = React.useRef<any>(null);
   const imageRef = React.useRef<any>(null);
+
+  const [categorys, setCategorys] = React.useState<any[]>([]);
+
+  React.useEffect(() =>{
+    ;(async () => {
+      try{
+        const categorys = await getCategorys();
+        setCategorys(categorys)
+      }catch(error){
+        console.log(error)
+      }
+    })()
+  },[])
 
   const {
     register,
@@ -183,7 +197,8 @@ const CustomEditor = () => {
       <Dialog
         open={open}
         disableEscapeKeyDown={true}
-        sx={{ height: "fit-content", top: "30px" }}
+        sx={{ top: "30px", overflowY: "auto" }}
+        scroll="paper"
       >
         <DialogTitle></DialogTitle>
         <DialogContent>
@@ -289,7 +304,7 @@ const CustomEditor = () => {
                   <FormGroup sx={{ flexDirection: "row" }}>
                     {categorys && (
                       <>
-                        {categorys?.categorys?.data.map((category: any) => (
+                        {categorys?.map((category: any) => (
                           <>
                             {category?.name && (
                               <FormControlLabel

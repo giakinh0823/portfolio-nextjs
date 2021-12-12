@@ -41,3 +41,18 @@ export const getPostBySlug = async (slug: any) => {
   });
   return data[0];
 };
+
+
+export const getCategorys= async () => {
+  const docRef = await query(
+    collection(db, "category"),
+  );
+
+  const docSnap = await getDocs(docRef);
+  const data: any[] = [];
+  docSnap.forEach((doc: any) => {
+    data.push({ ...doc.data() });
+  });
+  return data;
+};
+
