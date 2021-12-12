@@ -33,9 +33,7 @@ export const Footer = React.memo(function Footer() {
                 },
                 animation: "fadeIn 2s linear",
               }
-            : {
-                transform: !isMobile ? "translateY(100px)" : "translateY(opx)",
-              }
+            : {}
         }
       >
         <Stack justifyContent="center" alignItems="center">
