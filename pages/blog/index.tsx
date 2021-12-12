@@ -1,20 +1,28 @@
 import * as React from "react";
-import { MainLayout } from "../../components/layout/main";
-import MyBlog from "../../components/blog/MyBlog";
-import ListNew from "../../components/blog/ListNews";
-import { GetStaticProps, GetStaticPropsContext } from "next";
 import { getPost } from "../../api-client/firebaseApi";
+import ListNew from "../../components/blog/ListNews";
+import MyBlog from "../../components/blog/MyBlog";
+import { MainLayout } from "../../components/layout/main";
 
-export interface BlogProps {
-  listNew: any;
-  bestBlog: any;
-}
+export interface BlogProps {}
 
-const Blog = ({listNew, bestBlog}: BlogProps) => {
+const Blog = (prop: BlogProps) => {
+  const [bestBlog, setBestBlog] = React.useState<any>([]);
+  const [listBlog, setListBlog] = React.useState<any>([]);
+
+  React.useEffect(() => {
+    (async () => {
+      const listBlog = await getPost({ limit: 1000 });
+      const bestBlog = await getPost({ limit: 3 });
+      setBestBlog(bestBlog);
+      setListBlog(listBlog);
+    })();
+  }, []);
+
   return (
     <>
-      <MyBlog blogs={bestBlog}/>
-      <ListNew blogs={listNew}/>
+      <MyBlog blogs={bestBlog} />
+      <ListNew blogs={listBlog} />
     </>
   );
 };
@@ -22,17 +30,3 @@ const Blog = ({listNew, bestBlog}: BlogProps) => {
 Blog.Layout = MainLayout;
 
 export default Blog;
-
-export const getStaticProps: GetStaticProps<any> = async (
-  context: GetStaticPropsContext
-) => {
-  const listNew = await getPost({ limit: 1000 });
-  const bestBlog = await getPost({ limit: 3 });
-
-  return {
-    props: {
-      listNew: listNew.map((x: any) => ({ ...x })),
-      bestBlog: bestBlog.map((x: any) => ({ ...x })),
-    },
-  };
-};

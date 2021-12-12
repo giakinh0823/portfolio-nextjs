@@ -3,27 +3,12 @@ import { Box } from "@mui/system";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import { getPost } from "../../api-client/firebaseApi";
-import developerImage from "../../assets/image/developer.png";
-import { useBlogs } from "../swr/useBlog";
 
 export interface IMyBlogProps {
   blogs: any;
 }
 
 export default function MyBlog({ blogs }: IMyBlogProps) {
-  // const [blogs, setBlogs] = React.useState<any[]>([]);
-
-  // React.useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const blogs = await getPost({ limit: 3 });
-  //       setBlogs(blogs);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   })();
-  // }, []);
 
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 8 }}>
@@ -124,16 +109,6 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
                 </Box>
               </Grid>
               <Grid item xs={12} md={6}>
-                {/* <Box
-                  component="div"
-                  sx={{
-                    borderRadius: "20px",
-                    overflow: "hidden",
-                    maxHeight: "450px",
-                  }}
-                >
-                  <Image src={developerImage} alt="developer" height={1000} />
-                </Box> */}
                 <Box
                   sx={{
                     width: "100%",

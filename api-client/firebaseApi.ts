@@ -6,10 +6,15 @@ import {
   limit,
   where,
   query,
+  addDoc,
+  orderBy,
 } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { Param } from "../models/param";
 import { firebaseConfig } from "../constants/common";
+import { v4 as uuidv4 } from "uuid";
+import slugify from "slugify";
+
 
 initializeApp(firebaseConfig);
 
@@ -18,7 +23,7 @@ const db = getFirestore();
 
 export const getPost = async (param: Param) => {
   const number = param?.limit || 6;
-  const docRef = await query(collection(db, "blogs"), limit(number));
+  const docRef = await query(collection(db, "blogs"), limit(number), orderBy("time", "desc"));
 
   const docSnap = await getDocs(docRef);
   const data: any[] = [];
@@ -42,11 +47,17 @@ export const getPostBySlug = async (slug: any) => {
   return data[0];
 };
 
+export const upPost = async (data: any) => {
+  const id = uuidv4();
+  await addDoc(collection(db, "blogs"), {
+    ...data,
+    slug: slugify(data.title) + "-" + id,
+    id,
+  });
+};
 
-export const getCategorys= async () => {
-  const docRef = await query(
-    collection(db, "category"),
-  );
+export const getCategorys = async () => {
+  const docRef = await query(collection(db, "category"));
 
   const docSnap = await getDocs(docRef);
   const data: any[] = [];
@@ -55,4 +66,3 @@ export const getCategorys= async () => {
   });
   return data;
 };
-

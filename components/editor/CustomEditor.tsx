@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
 import { blogApi } from "../../api-client/blogApi";
-import { getCategorys } from "../../api-client/firebaseApi";
+import { getCategorys, upPost } from "../../api-client/firebaseApi";
 import { tools_editor_js } from "../../constants/editor-js-tools";
 import { uploadImage } from "../../utils/uploadImage";
 import ButtonPrimary from "../common/button/ButtonPrimary";
@@ -45,16 +45,16 @@ const CustomEditor = () => {
 
   const [categorys, setCategorys] = React.useState<any[]>([]);
 
-  React.useEffect(() =>{
-    ;(async () => {
-      try{
+  React.useEffect(() => {
+    (async () => {
+      try {
         const categorys = await getCategorys();
-        setCategorys(categorys)
-      }catch(error){
-        console.log(error)
+        setCategorys(categorys);
+      } catch (error) {
+        console.log(error);
       }
-    })()
-  },[])
+    })();
+  }, []);
 
   const {
     register,
@@ -119,7 +119,8 @@ const CustomEditor = () => {
             image: url,
             ...data,
           };
-          await mutate(`blogs`, () => blogApi.createBlog(blog));
+          // await mutate(`blogs`, () => blogApi.createBlog(blog));
+          await mutate(`blogs`, () => upPost(blog));
           editorJS.current.clear();
           reset();
           handleClose();
@@ -171,7 +172,13 @@ const CustomEditor = () => {
             <Typography variant="h3">Tại bài viết mới</Typography>
           </Box>
           <Box sx={{ textAlign: "center" }}>
-            <Typography variant="h6" mt={2} sx={{opacity: 0.7, fontWeight: "400"}}>Hãy chia sẽ những kiến thức của bạn tại đây</Typography>
+            <Typography
+              variant="h6"
+              mt={2}
+              sx={{ opacity: 0.7, fontWeight: "400" }}
+            >
+              Hãy chia sẽ những kiến thức của bạn tại đây
+            </Typography>
           </Box>
           <Box sx={{ width: "100%" }} mt={8}>
             <ReactEditorJS
