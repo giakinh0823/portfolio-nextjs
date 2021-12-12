@@ -59,7 +59,7 @@ const SkillSection = (props: SkillProps) => {
               },
               animation: "fadeIn 2s ease-in-out",
             }
-          : { transform: isMobile ? undefined : "translateY(100px)" }
+          : { transform: isMobile ? "translateY(0)" : "translateY(100px)" }
       }
     >
       <Container>

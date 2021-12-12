@@ -34,5 +34,6 @@ export const getStaticProps: GetStaticProps<any> = async (
       listNew: listNew.map((x: any) => ({ ...x })),
       bestBlog: bestBlog.map((x: any) => ({ ...x })),
     },
+    revalidate: 60,
   };
 };
