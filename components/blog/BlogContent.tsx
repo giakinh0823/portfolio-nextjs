@@ -7,8 +7,7 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
-import { vscLightPlus, vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-
+import {github, vscDarkPlus} from "react-syntax-highlighter/dist/esm/styles/prism";
 
 
 export interface IBlogContentProps {
@@ -34,7 +33,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
   }, [data]);
 
   return (
-    <Box component="section" pt={{ xs: 6, md: 10 }}>
+    <Box component="section" pt={{ xs: 6, md: 10 }} pb={{sx: 8, md: 10}}>
       <Container>
         <Box sx={{ display: "flex", justifyContent: "center" }} mb={5}>
           <Typography
@@ -46,8 +45,8 @@ export default function BlogContent({ data }: IBlogContentProps) {
             {data?.title}
           </Typography>
         </Box>
-  
-        <Box sx={{ "& code": { fontSize: "20px" } }}>
+
+        <Box sx={{ "& code": { fontSize: "20px" } }} className="content-markdown">
           <ReactMarkdown
             rehypePlugins={[rehypeRaw, remarkGfm]}
             components={{
@@ -55,12 +54,16 @@ export default function BlogContent({ data }: IBlogContentProps) {
                 const match = /language-(\w+)/.exec(className || "");
                 return !inline && match ? (
                   <SyntaxHighlighter
-                    style={mode == "dark" ? vscDarkPlus : vscLightPlus}
+                    style={mode == "dark" ? vscDarkPlus : github}
                     language={match[1]}
                     PreTag="div"
                     wrapLines={true}
                     {...props}
-                    customStyle={{ borderRadius: "10px", fontWeight: "500", padding: "20px" }}
+                    customStyle={{
+                      borderRadius: "10px",
+                      fontWeight: "500",
+                      padding: "20px",
+                    }}
                   >
                     {String(children).replace(/\n$/, "")}
                   </SyntaxHighlighter>
