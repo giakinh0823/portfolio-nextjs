@@ -6,14 +6,14 @@ interface PropsSeo {
   metaTitle?: string;
   metaDescription?: string;
   shareImage?: string;
-  article?: string;
+  blog?: string;
 }
 
 const Seo: FunctionComponent<PropsSeo> = ({
   metaTitle,
   metaDescription,
   shareImage,
-  article,
+  blog,
   title,
 }: any) => {
   return (
@@ -40,7 +40,7 @@ const Seo: FunctionComponent<PropsSeo> = ({
           <meta name="image" content={shareImage} />
         </>
       )}
-      {article && <meta property="og:type" content="article" />}
+      {blog && <meta property="og:type" content={blog} />}
     </Head>
   );
 };

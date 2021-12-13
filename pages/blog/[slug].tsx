@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { getAllPost, getPostBySlug } from "../../api-client/strapiApi";
+import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout";
 
 const BlogContentNoSSR = dynamic(
@@ -16,6 +17,12 @@ export interface IBlogDetailProps {
 export default function BlogDetail({blog}: IBlogDetailProps) {
   return (
     <>
+      <Seo
+        title={`Hà Gia Kính - ${blog.title}`}
+        metaTitle={`Hà Gia Kính - ${blog.title}`}
+        metaDescription={blog.description}
+        blog={blog.content}
+      />
       <BlogContentNoSSR data={blog} />
     </>
   );

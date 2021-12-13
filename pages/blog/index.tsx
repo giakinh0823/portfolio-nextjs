@@ -1,6 +1,7 @@
 import * as React from "react";
 import ListNew from "../../components/blog/ListNews";
 import MyBlog from "../../components/blog/MyBlog";
+import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout/main";
 import { useBlogs } from "../../components/swr/useBlog";
 
@@ -18,10 +19,15 @@ const Blog = (prop: BlogProps) => {
   //   })();
   // }, []);
 
-  const {blogs} = useBlogs();
+  const { blogs } = useBlogs();
 
   return (
     <>
+      <Seo
+        title={`Hà Gia Kính - blog`}
+        metaTitle={`Hà Gia Kính - blog`}
+        blog={blogs.map((item: any) => item.conntent).join(" ")}
+      />
       <MyBlog blogs={blogs} />
       <ListNew blogs={blogs} />
     </>
