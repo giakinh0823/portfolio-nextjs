@@ -14,21 +14,6 @@ export interface IBlogDetailProps {
 }
 
 export default function BlogDetail({blog}: IBlogDetailProps) {
-  // const router = useRouter();
-  // const slug = router.query.slug as string;
-  // const [blog, setBlog] = React.useState<any>();
-
-  // React.useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const data = await getPostBySlug(slug);
-  //       setBlog(data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   })();
-  // }, [slug]);
-
   return (
     <>
       <BlogContentNoSSR data={blog} />
