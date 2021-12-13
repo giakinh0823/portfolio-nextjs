@@ -12,14 +12,14 @@ export function useTopics() {
   };
 }
 
-export function useTopicWithParam(params: any, limitBlog?:number) {
+export function useTopicWithParam(params: any, limitBlog?: number) {
   const { data, error } = useSWR(`topics/${params.filter.value}`, () =>
     getAllTopicWithParams(params)
   );
 
   const newData = data?.map((topic: any) => {
     const listBlog = topic.blogs;
-    const blogs = listBlog.data?.slice(0,limitBlog)?.map((item: any) => {
+    const blogs = listBlog.data?.slice(0, limitBlog)?.map((item: any) => {
       const id = item.id;
       const data = item.attributes;
       return {
