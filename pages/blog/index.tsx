@@ -56,7 +56,6 @@ const Blog = (prop: BlogProps) => {
     6
   );
 
-
   return (
     <>
       <Seo
@@ -70,26 +69,40 @@ const Blog = (prop: BlogProps) => {
       />
       <MyBlog blogs={blogs} />
       <AllBlog blogs={blogs} link="/blog/news" title="All Blogs" />
-      <AllBlog
-        blogs={frontends?.topics ? frontends?.topics[0]?.blogs : []}
-        link={frontends?.topics ? `/blog/topics/${frontends?.topics[0]?.name}` : ""}
-        title="Front-end"
-      />
-      <AllBlog
-        blogs={ backens?.topics ? backens?.topics[0]?.blogs : []}
-        link={ backens?.topics ? `/blog/topics/${backens?.topics[0]?.name}` : ""}
-        title="Backend"
-      />
-      <AllBlog
-        blogs={uxuis?.topics ? uxuis?.topics[0]?.blogs : []}
-        link={uxuis?.topics ? `/blog/topics/${uxuis?.topics[0]?.name}` : ""}
-        title="UX/UI"
-      />
-      <AllBlog
-        blogs={tools?.topics ? tools?.topics[0]?.blogs : []}
-        link={tools?.topics ? `/blog/topics/${tools?.topics[0]?.name}` : ""}
-        title="Tools"
-      />
+      {frontends?.topics && (
+        <AllBlog
+          blogs={frontends?.topics ? frontends?.topics[0]?.blogs : []}
+          link={
+            frontends?.topics
+              ? `/blog/topics/${frontends?.topics[0]?.name}`
+              : ""
+          }
+          title="Front-end"
+        />
+      )}
+      {uxuis?.topics && (
+        <AllBlog
+          blogs={backens?.topics ? backens?.topics[0]?.blogs : []}
+          link={
+            backens?.topics ? `/blog/topics/${backens?.topics[0]?.name}` : ""
+          }
+          title="Backend"
+        />
+      )}
+      {uxuis?.topics && (
+        <AllBlog
+          blogs={uxuis?.topics ? uxuis?.topics[0]?.blogs : []}
+          link={uxuis?.topics ? `/blog/topics/${uxuis?.topics[0]?.name}` : ""}
+          title="UX/UI"
+        />
+      )}
+      {tools?.topics && (
+        <AllBlog
+          blogs={tools?.topics ? tools?.topics[0]?.blogs : []}
+          link={tools?.topics ? `/blog/topics/${tools?.topics[0]?.name}` : ""}
+          title="Tools"
+        />
+      )}
     </>
   );
 };
