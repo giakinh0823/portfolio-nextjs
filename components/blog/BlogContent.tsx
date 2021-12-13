@@ -3,11 +3,13 @@ import * as React from "react";
 import { createReactEditorJS } from "react-editor-js";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { github, vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
+import { atomLight, vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+
 
 export interface IBlogContentProps {
   data: any;
@@ -53,7 +55,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
                 const match = /language-(\w+)/.exec(className || "");
                 return !inline && match ? (
                   <SyntaxHighlighter
-                    style={mode == "dark" ? vscDarkPlus : github}
+                    style={mode == "dark" ? vscDarkPlus : atomLight}
                     language={match[1]}
                     PreTag="div"
                     wrapLines={true}
