@@ -12,9 +12,9 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <Seo
-        title="Hà Gia Kính"
-        metaTitle="Hà Gia Kính - Trang chủ"
-        metaDescription="Ha Gia Kinh a full-stack developer with a passion for building beautiful,intuitive, and performant user interfaces."
+        title="Hà Gia Kính - Developer"
+        metaTitle="Hà Gia Kính - Developer"
+        metaDescription="Hà Gia Kính - Developer. Tôi là một kỹ sư phần mềm chuyên ngành, người đam mê phát triển lấy con người làm trung tâm cũng như ra quyết định chiến lược. Tôi là một nhà phát triển full-stack với niềm đam mê xây dựng giao diện người dùng đẹp, trực quan và hiệu quả."
       />
       <HeroSection />
       <AboutSection />

@@ -28,9 +28,15 @@ const Seo: FunctionComponent<PropsSeo> = ({
       )}
       {metaDescription && (
         <>
+         <meta name="description" content={"hagiakinh.xyz"} />
           <meta name="description" content={metaDescription} />
           <meta property="og:description" content={metaDescription} />
           <meta name="fb:description" content={metaDescription} />
+          <meta property="og:description" content={"hagiakinh.xyz"} />
+          <meta name="fb:description" content={"hagiakinh.xyz"} />
+          <meta name="description" content={"www.hagiakinh.xyz"} />
+          <meta property="og:description" content={"www.hagiakinh.xyz"} />
+          <meta name="fb:description" content={"www.hagiakinh.xyz"} />
         </>
       )}
       {shareImage && (

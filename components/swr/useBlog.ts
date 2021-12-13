@@ -1,8 +1,24 @@
 import useSWR from "swr";
-import { getAllPost, getPostBySlug } from "../../api-client/strapiApi";
+import {
+  getAllPost,
+  getAllPostWidthParams,
+  getPostBySlug,
+} from "../../api-client/strapiApi";
 
-export function useBlogs(param?: any) {
+export function useBlogs() {
   const { data, error } = useSWR(`blogs`, () => getAllPost());
+
+  return {
+    blogs: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+export function useBlogsWithParam(params: any) {
+  const { data, error } = useSWR(`blogs${params}`, () =>
+    getAllPostWidthParams(params)
+  );
 
   return {
     blogs: data,

@@ -3,31 +3,91 @@ import {
   Container,
   Grid,
   Link as MuiLink,
+  Stack,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+
+// Import Swiper styles
+import "swiper/css";
+
+SwiperCore.use([]);
 
 export interface IListNewProps {
   blogs: any;
+  title?: string;
+  link?: string;
 }
 
-export default function ListNew({ blogs }: IListNewProps) {
+export default function AllBlog({ blogs, title, link }: IListNewProps) {
   const ref = React.useRef<HTMLDivElement>(null);
 
   return (
-    <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 15 }}>
+    <Box component="section" pt={{ xs: 3, md: 3 }} pb={{ xs: 3, md: 3 }}>
       <Container>
         <Box mb={5}>
-          <Typography variant="h3" component="h2" fontWeight="900">
-            All Blogs
-          </Typography>
+          <Stack direction="row" justifyContent="space-between">
+            <Box>
+              <Typography variant="h3" component="h2" fontWeight="900">
+                {title}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                cursor: "pointer",
+                "&:hover": {
+                  textDecoration: "underline",
+                  color: "primary.main",
+                },
+              }}
+            >
+              <Link href={`${link}`} passHref>
+                <Box sx={{display:"flex", alignItems:"center",}}>
+                  <Typography
+                    variant="body1"
+                    component="span"
+                    fontWeight="900"
+                    fontSize="30px"
+                    color="primary"
+                  >
+                    See
+                  </Typography>
+                  <ArrowRightAltIcon
+                    color="primary"
+                    sx={{ fontSize: "30px", fontWeight: "900", marginLeft: "5px" }}
+                  />
+                </Box>
+              </Link>
+            </Box>
+          </Stack>
         </Box>
-        <Grid container spacing={6}>
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          breakpoints={{
+            "0": {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            "640": {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            "768": {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          }}
+          className="mySwiper"
+        >
           {Boolean(blogs) &&
             blogs?.map((blog: any) => (
-              <Grid item xs={12} sm={6} md={4} key={blog.id}>
+              <SwiperSlide key={blog.id}>
                 <Box key={blog.id}>
                   <Box
                     sx={{
@@ -98,9 +158,9 @@ export default function ListNew({ blogs }: IListNewProps) {
                     {blog.description}
                   </Typography>
                 </Box>
-              </Grid>
+              </SwiperSlide>
             ))}
-        </Grid>
+        </Swiper>
       </Container>
     </Box>
   );

@@ -1,8 +1,15 @@
-import { Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Stack,
+  Typography,
+  Link as MuiLink,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 export interface IMyBlogProps {
   blogs: any;
@@ -14,7 +21,7 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
       <Container>
         <Box mb={5}>
           <Typography variant="h3" component="h2" fontWeight="900">
-            Best Blogs
+            New Blogs
           </Typography>
         </Box>
         <Stack direction="row">
@@ -24,7 +31,7 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
                 <Box>
                   <Grid container spacing={3}>
                     {Boolean(blogs) &&
-                      blogs?.slice(-3)?.map((blog: any) => (
+                      blogs?.slice(0,3)?.map((blog: any) => (
                         <Grid item xs={12} key={blog.id}>
                           <Box display="flex" justifyContent="flex-start">
                             <Box
@@ -47,25 +54,27 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
 
                             <Box sx={{ padding: "6px 15px" }}>
                               <Link href={`/blog/${blog?.slug}`} passHref>
-                                <Typography
-                                  variant="h6"
-                                  component="h2"
-                                  sx={{
-                                    fontSize: "18px!important",
-                                    fontWeight: "900",
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                    display: "-webkit-box",
-                                    WebkitLineClamp: 1,
-                                    WebkitBoxOrient: "vertical",
-                                    cursor: "pointer",
-                                    margin: 0,
-                                    padding: 0,
-                                  }}
-                                  mb={1}
-                                >
-                                  {blog?.title}
-                                </Typography>
+                                <MuiLink>
+                                  <Typography
+                                    variant="h6"
+                                    component="h2"
+                                    sx={{
+                                      fontSize: "18px!important",
+                                      fontWeight: "900",
+                                      overflow: "hidden",
+                                      textOverflow: "ellipsis",
+                                      display: "-webkit-box",
+                                      WebkitLineClamp: 1,
+                                      WebkitBoxOrient: "vertical",
+                                      cursor: "pointer",
+                                      margin: 0,
+                                      padding: 0,
+                                    }}
+                                    mb={1}
+                                  >
+                                    {blog?.title}
+                                  </Typography>
+                                </MuiLink>
                               </Link>
                               <Box>
                                 <Typography
@@ -88,17 +97,18 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
                                   {blog?.author}
                                 </Typography>
                               </Box>
-                              <Box
-                                sx={{
-                                  overflow: "hidden",
-                                  textOverflow: "ellipsis",
-                                  display: "-webkit-box",
-                                  WebkitLineClamp: 2,
-                                  WebkitBoxOrient: "vertical",
-                                  fontWeight: "500",
-                                }}
-                              >
-                                {blog?.description}
+                              <Box sx={{ fontWeight: "500", padding: "0 10px 0 0" }}>
+                                <Box
+                                  sx={{
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    display: "-webkit-box",
+                                    WebkitLineClamp: 2,
+                                    WebkitBoxOrient: "vertical",
+                                  }}
+                                >
+                                  {blog?.description}
+                                </Box>
                               </Box>
                             </Box>
                           </Box>
