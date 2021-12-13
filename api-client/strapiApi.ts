@@ -21,6 +21,7 @@ export const getAllPost = async () => {
       topics: data?.topics?.data?.map((topic: any) => {
         return {
           ...topic.attributes,
+          id: topic.id,
         };
       }),
     };
@@ -60,6 +61,7 @@ export const getAllPostWidthParams = async (params: any) => {
       topics: data?.topics?.data?.map((topic: any) => {
         return {
           ...topic.attributes,
+          id: topic.id,
         };
       }),
     };
@@ -82,6 +84,7 @@ export const getPostBySlug = async (slug: any) => {
     topics: response?.attributes?.topics?.data?.map((topic: any) => {
       return {
         ...topic.attributes,
+        id: topic.id,
       };
     }),
   };
@@ -102,7 +105,6 @@ export const getAllTopic = async () => {
       id: item.id,
     };
   });
-  console.log(data);
   return data;
 };
 
@@ -132,5 +134,31 @@ export const getAllTopicWithParams = async (params: any) => {
     };
   });
 
-  return data;
+
+  const newData = data?.map((topic: any) => {
+    const listBlog = topic.blogs;
+    const blogs = listBlog.data?.slice(0, 6)?.map((item: any) => {
+      const id = item.id;
+      const data = item.attributes;
+      return {
+        ...data,
+        id: id,
+        image:
+          process.env.NEXT_PUBLIC_STRAPI_API_URL +
+          data?.image?.data?.attributes?.url,
+        author: data?.author?.data?.attributes?.fullname,
+        topics: data?.topics?.data?.map((topic: any) => {
+          return {
+            ...topic.attributes,
+          };
+        }),
+      };
+    });
+    return {
+      ...topic,
+      blogs: blogs,
+    };
+  });
+
+  return newData;
 };

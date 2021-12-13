@@ -1,31 +1,289 @@
 import {
   Box,
+  Chip,
   Container,
   Grid,
   Link as MuiLink,
+  Skeleton,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
+import { Stack } from "@mui/material";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 
 export interface IListNewProps {
   blogs: any;
+  topics: any;
+  onChange?: any;
+  isLoadingTopics?: boolean;
+  isLoadingBlogs?: boolean;
 }
 
-export default function ListNew({ blogs }: IListNewProps) {
+const ListNew = ({
+  blogs,
+  topics,
+  onChange,
+  isLoadingTopics,
+  isLoadingBlogs,
+}: IListNewProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
+  const [isActive, setIsActive] = React.useState<number>(-1);
+
+  React.useEffect(() => {
+    onChange(isActive);
+  }, [isActive, onChange]);
 
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 15 }}>
       <Container>
-        <Box mb={5}>
-          <Typography variant="h3" component="h2" fontWeight="900">
-            All Blogs
-          </Typography>
+        <Box
+          mb={16}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Box mb={2}>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                color: "#5a42ef",
+                textTransform: "uppercase",
+                fontWeight: "bold",
+              }}
+            >
+              Our Blog
+            </Typography>
+          </Box>
+          <Box maxWidth="500px">
+            <Typography
+              variant="h3"
+              component="h1"
+              gutterBottom
+              fontWeight="700"
+              textAlign="center"
+            >
+              Inside and advice from our expert team
+            </Typography>
+          </Box>
+        </Box>
+        <Box mb={15}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+              {blogs ? (
+                <Box
+                  sx={{
+                    width: "100%",
+                    height: "350px",
+                    borderRadius: "20px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Image
+                    src={blogs && blogs[0]?.image}
+                    width={600}
+                    height={400}
+                    alt={blogs[0].title}
+                  />
+                </Box>
+              ) : (
+                <Skeleton
+                  height="350px"
+                  variant="rectangular"
+                  sx={{ borderRadius: "30px", padding: 0 }}
+                />
+              )}
+            </Grid>
+            <Grid item xs={12} md={6}>
+              {blogs ? (
+                <Box>
+                  <Box>
+                    {blogs && (
+                      <Link href={`/blog/${blogs[0].slug}`} passHref>
+                        <MuiLink>
+                          <Typography
+                            variant="h4"
+                            component="h2"
+                            gutterBottom
+                            sx={{
+                              cursor: "pointer",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              display: "-webkit-box",
+                              WebkitLineClamp: 3,
+                              WebkitBoxOrient: "vertical",
+                            }}
+                          >
+                            {blogs[0].title}
+                          </Typography>
+                        </MuiLink>
+                      </Link>
+                    )}
+                  </Box>
+                  <Box mb={3}>
+                    {blogs && (
+                      <Typography
+                        variant="body2"
+                        component="p"
+                        sx={{
+                          fontSize: "18px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 1,
+                          WebkitBoxOrient: "vertical",
+                          fontWeight: "bold",
+                          opacity: 0.6,
+                        }}
+                      >
+                        {blogs[0].author}
+                      </Typography>
+                    )}
+                  </Box>
+                  <Box mb={4}>
+                    {blogs && (
+                      <Typography
+                        gutterBottom
+                        sx={{
+                          fontSize: "18px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 4,
+                          WebkitBoxOrient: "vertical",
+                        }}
+                      >
+                        {blogs[0].description}
+                      </Typography>
+                    )}
+                  </Box>
+                  <Box>
+                    {blogs && (
+                      <Typography
+                        variant="body2"
+                        component="p"
+                        sx={{
+                          fontSize: "18px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 1,
+                          WebkitBoxOrient: "vertical",
+                          fontWeight: "bold",
+                          opacity: 0.6,
+                        }}
+                      >
+                        {new Date(blogs[0].createdAt).toLocaleDateString()}
+                      </Typography>
+                    )}
+                  </Box>
+                </Box>
+              ) : (
+                <Box>
+                  <Skeleton sx={{ width: "100%", height: "40px" }} />
+                  <Skeleton sx={{ width: "100%", height: "40px" }} />
+                  <Skeleton sx={{ width: "95%", height: "40px" }} />
+                  <Skeleton
+                    animation="wave"
+                    sx={{ width: "30%", marginBottom: "40px" }}
+                  />
+                  <Skeleton animation="wave" sx={{ width: "100%" }} />
+                  <Skeleton animation="wave" sx={{ width: "100%" }} />
+                  <Skeleton animation="wave" sx={{ width: "100%" }} />
+                  <Skeleton
+                    animation={false}
+                    sx={{ width: "99%", marginBottom: "40px" }}
+                  />
+                  <Skeleton animation="wave" sx={{ width: "30%" }} />
+                </Box>
+              )}
+            </Grid>
+          </Grid>
+        </Box>
+        <Box mb={10}>
+          {topics && (
+            <Box>
+              <Stack
+                direction="row"
+                spacing={3}
+                justifyContent="center"
+                alignItems="center"
+                sx={{ flexWrap: "wrap" }}
+              >
+                <Chip
+                  icon={<InsertEmoticonIcon />}
+                  label={"Tất cả"}
+                  variant="outlined"
+                  sx={{
+                    padding: "24px 12px",
+                    fontSize: "16px",
+                    borderColor: isActive == -1 ? "#5a42ef" : "transparent",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease-in-out",
+                    "&:hover": {
+                      borderColor: "#5a42ef",
+                    },
+                  }}
+                  onClick={() => {
+                    setIsActive(-1);
+                  }}
+                />
+                {!isLoadingTopics &&
+                  topics?.map((topic: any, index: number) => (
+                    <>
+                      <Box key={index}>
+                        <Chip
+                          icon={<InsertEmoticonIcon />}
+                          label={topic?.name}
+                          variant="outlined"
+                          sx={{
+                            padding: "24px 12px",
+                            fontSize: "16px",
+                            borderColor:
+                              isActive == topic?.id ? "#5a42ef" : "transparent",
+                            cursor: "pointer",
+                            transition: "all 0.3s ease-in-out",
+                            "&:hover": {
+                              borderColor: "#5a42ef",
+                            },
+                          }}
+                          onClick={() => {
+                            setIsActive(topic?.id);
+                          }}
+                        />
+                      </Box>
+                    </>
+                  ))}
+              </Stack>
+            </Box>
+          )}
+          <Stack
+            direction="row"
+            spacing={3}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ flexWrap: "wrap" }}
+          >
+            {(isLoadingTopics || !topics) &&
+              [1, 2, 3, 4, 5, 6].map((item: any, index: number) => (
+                <Box key={index}>
+                  <Skeleton
+                    height="50px"
+                    width="120px"
+                    variant="rectangular"
+                    sx={{ borderRadius: "30px", padding: 0 }}
+                  />
+                </Box>
+              ))}
+          </Stack>
         </Box>
         <Grid container spacing={6}>
-          {Boolean(blogs) &&
+          {!isLoadingBlogs &&
             blogs?.map((blog: any) => (
               <Grid item xs={12} sm={6} md={4} key={blog.id}>
                 <Box key={blog.id}>
@@ -77,11 +335,13 @@ export default function ListNew({ blogs }: IListNewProps) {
                       cursor: "pointer",
                       marginBottom: "10px",
                       padding: 0,
-                      fontWeight: "400",
+                      fontWeight: "600",
+                      opacity: 0.6,
                     }}
                     mb={1}
                   >
-                    {blog?.author}
+                    {blog?.author} -{" "}
+                    {new Date(blog?.createdAt).toLocaleDateString()}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -90,7 +350,7 @@ export default function ListNew({ blogs }: IListNewProps) {
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       display: "-webkit-box",
-                      WebkitLineClamp: 3,
+                      WebkitLineClamp: 2,
                       WebkitBoxOrient: "vertical",
                       fontWeight: "500",
                     }}
@@ -100,8 +360,32 @@ export default function ListNew({ blogs }: IListNewProps) {
                 </Box>
               </Grid>
             ))}
+          {isLoadingBlogs &&
+            [1, 2, 3, 4, 5, 6]?.map((blog: any) => (
+              <Grid item xs={12} sm={6} md={4} key={blog.id}>
+                <Box key={blog.id}>
+                  <Box>
+                    <Skeleton
+                      variant="rectangular"
+                      width={360}
+                      height={240}
+                      sx={{ borderRadius: "30px" }}
+                    />
+                    <Skeleton sx={{ marginTop: "10px" }} />
+                    <Skeleton
+                      animation="wave"
+                      sx={{ width: "60%", marginBottom: "20px" }}
+                    />
+                    <Skeleton animation="wave" sx={{ width: "100%" }} />
+                    <Skeleton animation={false} sx={{ width: "100%" }} />
+                  </Box>
+                </Box>
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </Box>
   );
-}
+};
+
+export default React.memo(ListNew);

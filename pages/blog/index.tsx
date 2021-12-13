@@ -1,6 +1,7 @@
 import * as React from "react";
 import AllBlog from "../../components/blog/AllBlog";
 import MyBlog from "../../components/blog/MyBlog";
+import SkeletonAllBlog from "../../components/blog/SkeletonAllBlog";
 import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout/main";
 import { useBlogsWithParam } from "../../components/swr/useBlog";
@@ -9,7 +10,7 @@ import { useTopicWithParam } from "../../components/swr/useTopic";
 export interface BlogProps {}
 
 const Blog = (prop: BlogProps) => {
-  const { blogs } = useBlogsWithParam({
+  const { blogs , isLoading, isError} = useBlogsWithParam({
     sort: { value: "id", type: "desc" },
     limit: { start: 1, limit: 6 },
   });
@@ -67,9 +68,9 @@ const Blog = (prop: BlogProps) => {
             : "Hà Gia Kính - blog"
         }
       />
-      <MyBlog blogs={blogs} />
-      <AllBlog blogs={blogs} link="/blog/news" title="All Blogs" />
-      {frontends?.topics && (
+      <MyBlog blogs={blogs} isLoading={isLoading}/>
+      {!isLoading ? <AllBlog blogs={blogs} link="/blog/news" title="All Blogs" /> : <SkeletonAllBlog />}
+      {frontends?.topics ? (
         <AllBlog
           blogs={frontends?.topics ? frontends?.topics[0]?.blogs : []}
           link={
@@ -79,8 +80,8 @@ const Blog = (prop: BlogProps) => {
           }
           title="Front-end"
         />
-      )}
-      {uxuis?.topics && (
+      ) : <SkeletonAllBlog/>}
+      {uxuis?.topics ? (
         <AllBlog
           blogs={backens?.topics ? backens?.topics[0]?.blogs : []}
           link={
@@ -88,7 +89,7 @@ const Blog = (prop: BlogProps) => {
           }
           title="Backend"
         />
-      )}
+      ): <SkeletonAllBlog/>}
       {uxuis?.topics && (
         <AllBlog
           blogs={uxuis?.topics ? uxuis?.topics[0]?.blogs : []}
@@ -96,13 +97,14 @@ const Blog = (prop: BlogProps) => {
           title="UX/UI"
         />
       )}
-      {tools?.topics && (
+      {tools?.topics ? (
         <AllBlog
           blogs={tools?.topics ? tools?.topics[0]?.blogs : []}
           link={tools?.topics ? `/blog/topics/${tools?.topics[0]?.name}` : ""}
           title="Tools"
         />
-      )}
+      ): <SkeletonAllBlog/>}
+      <div style={{padding:"50px"}}></div>
     </>
   );
 };

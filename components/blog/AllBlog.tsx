@@ -137,11 +137,12 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                       cursor: "pointer",
                       marginBottom: "10px",
                       padding: 0,
-                      fontWeight: "400",
+                      fontWeight: "600",
+                      opacity: 0.6,
                     }}
                     mb={1}
                   >
-                    {blog?.author}
+                    {blog?.author} - {new Date(blog?.createdAt).toLocaleDateString()}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -150,7 +151,7 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       display: "-webkit-box",
-                      WebkitLineClamp: 3,
+                      WebkitLineClamp: 2,
                       WebkitBoxOrient: "vertical",
                       fontWeight: "500",
                     }}

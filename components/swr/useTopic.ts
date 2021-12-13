@@ -1,9 +1,8 @@
-import { topicApi } from "./../../api-client/topicApi";
 import useSWR from "swr";
-import { getAllTopicWithParams } from "../../api-client/strapiApi";
+import { getAllTopic, getAllTopicWithParams } from "../../api-client/strapiApi";
 
 export function useTopics() {
-  const { data, error } = useSWR(`topics`, () => topicApi.getAll());
+  const { data, error } = useSWR(`topics`, () => getAllTopic());
 
   return {
     topics: data,
@@ -17,33 +16,8 @@ export function useTopicWithParam(params: any, limitBlog?: number) {
     getAllTopicWithParams(params)
   );
 
-  const newData = data?.map((topic: any) => {
-    const listBlog = topic.blogs;
-    const blogs = listBlog.data?.slice(0, limitBlog)?.map((item: any) => {
-      const id = item.id;
-      const data = item.attributes;
-      return {
-        ...data,
-        id: id,
-        image:
-          process.env.NEXT_PUBLIC_STRAPI_API_URL +
-          data?.image?.data?.attributes?.url,
-        author: data?.author?.data?.attributes?.fullname,
-        topics: data?.topics?.data?.map((topic: any) => {
-          return {
-            ...topic.attributes,
-          };
-        }),
-      };
-    });
-    return {
-      ...topic,
-      blogs: blogs,
-    };
-  });
-
   return {
-    topics: newData,
+    topics: data,
     isLoading: !error && !data,
     isError: error,
   };

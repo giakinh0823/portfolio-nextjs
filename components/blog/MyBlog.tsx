@@ -10,12 +10,14 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import SkeletonNewBlog from "./SkeletonNewBlog";
 
 export interface IMyBlogProps {
   blogs: any;
+  isLoading: any;
 }
 
-export default function MyBlog({ blogs }: IMyBlogProps) {
+export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 8 }}>
       <Container>
@@ -30,8 +32,14 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
               <Grid item xs={12} md={6}>
                 <Box>
                   <Grid container spacing={3}>
-                    {Boolean(blogs) &&
-                      blogs?.slice(0,3)?.map((blog: any) => (
+                    {isLoading &&
+                      [1, 2, 3].map((item, index) => (
+                        <Grid item xs={12} key={index}>
+                          <SkeletonNewBlog />
+                        </Grid>
+                      ))}
+                    {(Boolean(blogs) || !isLoading) &&
+                      blogs?.slice(0, 3)?.map((blog: any) => (
                         <Grid item xs={12} key={blog.id}>
                           <Box display="flex" justifyContent="flex-start">
                             <Box
@@ -97,7 +105,12 @@ export default function MyBlog({ blogs }: IMyBlogProps) {
                                   {blog?.author}
                                 </Typography>
                               </Box>
-                              <Box sx={{ fontWeight: "500", padding: "0 10px 0 0" }}>
+                              <Box
+                                sx={{
+                                  fontWeight: "500",
+                                  padding: "0 10px 0 0",
+                                }}
+                              >
                                 <Box
                                   sx={{
                                     overflow: "hidden",
