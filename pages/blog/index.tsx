@@ -26,7 +26,7 @@ const Blog = (prop: BlogProps) => {
       <Seo
         title={`Hà Gia Kính - blog`}
         metaTitle={`Hà Gia Kính - blog`}
-        blog={blogs.map((item: any) => item.conntent).join(" ")}
+        blog={blogs ? blogs.map((item: any) => item.conntent).join(" "): "Hà Gia Kính - blog"}
       />
       <MyBlog blogs={blogs} />
       <ListNew blogs={blogs} />
