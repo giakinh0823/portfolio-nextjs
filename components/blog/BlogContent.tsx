@@ -7,7 +7,7 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
-import { atomLight, vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vscLightPlus, vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 
 
@@ -55,7 +55,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
                 const match = /language-(\w+)/.exec(className || "");
                 return !inline && match ? (
                   <SyntaxHighlighter
-                    style={mode == "dark" ? vscDarkPlus : atomLight}
+                    style={mode == "dark" ? vscDarkPlus : vscLightPlus}
                     language={match[1]}
                     PreTag="div"
                     wrapLines={true}
