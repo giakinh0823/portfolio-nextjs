@@ -388,7 +388,7 @@ const ListNew = ({
           >
             {(isLoadingTopics || !topics) &&
               [1, 2, 3, 4, 5, 6].map((item: any, index: number) => (
-                <Box key={index}>
+                <Box key={index} sx={{padding: "10px 0"}}>
                   <Skeleton
                     height="50px"
                     width="120px"
@@ -493,7 +493,7 @@ const ListNew = ({
                   <Box>
                     <Skeleton
                       variant="rectangular"
-                      width={360}
+                      width="100%"
                       height={240}
                       sx={{ borderRadius: "30px" }}
                     />
