@@ -3,6 +3,7 @@ import {
   Container,
   Grid,
   Link as MuiLink,
+  Skeleton,
   Stack,
   Typography,
 } from "@mui/material";
@@ -47,7 +48,7 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
               }}
             >
               <Link href={`${link}`} passHref>
-                <Box sx={{display:"flex", alignItems:"center",}}>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Typography
                     variant="body1"
                     component="span"
@@ -59,7 +60,11 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                   </Typography>
                   <ArrowRightAltIcon
                     color="primary"
-                    sx={{ fontSize: "30px", fontWeight: "900", marginLeft: "5px" }}
+                    sx={{
+                      fontSize: "30px",
+                      fontWeight: "900",
+                      marginLeft: "5px",
+                    }}
                   />
                 </Box>
               </Link>
@@ -98,12 +103,21 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                     }}
                     mb={1}
                   >
-                    <Image
-                      src={blog?.image}
-                      alt={blog.title}
-                      width={500}
-                      height={350}
-                    />
+                    {blog?.image ? (
+                      <Image
+                        src={blog?.image}
+                        alt={blog.title}
+                        width={500}
+                        height={350}
+                      />
+                    ) : (
+                      <Skeleton
+                        variant="rectangular"
+                        width={360}
+                        height={240}
+                        sx={{ borderRadius: "30px" }}
+                      />
+                    )}
                   </Box>
                   <Link href={`/blog/${blog?.slug}`} passHref>
                     <MuiLink>
@@ -142,7 +156,8 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                     }}
                     mb={1}
                   >
-                    {blog?.author} - {new Date(blog?.createdAt).toLocaleDateString()}
+                    {blog?.author} -{" "}
+                    {new Date(blog?.createdAt).toLocaleDateString()}
                   </Typography>
                   <Typography
                     variant="body1"

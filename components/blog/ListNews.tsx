@@ -84,12 +84,20 @@ const ListNew = ({
                     overflow: "hidden",
                   }}
                 >
-                  <Image
-                    src={blogs && blogs[0]?.image}
-                    width={600}
-                    height={400}
-                    alt={blogs[0].title}
-                  />
+                  {blogs[0]?.image ? (
+                    <Image
+                      src={blogs && blogs[0]?.image}
+                      width={600}
+                      height={400}
+                      alt={blogs[0].title}
+                    />
+                  ) : (
+                    <Skeleton
+                      height="350px"
+                      variant="rectangular"
+                      sx={{ borderRadius: "30px", padding: 0 }}
+                    />
+                  )}
                 </Box>
               ) : (
                 <Skeleton
@@ -296,12 +304,21 @@ const ListNew = ({
                     }}
                     mb={1}
                   >
-                    <Image
-                      src={blog?.image}
-                      alt={blog.title}
-                      width={500}
-                      height={350}
-                    />
+                    {blog?.image ? (
+                      <Image
+                        src={blog?.image}
+                        alt={blog?.title}
+                        width={140}
+                        height={130}
+                      />
+                    ) : (
+                      <Skeleton
+                        variant="rectangular"
+                        width="100%"
+                        height={240}
+                        sx={{ borderRadius: "30px" }}
+                      />
+                    )}
                   </Box>
                   <Link href={`/blog/${blog?.slug}`} passHref>
                     <MuiLink>

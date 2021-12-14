@@ -16,7 +16,7 @@ export const getAllPost = async () => {
     return {
       ...data,
       id: id,
-      image: baseURL + data?.image?.data?.attributes?.url,
+      image: data?.image?.data?.attributes?.url,
       author: data?.author?.data?.attributes?.fullname,
       topics: data?.topics?.data?.map((topic: any) => {
         return {
@@ -56,7 +56,7 @@ export const getAllPostWidthParams = async (params: any) => {
     return {
       ...data,
       id: id,
-      image: baseURL + data?.image?.data?.attributes?.url,
+      image: data?.image?.data?.attributes?.url,
       author: data?.author?.data?.attributes?.fullname,
       topics: data?.topics?.data?.map((topic: any) => {
         return {
@@ -77,7 +77,7 @@ export const getPostBySlug = async (slug: any) => {
   response = response.data.data[0];
   const data = {
     ...response?.attributes,
-    image: baseURL + response?.attributes?.image?.data?.attributes?.url,
+    image: response?.attributes?.image?.data?.attributes?.url,
     author: response?.attributes?.author?.data?.attributes?.fullname
       ? response?.attributes?.author?.data?.attributes?.fullname
       : "",
@@ -134,7 +134,6 @@ export const getAllTopicWithParams = async (params: any) => {
     };
   });
 
-
   const newData = data?.map((topic: any) => {
     const listBlog = topic.blogs;
     const blogs = listBlog.data?.slice(0, 6)?.map((item: any) => {
@@ -143,9 +142,7 @@ export const getAllTopicWithParams = async (params: any) => {
       return {
         ...data,
         id: id,
-        image:
-          process.env.NEXT_PUBLIC_STRAPI_API_URL +
-          data?.image?.data?.attributes?.url,
+        image: data?.image?.data?.attributes?.url,
         author: data?.author?.data?.attributes?.fullname,
         topics: data?.topics?.data?.map((topic: any) => {
           return {

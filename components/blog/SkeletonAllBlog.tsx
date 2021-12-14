@@ -30,11 +30,33 @@ export default function SkeletonAllBlog(props: IListNewProps) {
         <Box mb={5}>
           <Stack direction="row" justifyContent="space-between">
             <Box>
-              <Skeleton sx={{ width: "200px", height: "40px" }} />
+              <Skeleton
+                sx={{
+                  width: {
+                    xs: "100px",
+                    md: "200px",
+                  },
+                  height: {
+                    xs: "20px",
+                    md: "30px",
+                  },
+                }}
+              />
             </Box>
             <Box>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Skeleton sx={{ width: "200px", height: "30px" }} />
+                <Skeleton
+                  sx={{
+                    width: {
+                      xs: "100px",
+                      md: "200px",
+                    },
+                    height: {
+                      xs: "20px",
+                      md: "30px",
+                    },
+                  }}
+                />
               </Box>
             </Box>
           </Stack>

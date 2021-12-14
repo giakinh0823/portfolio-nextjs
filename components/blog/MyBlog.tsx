@@ -4,6 +4,7 @@ import {
   Stack,
   Typography,
   Link as MuiLink,
+  Skeleton,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
@@ -32,7 +33,7 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
               <Grid item xs={12} md={6}>
                 <Box>
                   <Grid container spacing={3}>
-                    {isLoading &&
+                    {(!Boolean(blogs) || isLoading) &&
                       [1, 2, 3].map((item, index) => (
                         <Grid item xs={12} key={index}>
                           <SkeletonNewBlog />
@@ -50,12 +51,19 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
                                 maxHeight: "130px",
                               }}
                             >
-                              {blog?.image && (
+                              {blog?.image ? (
                                 <Image
                                   src={blog?.image}
                                   alt={blog?.title}
                                   width={140}
                                   height={130}
+                                />
+                              ) : (
+                                <Skeleton
+                                  variant="rectangular"
+                                  width={160}
+                                  height={240}
+                                  sx={{ borderRadius: "30px" }}
                                 />
                               )}
                             </Box>
