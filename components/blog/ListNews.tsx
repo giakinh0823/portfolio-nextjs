@@ -1,17 +1,22 @@
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Box,
   Chip,
   Container,
   Grid,
+  IconButton,
+  InputBase,
   Link as MuiLink,
   Skeleton,
+  Stack,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import { Stack } from "@mui/material";
-import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
+import { useAppSelector } from "../../app/hooks";
+import { selectMode } from "../../redux/mode/modeSlice";
+import { useIntersection } from "../../utils";
 
 export interface IListNewProps {
   blogs: any;
@@ -19,6 +24,9 @@ export interface IListNewProps {
   onChange?: any;
   isLoadingTopics?: boolean;
   isLoadingBlogs?: boolean;
+  onSearch?: any;
+  loadMore?: any;
+  loading?: boolean;
 }
 
 const ListNew = ({
@@ -27,13 +35,35 @@ const ListNew = ({
   onChange,
   isLoadingTopics,
   isLoadingBlogs,
+  onSearch,
+  loadMore,
+  loading,
 }: IListNewProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
+  const inViewport = useIntersection(ref, 0.9);
+  const mode = useAppSelector(selectMode);
   const [isActive, setIsActive] = React.useState<number>(-1);
+  const [search, setSearch] = React.useState<string>("");
 
   React.useEffect(() => {
     onChange(isActive);
   }, [isActive, onChange]);
+
+  const handleSearch = (e: any) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSearchClick = (e: any) => {
+    if (search) {
+      onSearch(search);
+    }
+  };
+
+  React.useEffect(() => {
+    if (inViewport && !loading && !isLoadingBlogs) {
+      loadMore();
+    }
+  }, [inViewport, loadMore, loading, isLoadingBlogs]);
 
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 15 }}>
@@ -108,11 +138,11 @@ const ListNew = ({
               )}
             </Grid>
             <Grid item xs={12} md={6}>
-              {blogs ? (
+              {blogs && blogs.length > 0 ? (
                 <Box>
                   <Box>
                     {blogs && (
-                      <Link href={`/blog/${blogs[0].slug}`} passHref>
+                      <Link href={`/blog/${blogs[0]?.slug}`} passHref>
                         <MuiLink>
                           <Typography
                             variant="h4"
@@ -125,6 +155,7 @@ const ListNew = ({
                               display: "-webkit-box",
                               WebkitLineClamp: 3,
                               WebkitBoxOrient: "vertical",
+                              fontWeight: "bold",
                             }}
                           >
                             {blogs[0].title}
@@ -214,6 +245,70 @@ const ListNew = ({
           </Grid>
         </Box>
         <Box mb={10}>
+          <Stack alignItems="center">
+            <Typography
+              mb={2}
+              variant="h4"
+              component="h2"
+              fontWeight="900"
+              sx={{ color: "#5a42ef" }}
+            >
+              Dirodi Entertaining
+            </Typography>
+            <Typography variant="h3" component="h2" fontWeight="900">
+              Blogs
+            </Typography>
+          </Stack>
+          <Box sx={{ maxWidth: "500px", margin: "60px auto 0 auto" }}>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                marginBottom: "20px",
+              }}
+            >
+              <InputBase
+                placeholder="Search…"
+                onChange={handleSearch}
+                inputProps={{ "aria-label": "search" }}
+                sx={{
+                  width: "100%",
+                  height: "50px",
+                  backgroundColor: "#f5f5f5",
+                  borderRadius: "30px",
+                  padding: "0 30px",
+                  fontSize: "18px",
+                  color: "#5a42ef",
+                  outline: "none",
+                  border: "none",
+                  fontWeight: "bold",
+                }}
+              />
+              <IconButton
+                type="submit"
+                aria-label="search"
+                sx={{
+                  position: "absolute",
+                  right: "0",
+                  top: "0",
+                  bottom: "0",
+                  margin: "auto",
+                  padding: "0",
+                  color: "#5a42ef",
+                  height: "50px",
+                  width: "50px",
+                }}
+                onClick={handleSearchClick}
+              >
+                <SearchIcon />
+              </IconButton>
+            </Box>
+          </Box>
+        </Box>
+        <Box mb={10}>
           {topics && (
             <Box>
               <Stack
@@ -223,35 +318,49 @@ const ListNew = ({
                 alignItems="center"
                 sx={{ flexWrap: "wrap" }}
               >
-                <Chip
-                  icon={<InsertEmoticonIcon />}
-                  label={"Tất cả"}
-                  variant="outlined"
-                  sx={{
-                    padding: "24px 12px",
-                    fontSize: "16px",
-                    borderColor: isActive == -1 ? "#5a42ef" : "transparent",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease-in-out",
-                    "&:hover": {
-                      borderColor: "#5a42ef",
-                    },
-                  }}
-                  onClick={() => {
-                    setIsActive(-1);
-                  }}
-                />
+                <Box sx={{ padding: "10px 0" }}>
+                  <Chip
+                    label={"Tất cả"}
+                    variant="outlined"
+                    sx={{
+                      padding: "24px 12px",
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                      color:
+                        isActive == -1
+                          ? "#5a42ef"
+                          : mode == "dark"
+                          ? "#fff"
+                          : "#000",
+                      borderColor: isActive == -1 ? "#5a42ef" : "transparent",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease-in-out",
+                      "&:hover": {
+                        borderColor: "#5a42ef",
+                      },
+                    }}
+                    onClick={() => {
+                      setIsActive(-1);
+                    }}
+                  />
+                </Box>
                 {!isLoadingTopics &&
                   topics?.map((topic: any, index: number) => (
                     <>
-                      <Box key={index}>
+                      <Box key={index} sx={{ padding: "10px 0" }}>
                         <Chip
-                          icon={<InsertEmoticonIcon />}
                           label={topic?.name}
                           variant="outlined"
                           sx={{
-                            padding: "24px 12px",
                             fontSize: "16px",
+                            fontWeight: "bold",
+                            color:
+                              isActive == topic?.id
+                                ? "#5a42ef"
+                                : mode == "dark"
+                                ? "#fff"
+                                : "#000",
+                            padding: "24px 12px",
                             borderColor:
                               isActive == topic?.id ? "#5a42ef" : "transparent",
                             cursor: "pointer",
@@ -291,7 +400,7 @@ const ListNew = ({
           </Stack>
         </Box>
         <Grid container spacing={6}>
-          {!isLoadingBlogs &&
+          {(!isLoadingBlogs) &&
             blogs?.map((blog: any) => (
               <Grid item xs={12} sm={6} md={4} key={blog.id}>
                 <Box key={blog.id}>
@@ -377,8 +486,8 @@ const ListNew = ({
                 </Box>
               </Grid>
             ))}
-          {isLoadingBlogs &&
-            [1, 2, 3, 4, 5, 6]?.map((blog: any) => (
+          {(isLoadingBlogs || loading) &&
+            [1, 2, 3]?.map((blog: any) => (
               <Grid item xs={12} sm={6} md={4} key={blog.id}>
                 <Box key={blog.id}>
                   <Box>
@@ -400,6 +509,7 @@ const ListNew = ({
               </Grid>
             ))}
         </Grid>
+        <div className="load-more" ref={ref}></div>
       </Container>
     </Box>
   );

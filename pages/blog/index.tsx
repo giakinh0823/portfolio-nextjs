@@ -10,7 +10,7 @@ import { useTopicWithParam } from "../../components/swr/useTopic";
 export interface BlogProps {}
 
 const Blog = (prop: BlogProps) => {
-  const { blogs , isLoading, isError} = useBlogsWithParam({
+  const { blogs, isLoading, isError } = useBlogsWithParam({
     sort: { value: "id", type: "desc" },
     limit: { start: 1, limit: 6 },
   });
@@ -64,48 +64,64 @@ const Blog = (prop: BlogProps) => {
         metaTitle={`Hà Gia Kính - blog`}
         blog={
           blogs
-            ? blogs.map((item: any) => item.conntent).join(" ")
+            ? blogs?.data?.map((item: any) => item.conntent).join(" ")
             : "Hà Gia Kính - blog"
         }
         shareImage="https://res.cloudinary.com/giakinh0823/image/upload/v1639473921/thumbnail_cat_882d37503d.webp?updated_at=2021-12-14T09:25:21.760Z"
       />
-      <MyBlog blogs={blogs} isLoading={isLoading}/>
-      {!isLoading ? <AllBlog blogs={blogs} link="/blog/news" title="All Blogs" /> : <SkeletonAllBlog />}
+      <MyBlog blogs={blogs?.data} isLoading={isLoading} />
+      {!isLoading ? (
+        <AllBlog blogs={blogs?.data} link="/blog/news" title="All Blogs" />
+      ) : (
+        <SkeletonAllBlog />
+      )}
       {frontends?.topics ? (
         <AllBlog
-          blogs={frontends?.topics ? frontends?.topics[0]?.blogs : []}
+          blogs={frontends?.topics ? frontends?.topics?.data[0]?.blogs : []}
           link={
             frontends?.topics
-              ? `/blog/topics/${frontends?.topics[0]?.name}`
+              ? `/blog/topics/${frontends?.topics?.data[0]?.name}`
               : ""
           }
           title="Front-end"
         />
-      ) : <SkeletonAllBlog/>}
+      ) : (
+        <SkeletonAllBlog />
+      )}
       {uxuis?.topics ? (
         <AllBlog
-          blogs={backens?.topics ? backens?.topics[0]?.blogs : []}
+          blogs={backens?.topics ? backens?.topics?.data[0]?.blogs : []}
           link={
-            backens?.topics ? `/blog/topics/${backens?.topics[0]?.name}` : ""
+            backens?.topics
+              ? `/blog/topics/${backens?.topics?.data[0]?.name}`
+              : ""
           }
           title="Backend"
         />
-      ): <SkeletonAllBlog/>}
+      ) : (
+        <SkeletonAllBlog />
+      )}
       {uxuis?.topics && (
         <AllBlog
-          blogs={uxuis?.topics ? uxuis?.topics[0]?.blogs : []}
-          link={uxuis?.topics ? `/blog/topics/${uxuis?.topics[0]?.name}` : ""}
+          blogs={uxuis?.topics ? uxuis?.topics?.data[0]?.blogs : []}
+          link={
+            uxuis?.topics ? `/blog/topics/${uxuis?.topics?.data[0]?.name}` : ""
+          }
           title="UX/UI"
         />
       )}
       {tools?.topics ? (
         <AllBlog
-          blogs={tools?.topics ? tools?.topics[0]?.blogs : []}
-          link={tools?.topics ? `/blog/topics/${tools?.topics[0]?.name}` : ""}
+          blogs={tools?.topics ? tools?.topics?.data[0]?.blogs : []}
+          link={
+            tools?.topics ? `/blog/topics/${tools?.topics?.data[0]?.name}` : ""
+          }
           title="Tools"
         />
-      ): <SkeletonAllBlog/>}
-      <div style={{padding:"50px"}}></div>
+      ) : (
+        <SkeletonAllBlog />
+      )}
+      <div style={{ padding: "50px" }}></div>
     </>
   );
 };

@@ -85,7 +85,7 @@ export default function SkeletonAllBlog(props: IListNewProps) {
               <Box>
                 <Skeleton
                   variant="rectangular"
-                  width={360}
+                  width="100%"
                   height={240}
                   sx={{ borderRadius: "30px" }}
                 />

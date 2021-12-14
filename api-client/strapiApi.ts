@@ -27,11 +27,14 @@ export const getAllPost = async () => {
     };
   });
 
-  return data;
+  return {
+    data,
+    meta: response?.data?.meta,
+  };
 };
 
 export const getAllPostWidthParams = async (params: any) => {
-  const { limit, sort, pagination, filter } = params;
+  const { limit, sort, pagination, filter, filters } = params;
   const response = await axios.get(
     `${baseURL}/api/blogs?populate=*${
       sort ? `&sort=${sort.value}:${sort.type}` : ""
@@ -46,6 +49,12 @@ export const getAllPostWidthParams = async (params: any) => {
     }${
       filter
         ? `&filters[${filter.column}][${filter.operator}]=${filter.value}`
+        : ""
+    }${
+      filters
+        ? `&filters${filters.column
+            .map((column: any) => "[" + column + "]")
+            .join("")}[${filters.operator}]=${filters.value}`
         : ""
     }`
   );
@@ -67,7 +76,10 @@ export const getAllPostWidthParams = async (params: any) => {
     };
   });
 
-  return data;
+  return {
+    data,
+    meta: response?.data?.meta,
+  };
 };
 
 export const getPostBySlug = async (slug: any) => {
@@ -88,7 +100,10 @@ export const getPostBySlug = async (slug: any) => {
       };
     }),
   };
-  return data;
+  return {
+    data,
+    meta: response?.data?.meta,
+  };
 };
 
 export const createPostBySlug = async (data: any) => {
@@ -105,11 +120,14 @@ export const getAllTopic = async () => {
       id: item.id,
     };
   });
-  return data;
+  return {
+    data,
+    meta: response?.data?.meta,
+  };
 };
 
 export const getAllTopicWithParams = async (params: any) => {
-  const { limit, sort, pagination, filter } = params;
+  const { limit, sort, pagination, filter, filters } = params;
   const response = await axios.get(
     `${baseURL}/api/topics?populate=*,blogs.image,blogs.author${
       sort ? `&sort=${sort.value}:${sort.type}` : ""
@@ -124,6 +142,12 @@ export const getAllTopicWithParams = async (params: any) => {
     }${
       filter
         ? `&filters[${filter.column}][${filter.operator}]=${filter.value}`
+        : ""
+    }${
+      filters
+        ? `&filters${filters.column
+            .map((column: any) => "[" + column + "]")
+            .join("")}[${filters.operator}]=${filters.value}`
         : ""
     }`
   );
@@ -157,5 +181,8 @@ export const getAllTopicWithParams = async (params: any) => {
     };
   });
 
-  return newData;
+  return {
+    data: newData,
+    meta: response?.data?.meta,
+  };
 };

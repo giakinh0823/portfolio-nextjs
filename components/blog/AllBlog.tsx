@@ -113,7 +113,7 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                     ) : (
                       <Skeleton
                         variant="rectangular"
-                        width={360}
+                        width="100%"
                         height={240}
                         sx={{ borderRadius: "30px" }}
                       />

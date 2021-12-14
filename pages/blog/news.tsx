@@ -14,27 +14,82 @@ export interface BlogProps {}
 const News = (prop: BlogProps) => {
   const { blogs, isLoading } = useBlogs();
   const topics = useTopics();
-
+  const [loading, setLoading] = React.useState<boolean>(false);
   const [data, setData] = React.useState(blogs);
 
   React.useEffect(() => {
     setData(blogs);
   }, [blogs]);
 
-  const onChange = React.useCallback((id: number) => {
-    if (id !== -1) {
+  const onChange = React.useCallback(
+    (id: number) => {
+      if (id !== -1) {
+        (async () => {
+          try {
+            setLoading(true);
+            const blogs = await getAllPostWidthParams({
+              sort: { value: "id", type: "desc" },
+              filters: { column: ["topics", "id"], operator: "$eq", value: id },
+            });
+            if (blogs) {
+              setData(blogs);
+            }
+            setLoading(false);
+          } catch (error) {
+            console.log(error);
+            setLoading(false);
+          }
+        })();
+      } else {
+        setData(blogs);
+      }
+    },
+    [blogs]
+  );
+
+  const onSearch = React.useCallback((input: string) => {
+    if (input) {
       (async () => {
-        const topics = await getAllTopicWithParams({
-          filter: { column: "id", operator: "$eq", value: id },
-        });
-        if(topics){
-          setData(topics[0]?.blogs);
+        try {
+          setLoading(true);
+          const blogs = await getAllPostWidthParams({
+            sort: { value: "id", type: "desc" },
+            filter: { column: "title", operator: "$containsi", value: input },
+          });
+          if (blogs) {
+            setData(blogs);
+          }
+          setLoading(false);
+        } catch (e) {
+          console.log(e);
+          setLoading(false);
         }
       })();
-    }else{
-      setData(blogs);
     }
-  }, [blogs]);
+  }, []);
+
+  const loadMore = React.useCallback(() => {
+    (async () => {
+      if (
+        isLoading || !data?.meta?.pagination?.page ||
+        data?.meta?.pagination?.page >= data?.meta?.pagination?.pageCount
+      ) {
+        return;
+      }
+      try {
+        setLoading(true);
+        const blogs = await getAllPostWidthParams({
+          sort: { value: "id", type: "desc" },
+          pagination: { page: data?.meta?.pagination?.page + 1, pageSize: 3 },
+        });
+        setData({ data: [...data?.data, ...blogs.data], meta: blogs?.meta });
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+        setLoading(false);
+      }
+    })();
+  }, [data, isLoading]);
 
   return (
     <>
@@ -43,17 +98,20 @@ const News = (prop: BlogProps) => {
         metaTitle={`Hà Gia Kính - blog`}
         blog={
           blogs
-            ? blogs.map((item: any) => item.conntent).join(" ")
+            ? blogs?.data.map((item: any) => item.conntent).join(" ")
             : "Hà Gia Kính - blog"
         }
         shareImage="https://res.cloudinary.com/giakinh0823/image/upload/v1639473921/thumbnail_cat_882d37503d.webp?updated_at=2021-12-14T09:25:21.760Z"
       />
       <ListNew
-        blogs={data}
+        blogs={data?.data}
         isLoadingBlogs={isLoading}
-        topics={topics?.topics}
+        topics={topics?.topics?.data}
         isLoadingTopics={topics?.isLoading}
         onChange={onChange}
+        onSearch={onSearch}
+        loadMore={loadMore}
+        loading={loading}
       />
     </>
   );

@@ -6,7 +6,12 @@ import {
 } from "../../api-client/strapiApi";
 
 export function useBlogs() {
-  const { data, error } = useSWR(`blogs`, () => getAllPost());
+  const { data, error } = useSWR(`blogs`, () =>
+    getAllPostWidthParams({
+      sort: { value: "id", type: "desc" },
+      pagination: { page: 0, pageSize: 3 },
+    })
+  );
 
   return {
     blogs: data,
