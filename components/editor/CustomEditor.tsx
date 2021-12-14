@@ -50,8 +50,8 @@ const CustomEditor = () => {
   React.useEffect(() => {
     (async () => {
       try {
-        const categorys = await getAllTopic();
-        setCategorys(categorys);
+        const topics = await getAllTopic();
+        setCategorys(topics?.data);
       } catch (error) {
         console.log(error);
       }
