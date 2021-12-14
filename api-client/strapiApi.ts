@@ -100,10 +100,7 @@ export const getPostBySlug = async (slug: any) => {
       };
     }),
   };
-  return {
-    data,
-    meta: response?.data?.meta,
-  };
+  return data;
 };
 
 export const createPostBySlug = async (data: any) => {
