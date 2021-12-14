@@ -22,6 +22,7 @@ export default function BlogDetail({blog}: IBlogDetailProps) {
         metaTitle={`Hà Gia Kính - ${blog.title}`}
         metaDescription={blog.description}
         blog={blog.content}
+        shareImage="/image/cat.webp"
       />
       <BlogContentNoSSR data={blog} />
     </>

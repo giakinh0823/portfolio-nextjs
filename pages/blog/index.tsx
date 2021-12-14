@@ -67,6 +67,7 @@ const Blog = (prop: BlogProps) => {
             ? blogs.map((item: any) => item.conntent).join(" ")
             : "Hà Gia Kính - blog"
         }
+        shareImage="/image/cat.webp"
       />
       <MyBlog blogs={blogs} isLoading={isLoading}/>
       {!isLoading ? <AllBlog blogs={blogs} link="/blog/news" title="All Blogs" /> : <SkeletonAllBlog />}
