@@ -67,7 +67,7 @@ const Blog = (prop: BlogProps) => {
             ? blogs.map((item: any) => item.conntent).join(" ")
             : "Hà Gia Kính - blog"
         }
-        shareImage="/image/cat.webp"
+        shareImage="https://res.cloudinary.com/giakinh0823/image/upload/v1639473921/thumbnail_cat_882d37503d.webp?updated_at=2021-12-14T09:25:21.760Z"
       />
       <MyBlog blogs={blogs} isLoading={isLoading}/>
       {!isLoading ? <AllBlog blogs={blogs} link="/blog/news" title="All Blogs" /> : <SkeletonAllBlog />}

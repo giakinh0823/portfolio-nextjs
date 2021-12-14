@@ -22,7 +22,7 @@ export default function BlogDetail({blog}: IBlogDetailProps) {
         metaTitle={`Hà Gia Kính - ${blog.title}`}
         metaDescription={blog.description}
         blog={blog.content}
-        shareImage="/image/cat.webp"
+        shareImage="https://res.cloudinary.com/giakinh0823/image/upload/v1639473921/thumbnail_cat_882d37503d.webp?updated_at=2021-12-14T09:25:21.760Z"
       />
       <BlogContentNoSSR data={blog} />
     </>
