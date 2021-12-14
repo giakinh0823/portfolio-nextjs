@@ -308,8 +308,8 @@ const ListNew = ({
                       <Image
                         src={blog?.image}
                         alt={blog?.title}
-                        width={140}
-                        height={130}
+                        width={500}
+                        height={350}
                       />
                     ) : (
                       <Skeleton
