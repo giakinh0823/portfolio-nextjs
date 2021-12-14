@@ -487,9 +487,9 @@ const ListNew = ({
               </Grid>
             ))}
           {(isLoadingBlogs || loading) &&
-            [1, 2, 3]?.map((blog: any) => (
-              <Grid item xs={12} sm={6} md={4} key={blog.id}>
-                <Box key={blog.id}>
+            [1, 2, 3]?.map((item, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Box>
                   <Box>
                     <Skeleton
                       variant="rectangular"

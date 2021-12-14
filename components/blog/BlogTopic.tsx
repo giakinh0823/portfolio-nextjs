@@ -1,8 +1,10 @@
 import {
-  Box, Container,
+  Box,
+  Container,
   Grid,
   Link as MuiLink,
-  Typography
+  Skeleton,
+  Typography,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -243,6 +245,28 @@ const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
                   >
                     {blog.description}
                   </Typography>
+                </Box>
+              </Grid>
+            ))}
+          {loading &&
+            [1, 2, 3]?.map((item, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Box>
+                  <Box>
+                    <Skeleton
+                      variant="rectangular"
+                      width={360}
+                      height={240}
+                      sx={{ borderRadius: "30px" }}
+                    />
+                    <Skeleton sx={{ marginTop: "10px" }} />
+                    <Skeleton
+                      animation="wave"
+                      sx={{ width: "60%", marginBottom: "20px" }}
+                    />
+                    <Skeleton animation="wave" sx={{ width: "100%" }} />
+                    <Skeleton animation={false} sx={{ width: "100%" }} />
+                  </Box>
                 </Box>
               </Grid>
             ))}
