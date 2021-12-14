@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { useIntersection } from "../../utils";
 
@@ -20,6 +21,7 @@ export interface IBlogTopicProps {
 const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const inViewport = useIntersection(ref, 0.9);
+  const router = useRouter();
 
   React.useEffect(() => {
     if (inViewport && !loading) {
@@ -60,7 +62,7 @@ const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
               fontWeight="700"
               textAlign="center"
             >
-              Inside and advice from our expert team
+              {router.query.slug}
             </Typography>
           </Box>
         </Box>
