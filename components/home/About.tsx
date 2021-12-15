@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from "@mui/material";
+import { Container, Skeleton, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import * as React from "react";
 import { useIntersection } from "../../utils/useIntersection";
@@ -9,6 +9,13 @@ export interface AboutProps {}
 const AboutSection = (props: AboutProps) => {
   const ref = React.useRef(null);
   const inViewport = useIntersection(ref, 0.1);
+  const [loadingVideo, setLoadingVideo] = React.useState(true);
+
+  React.useEffect(() => {
+    fetch("/video/about2.mp4").then((res: any) => {
+      setLoadingVideo(false);
+    });
+  }, []);
 
   return (
     <Box
@@ -51,15 +58,19 @@ const AboutSection = (props: AboutProps) => {
                 overflow: "hidden",
               }}
             >
-              <video
-                autoPlay
-                loop
-                width="100%"
-                height="100%"
-                style={{ transform: "scale(1.4)" }}
-              >
-                <source src={"/video/about2.mp4"} type="video/mp4" />
-              </video>
+              {!loadingVideo ? (
+                <video
+                  autoPlay
+                  loop
+                  width="100%"
+                  height="100%"
+                  style={{ transform: "scale(1.4)" }}
+                >
+                  <source src={"/video/about2.mp4"} type="video/mp4" />
+                </video>
+              ) : (
+                <Skeleton variant="rectangular" height="100%" width="100%" />
+              )}
             </Box>
           </Box>
           <Box
@@ -111,7 +122,8 @@ const AboutSection = (props: AboutProps) => {
               fontWeight="400"
               textAlign={{ xs: "center", md: "left" }}
             >
-              Tôi là một kỹ sư phần mềm chuyên ngành, người đam mê phát triển lấy con người làm trung tâm cũng như ra quyết định chiến lược.
+              Tôi là một kỹ sư phần mềm chuyên ngành, người đam mê phát triển
+              lấy con người làm trung tâm cũng như ra quyết định chiến lược.
             </Typography>
             <Typography
               component="p"
@@ -122,7 +134,8 @@ const AboutSection = (props: AboutProps) => {
               fontWeight="400"
               textAlign={{ xs: "center", md: "left" }}
             >
-              Tôi là một nhà phát triển full-stack với niềm đam mê xây dựng giao diện người dùng đẹp, trực quan và hiệu quả.
+              Tôi là một nhà phát triển full-stack với niềm đam mê xây dựng giao
+              diện người dùng đẹp, trực quan và hiệu quả.
             </Typography>
           </Box>
         </Stack>

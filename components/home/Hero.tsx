@@ -1,6 +1,12 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Container, Link as MuiLink, Stack, Typography } from "@mui/material";
+import {
+  Container,
+  Link as MuiLink,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import Link from "next/link";
 import * as React from "react";
@@ -12,6 +18,13 @@ export interface HeroProps {}
 const HeroSection = (props: HeroProps) => {
   const ref = React.useRef(null);
   const inViewport = useIntersection(ref, 0.1);
+  const [loadingVideo, setLoadingVideo] = React.useState(true);
+
+  React.useEffect(() => {
+    fetch("/video/hero.mp4").then((res: any) => {
+      setLoadingVideo(false);
+    });
+  }, []);
 
   return (
     <Box
@@ -61,10 +74,14 @@ const HeroSection = (props: HeroProps) => {
                 Developer Ha Noi .Viet Nam
               </Typography>
             </Box>
-            <Stack mt={3} direction="row" justifyContent={{
-              xs: "center",
-              md: "flex-start"
-            }}>
+            <Stack
+              mt={3}
+              direction="row"
+              justifyContent={{
+                xs: "center",
+                md: "flex-start",
+              }}
+            >
               <Box component="span">
                 <Link href="https://www.linkedin.com/in/giakinh0823/" passHref>
                   <MuiLink target="blank">
@@ -108,15 +125,19 @@ const HeroSection = (props: HeroProps) => {
                 overflow: "hidden",
               }}
             >
-              <video
-                autoPlay
-                loop
-                width="100%"
-                height="100%"
-                style={{ transform: "scale(1.5)" }}
-              >
-                <source src={"/video/hero.mp4"} type="video/mp4" />
-              </video>
+              {!loadingVideo ? (
+                <video
+                  autoPlay
+                  loop
+                  width="100%"
+                  height="100%"
+                  style={{ transform: "scale(1.5)" }}
+                >
+                  <source src={"/video/hero.mp4"} type="video/mp4" />
+                </video>
+              ) : (
+                <Skeleton variant="rectangular" height="100%" width="100%" />
+              )}
             </Box>
           </Box>
         </Stack>

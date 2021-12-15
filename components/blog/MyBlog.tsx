@@ -19,6 +19,14 @@ export interface IMyBlogProps {
 }
 
 export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
+  const [loadingVideo, setLoadingVideo] = React.useState(true);
+
+  React.useEffect(() => {
+    fetch("/video/about2.mp4").then((res: any) => {
+      setLoadingVideo(false);
+    });
+  }, []);
+
   return (
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 8 }}>
       <Container>
@@ -145,9 +153,17 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
                     height: "100%",
                   }}
                 >
-                  <video autoPlay loop width="100%" height="100%">
-                    <source src={"/video/reactjs.mp4"} type="video/mp4" />
-                  </video>
+                  {!loadingVideo ? (
+                    <video autoPlay loop width="100%" height="100%">
+                      <source src={"/video/reactjs.mp4"} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <Skeleton
+                      variant="rectangular"
+                      height="100%"
+                      width="100%"
+                    />
+                  )}
                 </Box>
               </Grid>
             </Grid>
