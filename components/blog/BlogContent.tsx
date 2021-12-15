@@ -4,23 +4,23 @@ import {
   Link as MuiLink,
   Skeleton,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
+import clsx from "clsx";
 import Link from "next/link";
 import * as React from "react";
+import { isMobile } from "react-device-detect";
 import { createReactEditorJS } from "react-editor-js";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   github,
-  vscDarkPlus,
+  vscDarkPlus
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
-import clsx from "clsx";
-import { isMobile } from "react-device-detect";
 
 export interface IBlogContentProps {
   data: any;
@@ -34,7 +34,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
   return (
     <Box component="section" pt={{ xs: 6, md: 10 }} pb={{ sx: 8, md: 10 }}>
       <Container>
-        {data && (
+        {data ? (
           <>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Typography
@@ -49,7 +49,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
             </Box>
             <Stack
               direction={{ xs: "column", md: "row" }}
-              justifyContent={{xs: "center",md: "space-between"}}
+              justifyContent={{ xs: "center", md: "space-between" }}
               alignItems={{ xs: "center", md: "flex-start" }}
               mb={5}
               flexWrap="wrap"
@@ -106,11 +106,14 @@ export default function BlogContent({ data }: IBlogContentProps) {
                         language={match[1]}
                         PreTag="div"
                         wrapLines={true}
+                        showLineNumbers
                         {...props}
                         customStyle={{
                           borderRadius: "10px",
                           fontWeight: "500",
                           padding: "20px",
+                          boxShadow:
+                            "0px 100px 80px rgba(0,0,0,0.0174624),0px 41.7776px 33.4221px rgba(0,0,0,0.0235573),0px 22.3363px 17.869px rgba(0,0,0,0.0282784),0px 12.5216px 10.0172px rgba(0,0,0,0.0339075),0px 6.6501px 5.32008px rgba(0,0,0,0.04317),0px 2.76726px 2.21381px rgba(0,0,0,0.07)",
                         }}
                       >
                         {String(children).replace(/\n$/, "")}
@@ -127,8 +130,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
               </ReactMarkdown>
             </Box>
           </>
-        )}
-        {!data && (
+        ) : (
           <Box>
             <Skeleton sx={{ height: "50px", width: "90%" }} />
             <Skeleton

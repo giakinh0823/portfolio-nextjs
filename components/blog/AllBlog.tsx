@@ -16,6 +16,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 // Import Swiper styles
 import "swiper/css";
+import { useIntersection } from "../../utils";
 
 SwiperCore.use([]);
 
@@ -27,6 +28,7 @@ export interface IListNewProps {
 
 export default function AllBlog({ blogs, title, link }: IListNewProps) {
   const ref = React.useRef<HTMLDivElement>(null);
+  const inViewport = useIntersection(ref, 0.1);
 
   return (
     <Box component="section" pt={{ xs: 3, md: 3 }} pb={{ xs: 3, md: 3 }}>
