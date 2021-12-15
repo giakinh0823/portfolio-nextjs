@@ -1,16 +1,13 @@
 import {
   Container,
-  Grid,
-  Stack,
-  Typography,
-  Link as MuiLink,
-  Skeleton,
+  Grid, Link as MuiLink,
+  Skeleton, Stack,
+  Typography
 } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import SkeletonNewBlog from "./SkeletonNewBlog";
 
 export interface IMyBlogProps {
@@ -36,10 +33,10 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
           </Typography>
         </Box>
         <Stack direction="row">
-          <Box>
+          <Box sx={{width: "100%"}}>
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
-                <Box>
+                <Box sx={{width: "100%"}}>
                   <Grid container spacing={3}>
                     {(!Boolean(blogs) || isLoading) &&
                       [1, 2, 3].map((item, index) => (

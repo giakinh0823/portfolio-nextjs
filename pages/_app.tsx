@@ -11,6 +11,8 @@ import { AppPropsWithLayout } from "../models";
 import { createEmotionCache } from "../utils";
 import "../styles/globals.css";
 import "../styles/editor.css";
+import Head from "next/head";
+import logo from '../assets/image/logo/logo1.png';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -28,6 +30,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
               shouldRetryOnError: false,
             }}
           >
+            {" "}
+            <Head>
+              <link rel="icon" href={`${logo.src}`} />
+            </Head>
             <Layout>
               <Component {...pageProps} />
             </Layout>
