@@ -52,26 +52,24 @@
     font-size: 16px;
 }
 
-
-
-.content-markdown pre div::-webkit-scrollbar {
+.markdown-body pre div::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 
-.content-markdown pre div::-webkit-scrollbar:vertical {
+.markdown-body pre div::-webkit-scrollbar:vertical {
     width: 9px;
 }
 
-.content-markdown pre div::-webkit-scrollbar:horizontal {
+.markdown-body pre div::-webkit-scrollbar:horizontal {
     height: 8px;
 }
 
-.content-markdown pre div::-webkit-scrollbar-thumb {
+.markdown-body pre div::-webkit-scrollbar-thumb {
     border-radius: 8px;
     /* should match background, can't be transparent */
     background-color: rgb(117, 117, 117);
 }
 
-.content-markdown pre div::-webkit-scrollbar-track {
+.markdown-body pre div::-webkit-scrollbar-track {
     border-radius: 8px;
 }

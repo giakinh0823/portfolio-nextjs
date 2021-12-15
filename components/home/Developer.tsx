@@ -191,15 +191,18 @@ const DeveloperItem = React.memo(function DeveloperItem({
         <Box
           sx={{
             width: {
-              xs: "180px",
-              md: "220px",
+              xs: "120px",
+              md: "150px",
             },
             height: {
-              xs: "180px",
-              md: "220px",
+              xs: "120px",
+              md: "150px",
             },
             position: "absolute",
-            top: "50%",
+            top: {
+              xs: "70%",
+              md: "50%",
+            },
             right: "40px",
             borderRadius: "50%",
             overflow: "hidden",
@@ -210,8 +213,8 @@ const DeveloperItem = React.memo(function DeveloperItem({
           <video
             autoPlay
             loop
-            width="220px"
-            height="220px"
+            width="100%"
+            height="100%"
             style={{ transform: "scale(1.4)" }}
           >
             <source src={video} type="video/mp4" />

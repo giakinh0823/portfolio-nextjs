@@ -102,11 +102,12 @@ const AboutSection = (props: AboutProps) => {
               component="h1"
               variant="h3"
               textAlign={{ xs: "center", md: "left" }}
+              fontWeight="500"
             >
               <Box
                 component="span"
                 sx={{ color: "primary.main" }}
-                fontWeight="400"
+                fontWeight="500"
                 textAlign={{ xs: "center", md: "left" }}
               >
                 Chuyên gia

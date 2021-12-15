@@ -1,8 +1,10 @@
 import {
   Box,
-  Container, Link as MuiLink, Skeleton,
+  Container,
+  Link as MuiLink,
+  Skeleton,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import Link from "next/link";
 import * as React from "react";
@@ -11,12 +13,14 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   github,
-  vscDarkPlus
+  vscDarkPlus,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
+import clsx from "clsx";
+import { isMobile } from "react-device-detect";
 
 export interface IBlogContentProps {
   data: any;
@@ -38,13 +42,15 @@ export default function BlogContent({ data }: IBlogContentProps) {
                 component="h1"
                 gutterBottom
                 fontWeight="bold"
+                textAlign={{ xs: "center", md: "left" }}
               >
                 {data?.title}
               </Typography>
             </Box>
             <Stack
-              direction="row"
-              justifyContent="space-between"
+              direction={{ xs: "column", md: "row" }}
+              justifyContent={{xs: "center",md: "space-between"}}
+              alignItems={{ xs: "center", md: "flex-start" }}
               mb={5}
               flexWrap="wrap"
             >
@@ -53,19 +59,18 @@ export default function BlogContent({ data }: IBlogContentProps) {
                   variant="body1"
                   gutterBottom
                   sx={{ fontSize: "18px" }}
+                  textAlign={{ xs: "center", md: "left" }}
                 >
-                  <Box component="span" sx={{
-                    border: "1px solid",
-                    borderColor: "primary.main",
-                    borderRadius: "30px",
-                    padding: "12px",
-                    fontSize: "14px",
-                    fontWeight: "bold",
-                    color: "primary.main",
-                  }} >
-                    {data.author} 
+                  <Box
+                    component="span"
+                    sx={{
+                      fontSize: "18px",
+                      color: "primary.main",
+                    }}
+                  >
+                    {data.author}
                   </Box>
-                   {" - "+new Date(data?.createdAt).toLocaleDateString()}
+                  {" - " + new Date(data?.createdAt).toLocaleDateString()}
                 </Typography>
               </Box>
               <Stack direction="row" spacing={3}>
@@ -88,7 +93,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
 
             <Box
               sx={{ "& code": { fontSize: "20px" } }}
-              className="content-markdown"
+              className={clsx("content-markdown", !isMobile && "markdown-body")}
             >
               <ReactMarkdown
                 rehypePlugins={[rehypeRaw, remarkGfm]}
