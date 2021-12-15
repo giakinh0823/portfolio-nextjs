@@ -34,7 +34,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
   return (
     <Box component="section" pt={{ xs: 6, md: 10 }} pb={{ sx: 8, md: 10 }}>
       <Container>
-        {data ? (
+        {data && (
           <>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Typography
@@ -130,7 +130,8 @@ export default function BlogContent({ data }: IBlogContentProps) {
               </ReactMarkdown>
             </Box>
           </>
-        ) : (
+        )}
+        {!data && (
           <Box>
             <Skeleton sx={{ height: "50px", width: "90%" }} />
             <Skeleton
