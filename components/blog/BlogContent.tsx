@@ -106,7 +106,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
                         language={match[1]}
                         PreTag="div"
                         wrapLines={true}
-                        showLineNumbers
+                        showLineNumbers={true}
                         {...props}
                         customStyle={{
                           borderRadius: "10px",
