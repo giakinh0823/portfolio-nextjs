@@ -34,7 +34,7 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
         <Box mb={5}>
           <Stack direction="row" justifyContent="space-between">
             <Box>
-              <Typography variant="h3" component="h2" fontWeight="900">
+              <Typography variant="h3" component="h2" fontWeight="700">
                 {title}
               </Typography>
             </Box>
@@ -126,7 +126,7 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                         component="h2"
                         sx={{
                           cursor: "pointer",
-                          fontWeight: "700",
+                          fontWeight: "500",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           display: "-webkit-box",
@@ -149,12 +149,11 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                       WebkitLineClamp: 1,
                       WebkitBoxOrient: "vertical",
                       cursor: "pointer",
-                      marginBottom: "10px",
                       padding: 0,
                       fontWeight: "600",
                       opacity: 0.6,
+                      marginBottom: "20px",
                     }}
-                    mb={1}
                   >
                     {blog?.author} -{" "}
                     {new Date(blog?.createdAt).toLocaleDateString()}

@@ -436,7 +436,7 @@ const ListNew = ({
                         component="h2"
                         sx={{
                           cursor: "pointer",
-                          fontWeight: "700",
+                          fontWeight: "500",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           display: "-webkit-box",
@@ -459,7 +459,7 @@ const ListNew = ({
                       WebkitLineClamp: 1,
                       WebkitBoxOrient: "vertical",
                       cursor: "pointer",
-                      marginBottom: "10px",
+                      marginBottom: "20px",
                       padding: 0,
                       fontWeight: "600",
                       opacity: 0.6,

@@ -24,7 +24,7 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
       <Container>
         <Box mb={5}>
           <Typography variant="h3" component="h2" fontWeight="900">
-            New Blogs
+            Mới nhất
           </Typography>
         </Box>
         <Stack direction="row">

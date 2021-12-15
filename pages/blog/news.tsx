@@ -30,6 +30,7 @@ const News = (prop: BlogProps) => {
             const blogs = await getAllPostWidthParams({
               sort: { value: "id", type: "desc" },
               filters: { column: ["topics", "id"], operator: "$eq", value: id },
+              pagination: { page: 1, pageSize: 6 },
             });
             if (blogs) {
               setData(blogs);
@@ -55,6 +56,7 @@ const News = (prop: BlogProps) => {
           const blogs = await getAllPostWidthParams({
             sort: { value: "id", type: "desc" },
             filter: { column: "title", operator: "$containsi", value: input },
+            pagination: { page:  1, pageSize: 6 },
           });
           if (blogs) {
             setData(blogs);

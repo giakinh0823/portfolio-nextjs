@@ -8,6 +8,10 @@ export const ROUTE_LIST = [
 		path: '/works',
 	},
 	{
+		label: 'Tutorial',
+		path: '/tutorial',
+	},
+	{
 		label: 'Blog',
 		path: '/blog',
 	},

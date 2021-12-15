@@ -1,4 +1,11 @@
-import { Box, Container, Skeleton, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Skeleton,
+  Stack,
+  Typography,
+  Link as MuiLink,
+} from "@mui/material";
 import * as React from "react";
 import { createReactEditorJS } from "react-editor-js";
 import ReactMarkdown from "react-markdown";
@@ -11,6 +18,7 @@ import {
   github,
   vscDarkPlus,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
+import Link from "next/link";
 
 export interface IBlogContentProps {
   data: any;
@@ -26,7 +34,7 @@ export default function BlogContent({ data }: IBlogContentProps) {
       <Container>
         {data && (
           <>
-            <Box sx={{ display: "flex", justifyContent: "center" }} mb={5}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Typography
                 variant="h2"
                 component="h1"
@@ -36,6 +44,49 @@ export default function BlogContent({ data }: IBlogContentProps) {
                 {data?.title}
               </Typography>
             </Box>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              mb={5}
+              flexWrap="wrap"
+            >
+              <Box>
+                <Typography
+                  variant="body1"
+                  gutterBottom
+                  sx={{ fontSize: "18px" }}
+                >
+                  <Box component="span" sx={{
+                    border: "1px solid",
+                    borderColor: "primary.main",
+                    borderRadius: "30px",
+                    padding: "12px",
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    color: "primary.main",
+                  }} >
+                    {data.author} 
+                  </Box>
+                   {" - "+new Date(data?.createdAt).toLocaleDateString()}
+                </Typography>
+              </Box>
+              <Stack direction="row" spacing={3}>
+                {data?.topics.map((topic: any) => (
+                  <Link href={`topics/${topic.name}`} passHref key={topic.id}>
+                    <MuiLink>
+                      <Typography
+                        key={topic.id}
+                        variant="body1"
+                        gutterBottom
+                        sx={{ fontSize: "18px" }}
+                      >
+                        {topic.name}
+                      </Typography>
+                    </MuiLink>
+                  </Link>
+                ))}
+              </Stack>
+            </Stack>
 
             <Box
               sx={{ "& code": { fontSize: "20px" } }}

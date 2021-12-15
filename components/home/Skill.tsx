@@ -54,8 +54,8 @@ const SkillSection = (props: SkillProps) => {
         inViewport && !isMobile
           ? {
               "@keyframes fadeIn": {
-                from: { opacity: 0, },
-                to: { opacity: 1,  },
+                from: { opacity: 0 },
+                to: { opacity: 1 },
               },
               animation: "fadeIn 2s ease-in-out",
             }
@@ -233,32 +233,32 @@ const skills = [
   createData(
     "Programming Languages",
     "Java",
-    "I am extremely proficient in using this language for study and tutoring."
+    "Tôi cực kỳ thành thạo trong việc sử dụng ngôn ngữ này để học tập và dạy kèm và làm việc."
   ),
   createData(
     "Crawl data",
     "Python",
-    "I can code Django backend with python, crawl data with selenium"
+    "Tôi có thể mã chương trình phụ trợ Django bằng python, thu thập dữ liệu bằng selenium, và có thể làm việc với các bảng mở rộng."
   ),
   createData(
     "Javascript",
     "Nodejs",
-    "I have worked on a few small projects, such as product management, product deletion level 1, level 2, etc. Working with Mongodb to manage the database"
+    "Tôi đã làm việc trên một số dự án nhỏ, chẳng hạn như quản lý sản phẩm, xóa sản phẩm cấp độ 1, cấp độ 2, v.v. Làm việc với Mongodb để quản lý cơ sở dữ liệu."
   ),
   createData(
     "UX/UI",
     "Reactjs",
-    "Then I do quite a few projects on it. I use redux, redux-toolkit, redux saga to manage states and fetch api actions. I use axios to fetch api. Also I use react-hook-form, react-router-dom,… and many other tools. I can use both Typescript and Javascript to code Reactjs. Manage and limit unnecessary re-rendering of components with memo and useCallback. Proficiently use both antd, and mui in coding the interface for Reactjs. Proficient in style scss module in Reactjs."
+    "Sau đó, tôi thực hiện khá nhiều dự án về nó. Tôi sử dụng redux, redux-toolkit, redux saga để quản lý các trạng thái và tìm nạp các hành động của api. Tôi sử dụng axios để tìm nạp api. Ngoài ra, tôi sử dụng react-hook-form, react-router-dom,… và nhiều công cụ khác. Tôi có thể sử dụng cả Typecript và Javascript để viết mã Reactjs. Quản lý và hạn chế render các thành phần không cần thiết bằng memo và useCallback. Sử dụng thành thạo cả antd và mui trong việc mã hóa giao diện cho Reactjs. Thành thạo module style scss trong Reactjs."
   ),
   createData(
     "SEO",
     "Nextjs",
-    "I understand and apply the basics and fetch api for production. Understand SEO in Nextjs. "
+    "Tôi hiểu và áp dụng những kiến thức cơ bản cũng như tìm nạp api cho quá trình sản xuất. Hiểu SEO trong Nextjs. ISR, SSR, SSG. Landing Page"
   ),
   createData(
     "Mobile",
     "React Native",
-    "Since I have a strong understanding of React, working with React Native is very easy. I use expo to code React Native. Master and understand the knowledge in React Native."
+    "Vì tôi hiểu rõ về React nên việc làm việc với React Native rất dễ dàng. Tôi sử dụng expo để viết mã React Native. Nắm vững và hiểu rõ các kiến thức trong React Native."
   ),
 ];
 
@@ -266,22 +266,22 @@ const experiences = [
   createData(
     "Frontend Developer",
     "Nextjs",
-    "I joined the frontend code project with Nextjs for the delivery startup S-ONE. I use TypeScript to code Nextjs. Use GitLab to manage and work with the team. I use Antd to design the website"
+    "Tôi đã tham gia dự án mã giao diện người dùng với Next Js cho công ty khởi nghiệp phân phối S-ONE. Tôi sử dụng TypeScript để viết mã Nextjs. Sử dụng GitHub để quản lý và làm việc với nhóm. Tôi sử dụng Antd để thiết kế trang web"
   ),
   createData(
     "Full-Stack Developer",
     "Django - React",
-    "I participated in a project to code on products to buy, sell, and trade Facebook services. I do backend with Django and frontend with Reactjs, I use Django Rest Framework to make web API. For the frontend I use redux, and the redux toolkit to manage the state for the site. I use Material-ui to design the website. I use many other tools like react-route-dom, Axios, Chartjs, react-hook-form,…"
+    "Tôi đã tham gia vào một dự án viết mã trên các sản phẩm để mua, bán và kinh doanh các dịch vụ của Facebook. Tôi làm phần phụ trợ với Django và giao diện người dùng với Reactjs, tôi sử dụng Django Rest Framework để tạo API web. Đối với giao diện người dùng, tôi sử dụng redux và bộ công cụ redux để quản lý trạng thái cho trang web. Tôi sử dụng Material-ui để thiết kế trang web. Tôi sử dụng nhiều công cụ khác như react-route-dom, Axios, Chartjs, react-hook-form,…"
   ),
   createData(
     "Full-Stack Developer",
     "Django - React",
-    "I take full responsibility for the Hara startup project to participate in the FPT Edu Biz contest. Project for startups about crowdfunding. I work in the field of getting data, design, code backend, frontend. I use selenium tool to perform data retrieval to perform product testing. Use the Strapi API to make payments. Use channels, websocket to code messaging and notification functions for the website. Using selenium to get data. Use reactjs as frontend"
+    "Tôi hoàn toàn chịu trách nhiệm về dự án khởi nghiệp Hara tham gia cuộc thi FPT Edu Biz. Dự án dành cho các công ty khởi nghiệp về huy động vốn từ cộng đồng. Tôi làm việc trong lĩnh vực lấy dữ liệu, thiết kế, code backend, frontend. Tôi sử dụng công cụ selen để thực hiện truy xuất dữ liệu nhằm thực hiện kiểm tra sản phẩm. Sử dụng API Strapi để thanh toán. Sử dụng các kênh, websocket để viết mã các chức năng nhắn tin, thông báo cho website. Sử dụng selen để lấy dữ liệu. Sử dụng reactjs làm giao diện người dùng"
   ),
   createData(
     "Full-Stack Developer",
     "Django - Selenium",
-    "I work here as a product developer and creator for Scholar to participate in the FAIC 2021 conference. Here I undertake and implement the project myself. With experience through self-study and inquiry. Using selenium tool to get data from google site. I use JavaScript, the Chartjs library to display word cloud, help users understand the authors. Using NLTK library to analyze natural language to display word cloud. Using Docker to build the environment. Use Celery to manage tasks, schedule time to crawl data from Google Scholar to update articles by authors."
+    "Tôi làm việc tại đây với tư cách là nhà phát triển sản phẩm và người sáng tạo cho Scholar tham gia hội nghị FAIC 2021. Tại đây tôi tự đảm nhận và thực hiện dự án. Với kinh nghiệm qua quá trình tự học và tìm hiểu. Sử dụng công cụ selen để lấy dữ liệu từ trang web của Google. Tôi sử dụng JavaScript, thư viện Chartjs để hiển thị đám mây từ, giúp người dùng hiểu các tác giả. Sử dụng thư viện NLTK để phân tích ngôn ngữ tự nhiên để hiển thị đám mây từ. Sử dụng Docker để xây dựng môi trường. Sử dụng Celery để quản lý công việc, lên lịch thời gian thu thập dữ liệu từ Google Scholar để cập nhật các bài viết của các tác giả."
   ),
 ];
 
@@ -289,6 +289,6 @@ const educations = [
   createData(
     "FPT University",
     "Bachelor of Information Technology",
-    "Here I learned a lot of things. School work helps me learn languages like Java, C, Java web, Web design, .. and computer knowledge. It has helped me solve many problems before. In addition to the knowledge of programming, I also learned about skills in the working environment and a lot of interesting things here"
+    "Ở đây tôi đã học được rất nhiều điều. Công việc ở trường giúp tôi học các ngôn ngữ như Java, C, Java web, thiết kế Web, .. và kiến thức máy tính. Nó đã giúp tôi giải quyết nhiều vấn đề trước đây. Ngoài kiến thức về lập trình, mình còn được học về các kỹ năng trong môi trường làm việc và rất nhiều điều thú vị tại đây"
   ),
 ];

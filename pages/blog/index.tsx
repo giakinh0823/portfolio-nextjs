@@ -71,7 +71,7 @@ const Blog = (prop: BlogProps) => {
       />
       <MyBlog blogs={blogs?.data} isLoading={isLoading} />
       {!isLoading ? (
-        <AllBlog blogs={blogs?.data} link="/blog/news" title="All Blogs" />
+        <AllBlog blogs={blogs?.data} link="/blog/news" title="Tất cả" />
       ) : (
         <SkeletonAllBlog />
       )}
