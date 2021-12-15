@@ -1,24 +1,22 @@
 import {
   Box,
-  Container,
-  Skeleton,
+  Container, Link as MuiLink, Skeleton,
   Stack,
-  Typography,
-  Link as MuiLink,
+  Typography
 } from "@mui/material";
+import Link from "next/link";
 import * as React from "react";
 import { createReactEditorJS } from "react-editor-js";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import {
+  github,
+  vscDarkPlus
+} from "react-syntax-highlighter/dist/esm/styles/prism";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useAppSelector } from "../../app/hooks";
 import { selectMode } from "../../redux/mode/modeSlice";
-import {
-  github,
-  vscDarkPlus,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
-import Link from "next/link";
 
 export interface IBlogContentProps {
   data: any;
