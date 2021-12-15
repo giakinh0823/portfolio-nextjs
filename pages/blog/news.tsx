@@ -15,6 +15,7 @@ const News = (prop: BlogProps) => {
   const { blogs, isLoading } = useBlogs();
   const topics = useTopics();
   const [loading, setLoading] = React.useState<boolean>(false);
+  const [loadingTopics, setLoadingTopics] = React.useState<boolean>(false);
   const [data, setData] = React.useState(blogs);
 
   React.useEffect(() => {
@@ -27,6 +28,7 @@ const News = (prop: BlogProps) => {
         (async () => {
           try {
             setLoading(true);
+            setLoadingTopics(true);
             const blogs = await getAllPostWidthParams({
               sort: { value: "id", type: "desc" },
               filters: { column: ["topics", "id"], operator: "$eq", value: id },
@@ -36,6 +38,7 @@ const News = (prop: BlogProps) => {
               setData(blogs);
             }
             setLoading(false);
+            setLoadingTopics(false);
           } catch (error) {
             console.log(error);
             setLoading(false);
@@ -114,6 +117,7 @@ const News = (prop: BlogProps) => {
         onSearch={onSearch}
         loadMore={loadMore}
         loading={loading}
+        loadingTopics={loadingTopics}
       />
     </>
   );

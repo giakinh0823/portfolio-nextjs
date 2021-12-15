@@ -27,6 +27,7 @@ export interface IListNewProps {
   onSearch?: any;
   loadMore?: any;
   loading?: boolean;
+  loadingTopics?: boolean;
 }
 
 const ListNew = ({
@@ -38,6 +39,7 @@ const ListNew = ({
   onSearch,
   loadMore,
   loading,
+  loadingTopics,
 }: IListNewProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const inViewport = useIntersection(ref, 0.9);
@@ -400,7 +402,7 @@ const ListNew = ({
           </Stack>
         </Box>
         <Grid container spacing={6}>
-          {(!isLoadingBlogs) &&
+          {(!isLoadingBlogs && !loadingTopics) &&
             blogs?.map((blog: any) => (
               <Grid item xs={12} sm={6} md={4} key={blog.id}>
                 <Box key={blog.id}>
