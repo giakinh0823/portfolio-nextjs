@@ -14,7 +14,7 @@ import { createReactEditorJS } from "react-editor-js";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
-  github,
+  prism,
   vscDarkPlus
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import rehypeRaw from "rehype-raw";
@@ -96,13 +96,14 @@ export default function BlogContent({ data }: IBlogContentProps) {
               className={clsx("content-markdown", !isMobile && "markdown-body")}
             >
               <ReactMarkdown
-                rehypePlugins={[rehypeRaw, remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+                remarkPlugins={[remarkGfm]} 
                 components={{
                   code({ node, inline, className, children, ...props }: any) {
                     const match = /language-(\w+)/.exec(className || "");
                     return !inline && match ? (
                       <SyntaxHighlighter
-                        style={mode == "dark" ? vscDarkPlus : github}
+                        style={mode == "dark" ? vscDarkPlus : prism}
                         language={match[1]}
                         PreTag="div"
                         wrapLines={true}
