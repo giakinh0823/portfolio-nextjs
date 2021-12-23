@@ -3,17 +3,42 @@ import { Box } from "@mui/system";
 import React from "react";
 import { LayoutProps } from "../../models";
 import { Footer, Header } from "../common";
+import Script from "next/script";
 
 export function MainLayout({ children }: LayoutProps) {
   return (
-      <Stack minHeight="100vh">
-        <Header />
+    <Stack minHeight="100vh">
+      <Header />
 
-        <Box component="main" flexGrow={1}>
-          {children}
-        </Box>
+      <Box component="main" flexGrow={1}>
+        {children}
+        <div id="fb-root"></div>
+        <div id="fb-customer-chat" className="fb-customerchat"></div>
+        <Script id="my-script" strategy="lazyOnload">
+          {`
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "475299556244389");
+            chatbox.setAttribute("attribution", "biz_inbox");
+   
+            window.fbAsyncInit = function() {
+              FB.init({
+                xfbml            : true,
+                version          : 'v12.0'
+              });
+            };
 
-        <Footer />
-      </Stack>
+            (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+          `}
+          </Script>
+      </Box>
+
+      <Footer />
+    </Stack>
   );
 }
