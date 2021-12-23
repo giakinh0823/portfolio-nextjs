@@ -11,6 +11,7 @@ import { AppPropsWithLayout } from "../models";
 import { createEmotionCache } from "../utils";
 import "../styles/globals.css";
 import "../styles/editor.css";
+import "../styles/phaohoa.css";
 import Head from "next/head";
 import logo from '../assets/image/logo/logo1.png';
 
