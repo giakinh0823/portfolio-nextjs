@@ -1,25 +1,24 @@
 import { Stack } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
-import { LayoutProps } from "../../models";
-import { Footer, Header } from "../common";
 import Script from "next/script";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { LayoutProps } from "../../models";
 import { colorAction, selectColor } from "../../redux/color/colorSlice";
+import { Footer, Header } from "../common";
 
 export function MainLayout({ children }: LayoutProps) {
 
   const color = useAppSelector(selectColor)
   const dispatch = useAppDispatch();
-
-  const [selectedValue, setSelectedValue] = React.useState(color);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     dispatch(colorAction.getColor());
   }, [dispatch])
 
   React.useEffect(() => {
-    setSelectedValue(color);
+    ref.current?.setAttribute("theme_color", color)
   },[color])
 
   return (
@@ -29,13 +28,12 @@ export function MainLayout({ children }: LayoutProps) {
       <Box component="main" flexGrow={1}>
         {children}
         <div id="fb-root"></div>
-        <div id="fb-customer-chat" className="fb-customerchat"></div>
+        <div id="fb-customer-chat" className="fb-customerchat" ref={ref}></div>
         <Script id="my-script" strategy="lazyOnload">
           {`
             var chatbox = document.getElementById('fb-customer-chat');
             chatbox.setAttribute("page_id", "475299556244389");
             chatbox.setAttribute("attribution", "biz_inbox");
-            chatbox.setAttribute("theme_color", ${selectedValue});
 
             window.fbAsyncInit = function() {
               FB.init({
