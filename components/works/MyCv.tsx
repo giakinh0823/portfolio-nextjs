@@ -31,8 +31,8 @@ const MyCv = (props: IMyCvProps) => {
               <Box
                 sx={{
                   borderRadius: "50%",
-                  width: "70%",
-                  height: "70%",
+                  width: "90%",
+                  height: "90%",
                   overflow: "hidden",
                   borderWidth: "6px",
                   borderStyle: "solid",
@@ -44,16 +44,14 @@ const MyCv = (props: IMyCvProps) => {
                   <Image src={avatar} alt="avatar" width={500} height={460} />
                 </div>
               </Box>
-              <Box
-                pl={{ xs: 0, md: 4 }}
-              >
+              <Box pl={{ xs: 0, md: 4 }}>
                 <ListCVBar listCV={listBar} />
               </Box>
             </Box>
           </Grid>
           <Grid item xs={8}>
             <Box>
-              <Box>
+              <Box pt={6}>
                 <Typography
                   variant="h1"
                   component="h1"
@@ -73,14 +71,14 @@ const MyCv = (props: IMyCvProps) => {
                   color="textPrimary"
                   sx={{
                     textTransform: "uppercase",
-                    maxWidth: "400px",
+                    fontFamily: "monospace",
                     opacity: 0.8,
                   }}
                 >
                   Full Stack Developer
                 </Typography>
               </Box>
-              <Box pt={3}>
+              <Box pt={4}>
                 <ListCVMain listCV={listSkill} />
               </Box>
             </Box>
