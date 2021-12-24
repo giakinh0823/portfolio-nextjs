@@ -56,7 +56,7 @@ export function MainLayout({ children }: LayoutProps) {
             var observer = new MutationObserver(function(mutations) {
               mutations.forEach(function(mutation) {
                 if (mutation.type === "attributes") {
-                  FB.XFBML.parse(document.getElementById('fb-customer-chat'));
+                  FB.XFBML.parse();
                 }
               });
             });            
