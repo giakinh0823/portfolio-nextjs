@@ -247,6 +247,11 @@ const skills = [
     "Tôi có thể mã chương trình phụ trợ Django bằng python, thu thập dữ liệu bằng selenium, và có thể làm việc với các bảng mở rộng."
   ),
   createData(
+    "Backend",
+    "Django",
+    "Tôi có kinh nghiệm làm việc với Django Rest Framework trong thời gian viết phần phụ trợ cho các trang web mà tôi làm việc. Tôi biết cách sử dụng JWT trong Django, cơ sở dữ liệu với sqlite3, máy chủ SQL, quản lý môi trường với Docker, Quản lý công việc với Celery. Biết cách sử dụng các kênh và redis."
+  ),
+  createData(
     "Javascript",
     "Nodejs",
     "Tôi đã làm việc trên một số dự án nhỏ, chẳng hạn như quản lý sản phẩm, xóa sản phẩm cấp độ 1, cấp độ 2, v.v. Làm việc với Mongodb để quản lý cơ sở dữ liệu."
@@ -254,12 +259,12 @@ const skills = [
   createData(
     "UX/UI",
     "Reactjs",
-    "Sau đó, tôi thực hiện khá nhiều dự án về nó. Tôi sử dụng redux, redux-toolkit, redux saga để quản lý các trạng thái và tìm nạp các hành động của api. Tôi sử dụng axios để tìm nạp api. Ngoài ra, tôi sử dụng react-hook-form, react-router-dom,… và nhiều công cụ khác. Tôi có thể sử dụng cả Typecript và Javascript để viết mã Reactjs. Quản lý và hạn chế render các thành phần không cần thiết bằng memo và useCallback. Sử dụng thành thạo cả antd và mui trong việc mã hóa giao diện cho Reactjs. Thành thạo module style scss trong Reactjs."
+    "Tôi đã thực hiện khá nhiều dự án về nó. Tôi sử dụng redux, redux-toolkit, redux saga để quản lý các trạng thái và tìm nạp các hành động của api. Tôi sử dụng axios để tìm nạp api. Ngoài ra, tôi sử dụng react-hook-form, react-router-dom… và nhiều công cụ khác. Tôi có thể sử dụng cả Typecript và Javascript để viết mã Reactjs. Quản lý và hạn chế kết xuất các thành phần không cần thiết với memo và useCallback. Sử dụng thành thạo cả antd và Mui-v5 trong việc tạo giao diện cho Reactjs. Thành thạo mô-đun kiểu scss trong Reactjs. Sử dụng Truy vấn React để quản lý dữ liệu trạng thái phía máy chủ."
   ),
   createData(
     "SEO",
     "Nextjs",
-    "Tôi hiểu và áp dụng những kiến thức cơ bản cũng như tìm nạp api cho quá trình sản xuất. Hiểu SEO trong Nextjs. ISR, SSR, SSG. Landing Page"
+    "Tôi hiểu và áp dụng những kiến thức cơ bản cũng như tìm nạp api cho quá trình sản xuất. Hiểu SEO trong Nextjs. Sử dụng useSWR cho trạng thái phía máy chủ và quản lý dữ liệu. Biết cách sử dụng định thời với CSR, SSR, SSG và ISR."
   ),
   createData(
     "Mobile",
