@@ -84,7 +84,7 @@ const ListNew = ({
               variant="h5"
               component="h2"
               sx={{
-                color: "#5a42ef",
+                color: "primary.main",
                 textTransform: "uppercase",
                 fontWeight: "bold",
               }}
@@ -253,7 +253,7 @@ const ListNew = ({
               variant="h4"
               component="h2"
               fontWeight="900"
-              sx={{ color: "#5a42ef" }}
+              sx={{ color: "primary.main" }}
             >
               Dirodi Entertaining
             </Typography>
@@ -283,7 +283,7 @@ const ListNew = ({
                   borderRadius: "30px",
                   padding: "0 30px",
                   fontSize: "18px",
-                  color: "#5a42ef",
+                  color: "primary.main",
                   outline: "none",
                   border: "none",
                   fontWeight: "bold",
@@ -299,7 +299,7 @@ const ListNew = ({
                   bottom: "0",
                   margin: "auto",
                   padding: "0",
-                  color: "#5a42ef",
+                  color: "primary.main",
                   height: "50px",
                   width: "50px",
                 }}
@@ -330,15 +330,15 @@ const ListNew = ({
                       fontWeight: "bold",
                       color:
                         isActive == -1
-                          ? "#5a42ef"
+                          ? "primary.main"
                           : mode == "dark"
                           ? "#fff"
                           : "#000",
-                      borderColor: isActive == -1 ? "#5a42ef" : "transparent",
+                      borderColor: isActive == -1 ? "primary.main" : "transparent",
                       cursor: "pointer",
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
-                        borderColor: "#5a42ef",
+                        borderColor: "primary.main",
                       },
                     }}
                     onClick={() => {
@@ -358,17 +358,17 @@ const ListNew = ({
                             fontWeight: "bold",
                             color:
                               isActive == topic?.id
-                                ? "#5a42ef"
+                                ? "primary.main"
                                 : mode == "dark"
                                 ? "#fff"
                                 : "#000",
                             padding: "24px 12px",
                             borderColor:
-                              isActive == topic?.id ? "#5a42ef" : "transparent",
+                              isActive == topic?.id ? "primary.main" : "transparent",
                             cursor: "pointer",
                             transition: "all 0.3s ease-in-out",
                             "&:hover": {
-                              borderColor: "#5a42ef",
+                              borderColor: "primary.main",
                             },
                           }}
                           onClick={() => {

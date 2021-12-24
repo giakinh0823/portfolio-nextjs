@@ -8,14 +8,18 @@ import * as React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectMode, modeAction } from "../../redux/mode/modeSlice";
 import { ToastContainer } from "react-toastify";
+import { colorAction, selectColor } from "../../redux/color/colorSlice";
 
 export default function ToggleColorMode({ children }: any) {
   const mode = useAppSelector(selectMode);
+  const color = useAppSelector(selectColor);
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     dispatch(modeAction.getMode());
+    dispatch(colorAction.getColor());
   }, [dispatch]);
+
 
   let theme = React.useMemo(
     () =>
@@ -26,7 +30,7 @@ export default function ToggleColorMode({ children }: any) {
         palette: {
           mode: mode == "dark" ? "dark" : "light",
           primary: {
-            main: "#3766f4",
+            main: color,
           },
           secondary: {
             main: "#8072e0",
@@ -50,14 +54,14 @@ export default function ToggleColorMode({ children }: any) {
                 color: mode == "dark" ? "white" : "#171717",
 
                 "&:hover, &.active": {
-                  color: "#3766f4",
+                  color: color,
                 },
               },
             },
           },
         },
       }),
-    [mode]
+    [mode, color]
   );
   theme = responsiveFontSizes(theme);
   return (

@@ -10,7 +10,7 @@ export interface IMyCvProps {}
 
 const MyCv = (props: IMyCvProps) => {
   return (
-    <Box component="section" pt={{ xs: 4, md: 6 }} pb={{ sx: 4, md: 4 }}>
+    <Box component="section" pt={{ xs: 2, md: 6 }} pb={{ xs: 4, md: 4 }}>
       <Container
         sx={{
           width: "100%",

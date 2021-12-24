@@ -46,7 +46,7 @@ const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
               variant="h5"
               component="h2"
               sx={{
-                color: "#5a42ef",
+                color: "primary.main",
                 textTransform: "uppercase",
                 fontWeight: "bold",
               }}

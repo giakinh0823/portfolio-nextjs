@@ -49,11 +49,11 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                   <Typography
                     variant="body1"
                     component="span"
-                    fontWeight="900"
-                    fontSize="30px"
+                    fontWeight="600"
+                    fontSize="25px"
                     color="primary"
                   >
-                    See
+                    more
                   </Typography>
                   <ArrowRightAltIcon
                     color="primary"

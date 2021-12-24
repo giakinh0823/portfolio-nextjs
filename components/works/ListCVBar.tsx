@@ -27,7 +27,7 @@ export default function ListCVBar({ listCV }: IListCVBarProps) {
                   <Box key={index} sx={{padding: "10px 0" }}>
                     {typeof content === "string" ? (
                       <Box>
-                        <Typography variant="body1" color="textPrimary" fontWeight="bold">
+                        <Typography variant="body1" color="textPrimary" fontWeight="500">
                           {content}
                         </Typography>
                       </Box>
@@ -43,7 +43,7 @@ export default function ListCVBar({ listCV }: IListCVBarProps) {
                         >
                           {content.header}
                         </Typography>
-                        <Typography variant="body1" color="textPrimary" fontWeight="bold" sx={{wordWrap: "break-word"}}>
+                        <Typography variant="body1" color="textPrimary" fontWeight="500" sx={{wordWrap: "break-word"}}>
                           {content.content}
                         </Typography>
                       </Box>

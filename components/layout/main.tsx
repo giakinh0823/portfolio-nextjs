@@ -4,8 +4,24 @@ import React from "react";
 import { LayoutProps } from "../../models";
 import { Footer, Header } from "../common";
 import Script from "next/script";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { colorAction, selectColor } from "../../redux/color/colorSlice";
 
 export function MainLayout({ children }: LayoutProps) {
+
+  const color = useAppSelector(selectColor)
+  const dispatch = useAppDispatch();
+
+  const [selectedValue, setSelectedValue] = React.useState(color);
+
+  React.useEffect(() => {
+    dispatch(colorAction.getColor());
+  }, [dispatch])
+
+  React.useEffect(() => {
+    setSelectedValue(color);
+  },[color])
+
   return (
     <Stack minHeight="100vh">
       <Header />
@@ -19,7 +35,8 @@ export function MainLayout({ children }: LayoutProps) {
             var chatbox = document.getElementById('fb-customer-chat');
             chatbox.setAttribute("page_id", "475299556244389");
             chatbox.setAttribute("attribution", "biz_inbox");
-   
+            chatbox.setAttribute("theme_color", ${selectedValue});
+
             window.fbAsyncInit = function() {
               FB.init({
                 xfbml            : true,
