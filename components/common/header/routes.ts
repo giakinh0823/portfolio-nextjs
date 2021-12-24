@@ -7,10 +7,10 @@ export const ROUTE_LIST = [
 		label: 'Works',
 		path: '/works',
 	},
-	{
-		label: 'Tutorial',
-		path: '/tutorial',
-	},
+	// {
+	// 	label: 'Tutorial',
+	// 	path: '/tutorial',
+	// },
 	{
 		label: 'Blog',
 		path: '/blog',
