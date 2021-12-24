@@ -18,14 +18,6 @@ export function MainLayout({ children }: LayoutProps) {
 
   React.useEffect(() => {
     ref.current?.setAttribute("theme_color", color);
-    ref.current?.setAttribute(
-      "fb-iframe-plugin-query",
-      `app_id=&attribution=biz_inbox&container_width=0&current_url=http%3A%2F%2Flocalhost%3A3000%2F&locale=vi_VN&log_id=3456d385-5f9b-4616-9c0e-e273a22ea5bb&page_id=475299556244389&request_time=1640383243934&sdk=joey&theme_color=%23${color.replace(
-        "#",
-        ""
-      )}&title=&url=http%3A%2F%2Flocalhost%3A3000%2F`
-    );
-    console.log(ref.current);
   }, [color]);
 
   return (
@@ -36,11 +28,12 @@ export function MainLayout({ children }: LayoutProps) {
         {children}
         <div id="fb-root"></div>
         <div id="fb-customer-chat" className="fb-customerchat" ref={ref}></div>
-        <Script id="my-script" strategy="lazyOnload">
+        <Script id="facebook-plugin">
           {`
             var chatbox = document.getElementById('fb-customer-chat');
             chatbox.setAttribute("page_id", "475299556244389");
             chatbox.setAttribute("attribution", "biz_inbox");
+            console.log("Rerender")
 
             window.fbAsyncInit = function() {
               FB.init({
