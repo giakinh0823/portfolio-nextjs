@@ -63,6 +63,7 @@ const MyCv = (props: IMyCvProps) => {
                     textTransform: "uppercase",
                     maxWidth: "400px",
                     marginBottom: "10px",
+                    fontWeight: "400",
                   }}
                 >
                   Kinh Ha Gia
