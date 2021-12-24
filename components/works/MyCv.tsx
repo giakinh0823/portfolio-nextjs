@@ -188,7 +188,7 @@ const listSkill = [
             "I take full responsibility for the Hara startup project to participate in the FPT Edu Bizcontest. Project for startups about crowdfunding. I work in the field of getting data, design, code backend, frontend.",
           list: [
             "I use selenium tool to perform data retrieval to perform product testing.",
-            "Use the Strapi API to make payments.",
+            "Use the Stripe API to make payments.",
             "Use channels, websocket to code messaging and notification functions for the website",
             "Using selenium to get data",
             "Use reactjs as frontend",

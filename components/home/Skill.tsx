@@ -282,7 +282,7 @@ const experiences = [
   createData(
     "Full-Stack Developer",
     "Django - React",
-    "Tôi hoàn toàn chịu trách nhiệm về dự án khởi nghiệp Hara tham gia cuộc thi FPT Edu Biz. Dự án dành cho các công ty khởi nghiệp về huy động vốn từ cộng đồng. Tôi làm việc trong lĩnh vực lấy dữ liệu, thiết kế, code backend, frontend. Tôi sử dụng công cụ selen để thực hiện truy xuất dữ liệu nhằm thực hiện kiểm tra sản phẩm. Sử dụng API Strapi để thanh toán. Sử dụng các kênh, websocket để viết mã các chức năng nhắn tin, thông báo cho website. Sử dụng selen để lấy dữ liệu. Sử dụng reactjs làm giao diện người dùng"
+    "Tôi hoàn toàn chịu trách nhiệm về dự án khởi nghiệp Hara tham gia cuộc thi FPT Edu Biz. Dự án dành cho các công ty khởi nghiệp về huy động vốn từ cộng đồng. Tôi làm việc trong lĩnh vực lấy dữ liệu, thiết kế, code backend, frontend. Tôi sử dụng công cụ selen để thực hiện truy xuất dữ liệu nhằm thực hiện kiểm tra sản phẩm. Sử dụng API Stripe để thanh toán. Sử dụng các kênh, websocket để viết mã các chức năng nhắn tin, thông báo cho website. Sử dụng selen để lấy dữ liệu. Sử dụng reactjs làm giao diện người dùng"
   ),
   createData(
     "Full-Stack Developer",
