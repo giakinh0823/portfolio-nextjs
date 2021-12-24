@@ -33,7 +33,6 @@ export function MainLayout({ children }: LayoutProps) {
             var chatbox = document.getElementById('fb-customer-chat');
             chatbox.setAttribute("page_id", "475299556244389");
             chatbox.setAttribute("attribution", "biz_inbox");
-            console.log("Rerender")
 
             window.fbAsyncInit = function() {
               FB.init({
@@ -50,6 +49,27 @@ export function MainLayout({ children }: LayoutProps) {
               js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
               fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
+
+            const pluginRun = function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+              fjs.parentNode.insertBefore(js, fjs)
+            }
+
+            var observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                if (mutation.type === "attributes") {
+                  pluginRun(document, 'script', 'facebook-jssdk')
+                }
+              });
+            });            
+
+            observer.observe(chatbox, {
+              attributes: true 
+            });
+    
           `}
         </Script>
       </Box>
