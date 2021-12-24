@@ -6,6 +6,7 @@ import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout/main";
 import { useBlogsWithParam } from "../../components/swr/useBlog";
 import { useTopicWithParam } from "../../components/swr/useTopic";
+import avatar from '../../assets/image/avatar.png';
 
 export interface BlogProps {}
 
@@ -67,7 +68,7 @@ const Blog = (prop: BlogProps) => {
             ? blogs?.data?.map((item: any) => item.conntent).join(" ")
             : "Hà Gia Kính - blog"
         }
-        shareImage="https://res.cloudinary.com/giakinh0823/image/upload/v1639473921/thumbnail_cat_882d37503d.webp?updated_at=2021-12-14T09:25:21.760Z"
+        shareImage={avatar.src}
       />
       <MyBlog blogs={blogs?.data} isLoading={isLoading} />
       {!isLoading ? (
