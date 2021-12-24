@@ -28,6 +28,7 @@ export function MainLayout({ children }: LayoutProps) {
         {children}
         <div id="fb-root"></div>
         <div id="fb-customer-chat" className="fb-customerchat" ref={ref}></div>
+
         <Script id="facebook-plugin">
           {`
             var chatbox = document.getElementById('fb-customer-chat');
@@ -42,14 +43,21 @@ export function MainLayout({ children }: LayoutProps) {
               });
             };
 
-          
 
             var observer = new MutationObserver(function(mutations) {
               mutations.forEach(function(mutation) {
                 if (mutation.type === "attributes") {
                   (function(d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
+                    if (d.getElementById(id)) {
+                      const script = d.getElementById(id);
+                      script.remove();
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      js = d.createElement(s); js.id = id;
+                      js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+                      fjs.parentNode.insertBefore(js, fjs);
+                      return;
+                    };
                     js = d.createElement(s); js.id = id;
                     js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
                     fjs.parentNode.insertBefore(js, fjs);
