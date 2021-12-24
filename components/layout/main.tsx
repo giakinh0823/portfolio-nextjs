@@ -18,9 +18,9 @@ export function MainLayout({ children }: LayoutProps) {
   }, [dispatch])
 
   React.useEffect(() => {
-    // if(color){
-    //   ref.current?.setAttribute("theme_color", color);
-    // }
+    if(color){
+      ref.current?.setAttribute("theme_color", color);
+    }
   },[color])
 
   return (
@@ -40,6 +40,7 @@ export function MainLayout({ children }: LayoutProps) {
             window.fbAsyncInit = function() {
               FB.init({
                 xfbml            : true,
+                autoLogAppEvents : true,
                 version          : 'v12.0'
               });
             };
