@@ -1,22 +1,19 @@
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import {
   Box,
-  Container,
-  Grid,
-  Link as MuiLink,
+  Container, Link as MuiLink,
   Skeleton,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-
 // Import Swiper styles
 import "swiper/css";
-import { useIntersection } from "../../utils";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 
 SwiperCore.use([]);
 

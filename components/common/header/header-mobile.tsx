@@ -1,10 +1,7 @@
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import {
-  Button,
   Container,
-  Drawer,
-  Link as MuiLink,
-  Slide,
-  Stack,
+  Drawer, IconButton, Link as MuiLink, Stack
 } from "@mui/material";
 import { Box } from "@mui/system";
 import clsx from "clsx";
@@ -15,8 +12,6 @@ import { useAppSelector } from "../../../app/hooks";
 import { selectMode } from "../../../redux/mode/modeSlice";
 import UseSwitchesCustom from "../SwitchDarkMode";
 import { ROUTE_LIST } from "./routes";
-import { IconButton } from '@mui/material';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 export interface HeaderMobileProps {}
 

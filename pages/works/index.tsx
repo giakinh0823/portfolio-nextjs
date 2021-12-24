@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import * as React from "react";
 import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout/main";

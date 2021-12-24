@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import avatar from "../../assets/image/avatar.png";
 import background from "../../assets/image/background.png";
 import ListCVBar from "./ListCVBar";
-import Typography from "@mui/material/Typography";
 import ListCVMain from "./ListCVMain";
 
 export interface IMyCvProps {}

@@ -1,19 +1,13 @@
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
-  Backdrop,
-  CircularProgress,
-  Container,
-  FormControlLabel,
+  Backdrop, Checkbox, CircularProgress,
+  Container, Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle, FormControlLabel,
   FormGroup,
-  Stack,
-  Typography,
+  Stack, TextField, Typography
 } from "@mui/material";
-import Checkbox from "@mui/material/Checkbox";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import TextField from "@mui/material/TextField";
 import { Box } from "@mui/system";
 import Image from "next/image";
 import * as React from "react";
@@ -21,13 +15,10 @@ import { createReactEditorJS } from "react-editor-js";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
-import { blogApi } from "../../api-client/blogApi";
-import { getCategorys, upPost } from "../../api-client/firebaseApi";
 import { createPostBySlug, getAllTopic } from "../../api-client/strapiApi";
 import { tools_editor_js } from "../../constants/editor-js-tools";
 import { uploadImage } from "../../utils/uploadImage";
 import ButtonPrimary from "../common/button/ButtonPrimary";
-import { useCategorys } from "../swr/useCategory";
 
 
 const ReactEditorJS = createReactEditorJS();

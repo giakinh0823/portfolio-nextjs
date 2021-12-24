@@ -1,6 +1,5 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import * as React from "react";
-import Typography from "@mui/material/Typography";
 
 export interface IListCVMainProps {
   listCV: any;

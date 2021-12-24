@@ -1,8 +1,8 @@
 import { Container, Skeleton, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import * as React from "react";
-import { useIntersection } from "../../utils/useIntersection";
 import { isMobile } from "react-device-detect";
+import { useIntersection } from "../../utils/useIntersection";
 
 export interface AboutProps {}
 

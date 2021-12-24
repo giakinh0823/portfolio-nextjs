@@ -1,21 +1,13 @@
 import {
   Box,
-  Container,
-  Grid,
-  Link as MuiLink,
-  Stack,
-  Typography,
+  Container, Skeleton, Stack
 } from "@mui/material";
-import Image from "next/image";
-import Link from "next/link";
 import * as React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-
 // Import Swiper styles
 import "swiper/css";
-import { Skeleton } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 
 SwiperCore.use([]);
 

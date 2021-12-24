@@ -9,7 +9,7 @@ import {
   Link as MuiLink,
   Skeleton,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
