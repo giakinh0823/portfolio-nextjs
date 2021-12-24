@@ -13,7 +13,7 @@ import "../styles/globals.css";
 import "../styles/editor.css";
 import "../styles/phaohoa.css";
 import Head from "next/head";
-import logo from '../assets/image/logo/logo1.png';
+import logo from '../assets/image/logo/logo.png';
 
 const clientSideEmotionCache = createEmotionCache();
 
