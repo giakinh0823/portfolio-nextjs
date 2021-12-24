@@ -18,7 +18,7 @@ export function MainLayout({ children }: LayoutProps) {
   }, [dispatch])
 
   React.useEffect(() => {
-    ref.current?.setAttribute("theme_color", color)
+    ref.current?.setAttribute("theme_color", color.replace("#", ""));
   },[color])
 
   return (
