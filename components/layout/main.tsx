@@ -7,6 +7,8 @@ import { LayoutProps } from "../../models";
 import { colorAction, selectColor } from "../../redux/color/colorSlice";
 import { Footer, Header } from "../common";
 
+declare const window: any;
+
 export function MainLayout({ children }: LayoutProps) {
   const color = useAppSelector(selectColor);
   const dispatch = useAppDispatch();
@@ -17,7 +19,20 @@ export function MainLayout({ children }: LayoutProps) {
   }, [dispatch]);
 
   React.useEffect(() => {
+    (function (d, s, id) {
+      var js: any,
+        fjs: any = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+  }, []);
+
+  React.useEffect(() => {
     ref.current?.setAttribute("theme_color", color);
+    window?.FB?.XFBML.parse();
   }, [color]);
 
   return (
@@ -42,28 +57,6 @@ export function MainLayout({ children }: LayoutProps) {
                 version          : 'v12.0'
               });
             };
-
-
-            (function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-              fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-
-
-            var observer = new MutationObserver(function(mutations) {
-              mutations.forEach(function(mutation) {
-                if (mutation.type === "attributes") {
-                  FB.XFBML.parse();
-                }
-              });
-            });            
-
-            observer.observe(chatbox, {
-              attributes: true 
-            });
     
           `}
         </Script>
