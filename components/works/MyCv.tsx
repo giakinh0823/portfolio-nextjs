@@ -42,7 +42,7 @@ const MyCv = (props: IMyCvProps) => {
                 }}
               >
                 <div style={{ transform: "scale(1.3)" }}>
-                  <Image src={avatar} alt="avatar" width={1500} height={1400} />
+                  <Image src={avatar} alt="avatar" width={500} height={460} />
                 </div>
               </Box>
               <Box
