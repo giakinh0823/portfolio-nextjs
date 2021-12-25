@@ -18,7 +18,7 @@ const Seo: FunctionComponent<PropsSeo> = ({
 }: any) => {
   return (
     <Head>
-      <title>{title ? `${title} - ` : ""}S-ONE</title>
+      <title>{title ? `${title} - ` : ""}</title>
       {metaTitle && (
         <>
           <title>{metaTitle}</title>
@@ -28,10 +28,16 @@ const Seo: FunctionComponent<PropsSeo> = ({
       )}
       {metaDescription && (
         <>
-         <meta name="description" content={"hagiakinh.xyz"} />
+          <meta name="description" content={"hagiakinh.me"} />
+          <meta name="description" content={"hagiakinh.xyz"} />
           <meta name="description" content={metaDescription} />
           <meta property="og:description" content={metaDescription} />
           <meta name="fb:description" content={metaDescription} />
+          <meta property="og:description" content={"hagiakinh.me"} />
+          <meta name="fb:description" content={"hagiakinh.me"} />
+          <meta name="description" content={"www.hagiakinh.me"} />
+          <meta property="og:description" content={"www.hagiakinh.me"} />
+          <meta name="fb:description" content={"www.hagiakinh.me"} />
           <meta property="og:description" content={"hagiakinh.xyz"} />
           <meta name="fb:description" content={"hagiakinh.xyz"} />
           <meta name="description" content={"www.hagiakinh.xyz"} />
