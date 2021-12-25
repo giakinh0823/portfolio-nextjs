@@ -29,7 +29,6 @@ const Seo: FunctionComponent<PropsSeo> = ({
       {metaDescription && (
         <>
           <meta name="description" content={"hagiakinh.me - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
-          <meta name="description" content={"hagiakinh.xyz - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
           <meta name="description" content={metaDescription} />
           <meta property="og:description" content={metaDescription} />
           <meta name="fb:description" content={metaDescription} />
@@ -38,11 +37,6 @@ const Seo: FunctionComponent<PropsSeo> = ({
           <meta name="description" content={"www.hagiakinh.me - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
           <meta property="og:description" content={"www.hagiakinh.me - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
           <meta name="fb:description" content={"www.hagiakinh.me - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
-          <meta property="og:description" content={"hagiakinh.xyz - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
-          <meta name="fb:description" content={"hagiakinh.xyz - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
-          <meta name="description" content={"www.hagiakinh.xyz - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
-          <meta property="og:description" content={"www.hagiakinh.xyz - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
-          <meta name="fb:description" content={"www.hagiakinh.xyz - I am a software engineer major who's passionate about people-centered development as well as strategic decision-making."} />
         </>
       )}
       {shareImage && (
