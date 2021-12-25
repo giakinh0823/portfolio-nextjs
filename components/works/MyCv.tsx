@@ -127,6 +127,10 @@ const listBar = [
         header: "Linkedin:",
         content: `https://www.linkedin.com/in/giakinh0823/`,
       },
+      {
+        header: "Website:",
+        content: `https://www.hagiakinh.me/`,
+      },
     ],
   },
   {

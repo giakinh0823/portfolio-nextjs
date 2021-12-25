@@ -31,6 +31,7 @@ const HeroSection = (props: HeroProps) => {
       component="section"
       pt={{ xs: 4, md: 20 }}
       pb={{ xs: 7, md: 15 }}
+      sx={{ position: "relative" }}
       ref={ref}
     >
       <Container maxWidth="xl">
