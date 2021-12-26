@@ -28,10 +28,10 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
   return (
     <Box component="section" pt={{ xs: 3, md: 3 }} pb={{ xs: 3, md: 3 }}>
       <Container>
-        <Box mb={5}>
+        <Box mb={3}>
           <Stack direction="row" justifyContent="space-between">
             <Box>
-              <Typography variant="h3" component="h2" fontWeight="700">
+              <Typography variant="h4" component="h2" fontWeight="600">
                 {title}
               </Typography>
             </Box>

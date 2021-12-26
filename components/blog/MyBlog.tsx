@@ -28,7 +28,7 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
     <Box component="section" pt={{ xs: 8, md: 8 }} pb={{ xs: 8, md: 8 }}>
       <Container>
         <Box mb={5}>
-          <Typography variant="h3" component="h2" fontWeight="900">
+          <Typography variant="h4" component="h2" fontWeight="700">
             Mới nhất
           </Typography>
         </Box>

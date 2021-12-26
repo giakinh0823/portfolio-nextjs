@@ -4,12 +4,12 @@ import { Container, Link as MuiLink, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Link from "next/link";
 import * as React from "react";
+import { isMobile } from "react-device-detect";
 import { useAppSelector } from "../../../app/hooks";
 import { selectMode } from "../../../redux/mode/modeSlice";
 import { useIntersection } from "../../../utils/useIntersection";
-import { isMobile } from "react-device-detect";
 
-export const Footer = React.memo(function Footer() {
+const Footer =  () =>  {
   const mode = useAppSelector(selectMode);
   const ref = React.useRef(null);
   const inViewport = useIntersection(ref, 0.1);
@@ -87,4 +87,6 @@ export const Footer = React.memo(function Footer() {
       </Container>
     </Box>
   );
-});
+};
+
+export default React.memo(Footer);
