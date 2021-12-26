@@ -7,10 +7,11 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { LayoutProps } from "../../models";
 import { colorAction, selectColor } from "../../redux/color/colorSlice";
 import CrcularProgress from "../common/progress/CrcularProgress";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
+import { WindowRounded } from "@mui/icons-material";
 
-const HeaderDynamic =  dynamic(() => import('../common/header'))
-const FooterDynamic =  dynamic(() => import('../common/footer'))
+const HeaderDynamic = dynamic(() => import("../common/header"));
+const FooterDynamic = dynamic(() => import("../common/footer"));
 
 declare const window: any;
 
@@ -19,6 +20,7 @@ export function MainLayout({ children }: LayoutProps) {
   const dispatch = useAppDispatch();
   const ref = React.useRef<HTMLDivElement>(null);
   const [loading, setLoading] = React.useState(false);
+  const [loadPage, setLoadingPage] = React.useState(true);
   const router = useRouter();
 
   React.useEffect(() => {
@@ -58,33 +60,45 @@ export function MainLayout({ children }: LayoutProps) {
       router.events.off("routeChangeStart", handleStart);
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
-    }
+    };
   }, [router]);
 
+  React.useEffect(() => {
+    setLoadingPage(false);
+  }, []);
+
   return (
-    <Stack minHeight="100vh">
-      <HeaderDynamic />
+    <>
+      {!loadPage ? (
+        <Stack minHeight="100vh">
+          <HeaderDynamic />
 
-      <Box component="main" flexGrow={1}>
-        {loading ? (
-          <Box sx={{
-            width: "100%",
-            height: "60vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}>
-            <CrcularProgress />
-          </Box>
-        ) : (
-          children
-        )}
+          <Box component="main" flexGrow={1}>
+            {loading ? (
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "60vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <CrcularProgress />
+              </Box>
+            ) : (
+              children
+            )}
 
-        <div id="fb-root"></div>
-        <div id="fb-customer-chat" className="fb-customerchat" ref={ref}></div>
+            <div id="fb-root"></div>
+            <div
+              id="fb-customer-chat"
+              className="fb-customerchat"
+              ref={ref}
+            ></div>
 
-        <Script id="facebook-plugin">
-          {`
+            <Script id="facebook-plugin">
+              {`
             var chatbox = document.getElementById('fb-customer-chat');
             chatbox.setAttribute("page_id", "475299556244389");
             chatbox.setAttribute("attribution", "biz_inbox");
@@ -98,10 +112,24 @@ export function MainLayout({ children }: LayoutProps) {
             };
     
           `}
-        </Script>
-      </Box>
+            </Script>
+          </Box>
 
-      <FooterDynamic />
-    </Stack>
+          <FooterDynamic />
+        </Stack>
+      ) : (
+        <Box
+          sx={{
+            width: "100%",
+            height: "90vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CrcularProgress />
+        </Box>
+      )}
+    </>
   );
 }
