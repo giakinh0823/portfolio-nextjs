@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           >
             {" "}
             <Head>
-              <link rel="icon" href={`${logo.src}`} />
+              <link rel="icon" href={`/image/logo.png`} />
             </Head>
             <Layout>
               <Component {...pageProps} />
