@@ -9,9 +9,12 @@ import { colorAction, selectColor } from "../../redux/color/colorSlice";
 import CrcularProgress from "../common/progress/CrcularProgress";
 import dynamic from "next/dynamic";
 import { WindowRounded } from "@mui/icons-material";
+import Header from "../common/header/index";
+import Footer from "../common/footer/index";
 
-const HeaderDynamic = dynamic(() => import("../common/header"));
-const FooterDynamic = dynamic(() => import("../common/footer"));
+
+// const HeaderDynamic = dynamic(() => import("../common/header"));
+// const FooterDynamic = dynamic(() => import("../common/footer"));
 
 declare const window: any;
 
@@ -71,7 +74,7 @@ export function MainLayout({ children }: LayoutProps) {
     <>
       {!loadPage ? (
         <Stack minHeight="100vh">
-          <HeaderDynamic />
+          <Header />
 
           <Box component="main" flexGrow={1}>
             {loading ? (
@@ -115,7 +118,7 @@ export function MainLayout({ children }: LayoutProps) {
             </Script>
           </Box>
 
-          <FooterDynamic />
+          <Footer />
         </Stack>
       ) : (
         <Box
