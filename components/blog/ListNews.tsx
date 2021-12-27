@@ -9,7 +9,7 @@ import {
   Link as MuiLink,
   Skeleton,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -107,7 +107,7 @@ const ListNew = ({
         <Box mb={15}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
-              {blogs ? (
+              {blogs && blogs.length > 0 ? (
                 <Box
                   sx={{
                     width: "100%",
@@ -116,9 +116,9 @@ const ListNew = ({
                     overflow: "hidden",
                   }}
                 >
-                  {blogs[0]?.image ? (
+                  {blogs[0].image ? (
                     <Image
-                      src={blogs && blogs[0]?.image}
+                      src={blogs && blogs[0].image.url}
                       width={600}
                       height={400}
                       alt={blogs[0].title}
@@ -144,7 +144,7 @@ const ListNew = ({
                 <Box>
                   <Box>
                     {blogs && (
-                      <Link href={`/blog/${blogs[0]?.slug}`} passHref>
+                      <Link href={`/blog/${blogs[0].slug}`} passHref>
                         <MuiLink>
                           <Typography
                             variant="h4"
@@ -182,7 +182,7 @@ const ListNew = ({
                           opacity: 0.6,
                         }}
                       >
-                        {blogs[0].author}
+                        {`${blogs[0].author.last_name} ${blogs[0].author.first_name}`}
                       </Typography>
                     )}
                   </Box>
@@ -219,7 +219,7 @@ const ListNew = ({
                           opacity: 0.6,
                         }}
                       >
-                        {new Date(blogs[0].createdAt).toLocaleDateString()}
+                        {new Date(blogs[0].created_at).toLocaleDateString()}
                       </Typography>
                     )}
                   </Box>
@@ -334,7 +334,8 @@ const ListNew = ({
                           : mode == "dark"
                           ? "#fff"
                           : "#000",
-                      borderColor: isActive == -1 ? "primary.main" : "transparent",
+                      borderColor:
+                        isActive == -1 ? "primary.main" : "transparent",
                       cursor: "pointer",
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
@@ -347,36 +348,38 @@ const ListNew = ({
                   />
                 </Box>
                 {!isLoadingTopics &&
+                  topics &&
+                  topics.length > 0 &&
                   topics?.map((topic: any, index: number) => (
-                    <>
-                      <Box key={index} sx={{ padding: "10px 0" }}>
-                        <Chip
-                          label={topic?.name}
-                          variant="outlined"
-                          sx={{
-                            fontSize: "16px",
-                            fontWeight: "bold",
-                            color:
-                              isActive == topic?.id
-                                ? "primary.main"
-                                : mode == "dark"
-                                ? "#fff"
-                                : "#000",
-                            padding: "24px 12px",
-                            borderColor:
-                              isActive == topic?.id ? "primary.main" : "transparent",
-                            cursor: "pointer",
-                            transition: "all 0.3s ease-in-out",
-                            "&:hover": {
-                              borderColor: "primary.main",
-                            },
-                          }}
-                          onClick={() => {
-                            setIsActive(topic?.id);
-                          }}
-                        />
-                      </Box>
-                    </>
+                    <Box key={index} sx={{ padding: "10px 0" }}>
+                      <Chip
+                        label={topic?.name}
+                        variant="outlined"
+                        sx={{
+                          fontSize: "16px",
+                          fontWeight: "bold",
+                          color:
+                            isActive == topic?.id
+                              ? "primary.main"
+                              : mode == "dark"
+                              ? "#fff"
+                              : "#000",
+                          padding: "24px 12px",
+                          borderColor:
+                            isActive == topic?.id
+                              ? "primary.main"
+                              : "transparent",
+                          cursor: "pointer",
+                          transition: "all 0.3s ease-in-out",
+                          "&:hover": {
+                            borderColor: "primary.main",
+                          },
+                        }}
+                        onClick={() => {
+                          setIsActive(topic?.id);
+                        }}
+                      />
+                    </Box>
                   ))}
               </Stack>
             </Box>
@@ -390,7 +393,7 @@ const ListNew = ({
           >
             {(isLoadingTopics || !topics) &&
               [1, 2, 3, 4, 5, 6].map((item: any, index: number) => (
-                <Box key={index} sx={{padding: "10px 0"}}>
+                <Box key={index} sx={{ padding: "10px 0" }}>
                   <Skeleton
                     height="50px"
                     width="120px"
@@ -402,9 +405,12 @@ const ListNew = ({
           </Stack>
         </Box>
         <Grid container spacing={6}>
-          {(!isLoadingBlogs && !loadingTopics) &&
-            blogs?.map((blog: any) => (
-              <Grid item xs={12} sm={6} md={4} key={blog.id}>
+          {!isLoadingBlogs &&
+            !loadingTopics &&
+            blogs &&
+            blogs.length > 0 &&
+            blogs?.map((blog: any, index: number) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <Box key={blog.id}>
                   <Box
                     sx={{
@@ -417,8 +423,8 @@ const ListNew = ({
                   >
                     {blog?.image ? (
                       <Image
-                        src={blog?.image}
-                        alt={blog?.title}
+                        src={blog.image.url}
+                        alt={blog.title}
                         width={500}
                         height={350}
                       />
@@ -468,8 +474,8 @@ const ListNew = ({
                     }}
                     mb={1}
                   >
-                    {blog?.author} -{" "}
-                    {new Date(blog?.createdAt).toLocaleDateString()}
+                    {`${blog.author.last_name} ${blog.author.first_name}`} -{" "}
+                    {new Date(blog.created_at).toLocaleDateString()}
                   </Typography>
                   <Typography
                     variant="body1"

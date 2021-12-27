@@ -1,68 +1,71 @@
 import * as React from "react";
-import {
-  getAllPostWidthParams,
-  getAllTopicWithParams,
-} from "../../api-client/strapiApi";
+import { blogApi } from "../../api-client/blogApi";
 import ListNew from "../../components/blog/ListNews";
 import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout/main";
 import { useBlogs } from "../../components/swr/useBlog";
 import { useTopics } from "../../components/swr/useTopic";
+import { Blog, ListResponse } from "../../models";
 
 export interface BlogProps {}
 
 const News = (prop: BlogProps) => {
-  const { blogs, isLoading } = useBlogs();
-  const topics = useTopics();
+  const { blogs, isLoading } = useBlogs({});
+  const topics = useTopics({});
   const [loading, setLoading] = React.useState<boolean>(false);
   const [loadingTopics, setLoadingTopics] = React.useState<boolean>(false);
-  const [data, setData] = React.useState(blogs);
+  const [data, setData] = React.useState<ListResponse<Blog>>();
 
-  React.useEffect(() => {
-    setData(blogs);
-  }, [blogs]);
-
-  const onChange = React.useCallback(
-    (id: number) => {
-      if (id !== -1) {
-        (async () => {
-          try {
-            setLoading(true);
-            setLoadingTopics(true);
-            const blogs = await getAllPostWidthParams({
-              sort: { value: "id", type: "desc" },
-              filters: { column: ["topics", "id"], operator: "$eq", value: id },
-              pagination: { page: 1, pageSize: 6 },
-            });
-            if (blogs) {
-              setData(blogs);
-            }
-            setLoading(false);
-            setLoadingTopics(false);
-          } catch (error) {
-            console.log(error);
-            setLoading(false);
+  const onChange = React.useCallback((id: number) => {
+    if (id !== -1) {
+      (async () => {
+        try {
+          setLoading(true);
+          setLoadingTopics(true);
+          const response = await blogApi.getAll({
+            topics: id,
+            page_size: 3,
+          });
+          if (response) {
+            setData(response);
           }
-        })();
-      } else {
-        setData(blogs);
-      }
-    },
-    [blogs]
-  );
+          setLoading(false);
+          setLoadingTopics(false);
+        } catch (error) {
+          console.log(error);
+          setLoading(false);
+        }
+      })();
+    } else {
+      (async () => {
+        try {
+          setLoading(true);
+          setLoadingTopics(true);
+          const response = await blogApi.getAll({});
+          if (response) {
+            setData(response);
+          }
+          setLoading(false);
+          setLoadingTopics(false);
+        } catch (error) {
+          console.log(error);
+          setLoading(false);
+        }
+      })();
+    }
+  }, []);
 
   const onSearch = React.useCallback((input: string) => {
     if (input) {
       (async () => {
         try {
           setLoading(true);
-          const blogs = await getAllPostWidthParams({
-            sort: { value: "id", type: "desc" },
-            filter: { column: "title", operator: "$containsi", value: input },
-            pagination: { page:  1, pageSize: 6 },
+          const response = await blogApi.getAll({
+            search: input,
+            page_size: 6,
           });
-          if (blogs) {
-            setData(blogs);
+          if (response) {
+            setData(response);
           }
           setLoading(false);
         } catch (e) {
@@ -75,19 +78,31 @@ const News = (prop: BlogProps) => {
 
   const loadMore = React.useCallback(() => {
     (async () => {
-      if (
-        isLoading || !data?.meta?.pagination?.page ||
-        data?.meta?.pagination?.page >= data?.meta?.pagination?.pageCount
-      ) {
+      if (isLoading || !data?.next) {
         return;
       }
       try {
         setLoading(true);
-        const blogs = await getAllPostWidthParams({
-          sort: { value: "id", type: "desc" },
-          pagination: { page: data?.meta?.pagination?.page + 1, pageSize: 3 },
+        const search = new URL(data.next).search.substring(1);
+        const params =
+          data && data.next != null
+            ? JSON.parse(
+                '{"' +
+                  decodeURI(search)
+                    .replace(/"/g, '\\"')
+                    .replace(/&/g, '","')
+                    .replace(/=/g, '":"') +
+                  '"}'
+              )
+            : {};
+        const response = await blogApi.getAll(params);
+        const oldData = data?.results ? data.results : [];
+        setData({
+          results: [...oldData, ...response.results],
+          count: response.count,
+          next: response.next,
+          previous: response.previous,
         });
-        setData({ data: [...data?.data, ...blogs.data], meta: blogs?.meta });
         setLoading(false);
       } catch (e) {
         console.log(e);
@@ -103,15 +118,15 @@ const News = (prop: BlogProps) => {
         metaTitle={`Hà Gia Kính - blog`}
         blog={
           blogs
-            ? blogs?.data.map((item: any) => item.conntent).join(" ")
+            ? blogs?.map((item: any) => item.conntent).join(" ")
             : "Hà Gia Kính - blog"
         }
         shareImage="https://res.cloudinary.com/giakinh0823/image/upload/v1639473921/thumbnail_cat_882d37503d.webp?updated_at=2021-12-14T09:25:21.760Z"
       />
       <ListNew
-        blogs={data?.data}
+        blogs={data?.results}
         isLoadingBlogs={isLoading}
-        topics={topics?.topics?.data}
+        topics={topics?.topics}
         isLoadingTopics={topics?.isLoading}
         onChange={onChange}
         onSearch={onSearch}

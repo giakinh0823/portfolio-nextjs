@@ -15,3 +15,11 @@ export type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout
 	emotionCache?: EmotionCache
 }
+
+
+export interface ListResponse<T> {
+	count: number | null,
+	next: string  | null,
+	previous: string | null,
+	results: T[]
+}

@@ -12,9 +12,14 @@ const AboutSection = (props: AboutProps) => {
   const [loadingVideo, setLoadingVideo] = React.useState(true);
 
   React.useEffect(() => {
-    fetch("/video/about2.mp4").then((res: any) => {
-      setLoadingVideo(false);
-    });
+    (async () => {
+      fetch("/video/about2.mp4").then((res: any) => {
+        setLoadingVideo(false);
+      });
+    })();
+    return () => {
+      setLoadingVideo(true);
+    }
   }, []);
 
   return (

@@ -1,7 +1,9 @@
 import {
   Container,
-  Grid, Link as MuiLink,
-  Skeleton, Stack,
+  Grid,
+  Link as MuiLink,
+  Skeleton,
+  Stack,
   Typography
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -15,13 +17,18 @@ export interface IMyBlogProps {
   isLoading: any;
 }
 
-export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
+const MyBlog = ({ blogs, isLoading }: IMyBlogProps) => {
   const [loadingVideo, setLoadingVideo] = React.useState(true);
 
   React.useEffect(() => {
-    fetch("/video/about2.mp4").then((res: any) => {
-      setLoadingVideo(false);
-    });
+    (async () => {
+      await fetch("/video/about2.mp4").then((res: any) => {
+        setLoadingVideo(false);
+      });
+    })();
+    return () => {
+      setLoadingVideo(true);
+    };
   }, []);
 
   return (
@@ -33,10 +40,10 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
           </Typography>
         </Box>
         <Stack direction="row">
-          <Box sx={{width: "100%"}}>
+          <Box sx={{ width: "100%" }}>
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
-                <Box sx={{width: "100%"}}>
+                <Box sx={{ width: "100%" }}>
                   <Grid container spacing={3}>
                     {(!Boolean(blogs) || isLoading) &&
                       [1, 2, 3].map((item, index) => (
@@ -56,10 +63,10 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
                                 maxHeight: "130px",
                               }}
                             >
-                              {blog?.image ? (
+                              {blog.image ? (
                                 <Image
-                                  src={blog?.image}
-                                  alt={blog?.title}
+                                  src={blog.image.url}
+                                  alt={blog.title}
                                   width={140}
                                   height={130}
                                 />
@@ -74,7 +81,7 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
                             </Box>
 
                             <Box sx={{ padding: "6px 15px" }}>
-                              <Link href={`/blog/${blog?.slug}`} passHref>
+                              <Link href={`/blog/${blog.slug}`} passHref>
                                 <MuiLink>
                                   <Typography
                                     variant="h6"
@@ -93,7 +100,7 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
                                     }}
                                     mb={1}
                                   >
-                                    {blog?.title}
+                                    {blog.title}
                                   </Typography>
                                 </MuiLink>
                               </Link>
@@ -115,7 +122,7 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
                                   }}
                                   mb={1}
                                 >
-                                  {blog?.author}
+                                  {`${blog.author.last_name} ${blog.author.first_name}`}
                                 </Typography>
                               </Box>
                               <Box
@@ -169,4 +176,6 @@ export default function MyBlog({ blogs, isLoading }: IMyBlogProps) {
       </Container>
     </Box>
   );
-}
+};
+
+export default MyBlog;

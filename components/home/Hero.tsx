@@ -21,9 +21,14 @@ const HeroSection = (props: HeroProps) => {
   const [loadingVideo, setLoadingVideo] = React.useState(true);
 
   React.useEffect(() => {
-    fetch("/video/hero.mp4").then((res: any) => {
-      setLoadingVideo(false);
-    });
+    (async () => {
+      await fetch("/video/hero.mp4").then((res: any) => {
+        setLoadingVideo(false);
+      });
+    })();
+    return () => {
+      setLoadingVideo(true);
+    }
   }, []);
 
   return (

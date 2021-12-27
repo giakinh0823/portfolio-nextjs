@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 import * as React from "react";
-import { getAllPost, getPostBySlug } from "../../api-client/strapiApi";
+import { blogApi } from '../../api-client/blogApi';
 import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout";
 
@@ -14,7 +13,7 @@ export interface IBlogDetailProps {
   blog: any;
 }
 
-export default function BlogDetail({blog}: IBlogDetailProps) {
+export default function BlogDetail({ blog }: IBlogDetailProps) {
   return (
     <>
       <Seo
@@ -32,7 +31,7 @@ export default function BlogDetail({blog}: IBlogDetailProps) {
 BlogDetail.Layout = MainLayout;
 
 export async function getStaticProps(context: any) {
-  const blog = await getPostBySlug(context?.params?.slug);
+  const blog = await blogApi.getBySlug(context?.params?.slug);
   if (!blog) {
     return {
       notFound: true,
@@ -50,15 +49,15 @@ export async function getStaticProps(context: any) {
 }
 
 export async function getStaticPaths() {
-  const blogs = await getAllPost();
+  const blogs = await blogApi.getAll({page_size: 100});
 
   // Get the paths we want to pre-render based on posts
-  const paths = blogs.data.map((post: any) => ({
+  const paths = blogs.results.map((post: any) => ({
     params: { slug: post.slug },
   }));
 
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 }

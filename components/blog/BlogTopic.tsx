@@ -4,7 +4,7 @@ import {
   Grid,
   Link as MuiLink,
   Skeleton,
-  Typography,
+  Typography
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -79,7 +79,7 @@ const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
               >
                 {blogs && (
                   <Image
-                    src={blogs && blogs[0]?.image}
+                    src={blogs && blogs[0]?.image.url}
                     width={600}
                     height={400}
                     alt={blogs[0].title}
@@ -128,7 +128,7 @@ const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
                       opacity: 0.6,
                     }}
                   >
-                    {blogs[0].author}
+                    {`${blogs[0].author.last_name} ${blogs[0].author.first_name}`}
                   </Typography>
                 )}
               </Box>
@@ -165,7 +165,7 @@ const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
                       opacity: 0.6,
                     }}
                   >
-                    {new Date(blogs[0].createdAt).toLocaleDateString()}
+                    {new Date(blogs[0].created_at).toLocaleDateString()}
                   </Typography>
                 )}
               </Box>
@@ -187,7 +187,7 @@ const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
                     mb={1}
                   >
                     <Image
-                      src={blog?.image}
+                      src={blog?.image.url}
                       alt={blog.title}
                       width={500}
                       height={350}
@@ -230,8 +230,8 @@ const BlogTopic = ({ blogs, loadMore, loading }: IBlogTopicProps) => {
                     }}
                     mb={1}
                   >
-                    {blog?.author} -{" "}
-                    {new Date(blog?.createdAt).toLocaleDateString()}
+                    {`${blogs[0].author.last_name} ${blogs[0].author.first_name}`} -{" "}
+                    {new Date(blog?.created_at).toLocaleDateString()}
                   </Typography>
                   <Typography
                     variant="body1"

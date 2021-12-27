@@ -100,9 +100,9 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                     }}
                     mb={1}
                   >
-                    {blog?.image ? (
+                    {blog.image ? (
                       <Image
-                        src={blog?.image}
+                        src={blog.image.url}
                         alt={blog.title}
                         width={500}
                         height={350}
@@ -116,7 +116,7 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                       />
                     )}
                   </Box>
-                  <Link href={`/blog/${blog?.slug}`} passHref>
+                  <Link href={`/blog/${blog.slug}`} passHref>
                     <MuiLink>
                       <Typography
                         variant="h5"
@@ -152,8 +152,8 @@ export default function AllBlog({ blogs, title, link }: IListNewProps) {
                       marginBottom: "20px",
                     }}
                   >
-                    {blog?.author} -{" "}
-                    {new Date(blog?.createdAt).toLocaleDateString()}
+                    {`${blog.author.last_name} ${blog.author.first_name}`} -{" "}
+                    {new Date(blog?.created_at).toLocaleDateString()}
                   </Typography>
                   <Typography
                     variant="body1"

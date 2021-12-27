@@ -1,9 +1,8 @@
-import axios from "axios";
-import { Param } from "../models";
+import { Blog, ListResponse, Params } from "../models";
 import axiosClient from "./axios-client";
 
 export const blogApi = {
-  getAll(params: Param) {
+  getAll(params: Params) : Promise<ListResponse<Blog>> {
     return axiosClient.get("/blogs", { params });
   },
   getBySlug(slug: string) {

@@ -1,22 +1,23 @@
 import { User } from "./user";
+import {Tag} from './tag';
+import { Topic } from "./topic";
 
+
+export interface Image{
+  id: string;
+  url: string;
+  image: string;
+}
 export interface Blog {
   id: number;
-  user_id: number;
+  author: User;
   title: string;
-  slug: string;
   description: string;
-  meta_title: string;
-  meta_description: string;
-  photo: string;
-  thumbnail: string;
-  min_read: string;
-  published_at: string;
-  is_approved: boolean;
+  slug: string;
+  content: string;
   created_at: string;
-  photo_cdn: string;
-  thumbnail_cdn: string;
-  is_bookmark: boolean;
-  is_published: boolean;
-  user: User;
+  updated_at: string;
+  image: Image;
+  tags: Tag[];
+  topics: Topic[];
 }

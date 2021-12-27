@@ -1,19 +1,12 @@
 import useSWR from "swr";
-import { getAllTopic, getAllTopicWithParams } from "../../api-client/strapiApi";
+import { topicApi } from "../../api-client/topicApi";
 
-export function useTopics() {
-  const { data, error } = useSWR(`topics`, () => getAllTopic());
-
-  return {
-    topics: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-export function useTopicWithParam(params: any, limitBlog?: number) {
-  const { data, error } = useSWR(`topics/${params.filter.value}`, () =>
-    getAllTopicWithParams(params)
+export function useTopics(params: any) {
+  const { data, error } = useSWR(
+    `topics${Object.keys(params)
+      .map((key) => `${key}=${params[key]}`)
+      .join("&")}`,
+    () => topicApi.getAll(params)
   );
 
   return {

@@ -1,8 +1,8 @@
 import * as React from "react";
+import avatar from '../../assets/image/avatar.png';
 import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout/main";
 import MyCv from "../../components/works/MyCv";
-import avatar from '../../assets/image/avatar.png';
 
 export interface WorksProps {}
 

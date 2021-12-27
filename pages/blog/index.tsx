@@ -1,63 +1,21 @@
 import * as React from "react";
+import avatar from "../../assets/image/avatar.png";
 import AllBlog from "../../components/blog/AllBlog";
 import MyBlog from "../../components/blog/MyBlog";
 import SkeletonAllBlog from "../../components/blog/SkeletonAllBlog";
 import Seo from "../../components/common/seo/Seo";
 import { MainLayout } from "../../components/layout/main";
-import { useBlogsWithParam } from "../../components/swr/useBlog";
-import { useTopicWithParam } from "../../components/swr/useTopic";
-import avatar from '../../assets/image/avatar.png';
+import { useBlogs } from "../../components/swr/useBlog";
+import { Blog } from "../../models";
 
 export interface BlogProps {}
 
-const Blog = (prop: BlogProps) => {
-  const { blogs, isLoading, isError } = useBlogsWithParam({
-    sort: { value: "id", type: "desc" },
-    limit: { start: 1, limit: 6 },
-  });
-
-  const backens = useTopicWithParam(
-    {
-      filter: {
-        column: "name",
-        value: "Backend",
-        operator: "$eq",
-      },
-    },
-    6
-  );
-
-  const frontends = useTopicWithParam(
-    {
-      filter: {
-        column: "name",
-        value: "Front-end",
-        operator: "$eq",
-      },
-    },
-    6
-  );
-  const uxuis = useTopicWithParam(
-    {
-      filter: {
-        column: "name",
-        value: "UX-UI",
-        operator: "$eq",
-      },
-    },
-    6
-  );
-  const tools = useTopicWithParam(
-    {
-      filter: {
-        column: "name",
-        value: "Tools",
-        operator: "$eq",
-      },
-    },
-    6
-  );
-
+const BlogPage = (prop: BlogProps) => {
+  const { blogs, isLoading, isError } = useBlogs({ page_size: 6 });
+  const frontends = useBlogs({ topics__name: "Front-end", page_size: 6 });
+  const uxuis = useBlogs({ topics__name: "UX-UI", page_size: 6 });
+  const backends = useBlogs({ topics__name: "Backend", page_size: 6 });
+  const tools = useBlogs({ topics__name: "Tools", page_size: 6 });
   return (
     <>
       <Seo
@@ -65,58 +23,46 @@ const Blog = (prop: BlogProps) => {
         metaTitle={`Hà Gia Kính - blog`}
         blog={
           blogs
-            ? blogs?.data?.map((item: any) => item.conntent).join(" ")
+            ? blogs?.map((item: Blog) => item.content).join(" ")
             : "Hà Gia Kính - blog"
         }
         shareImage={avatar.src}
       />
-      <MyBlog blogs={blogs?.data} isLoading={isLoading} />
+      <MyBlog blogs={blogs} isLoading={isLoading} />
       {!isLoading ? (
-        <AllBlog blogs={blogs?.data} link="/blog/news" title="Tất cả" />
+        <AllBlog blogs={blogs} link="/blog/news" title="Tất cả" />
       ) : (
         <SkeletonAllBlog />
       )}
-      {frontends?.topics ? (
+      {frontends.blogs ? (
         <AllBlog
-          blogs={frontends?.topics ? frontends?.topics?.data[0]?.blogs : []}
-          link={
-            frontends?.topics
-              ? `/blog/topics/${frontends?.topics?.data[0]?.name}`
-              : ""
-          }
+          blogs={frontends.blogs ? frontends.blogs : []}
+          link={"/blog/topics/front-end"}
           title="Front-end"
         />
       ) : (
         <SkeletonAllBlog />
       )}
-      {uxuis?.topics ? (
+      {backends.blogs ? (
         <AllBlog
-          blogs={backens?.topics ? backens?.topics?.data[0]?.blogs : []}
-          link={
-            backens?.topics
-              ? `/blog/topics/${backens?.topics?.data[0]?.name}`
-              : ""
-          }
+          blogs={backends.blogs ? backends.blogs : []}
+          link={`/blog/topics/backend`}
           title="Backend"
         />
       ) : (
         <SkeletonAllBlog />
       )}
-      {uxuis?.topics && (
+      {uxuis.blogs && (
         <AllBlog
-          blogs={uxuis?.topics ? uxuis?.topics?.data[0]?.blogs : []}
-          link={
-            uxuis?.topics ? `/blog/topics/${uxuis?.topics?.data[0]?.name}` : ""
-          }
+          blogs={uxuis.blogs ? uxuis.blogs : []}
+          link={`/blog/topics/ux-ui`}
           title="UX/UI"
         />
       )}
-      {tools?.topics ? (
+      {tools.blogs ? (
         <AllBlog
-          blogs={tools?.topics ? tools?.topics?.data[0]?.blogs : []}
-          link={
-            tools?.topics ? `/blog/topics/${tools?.topics?.data[0]?.name}` : ""
-          }
+          blogs={tools.blogs ? tools.blogs : []}
+          link={`/blog/topics/tools`}
           title="Tools"
         />
       ) : (
@@ -127,6 +73,6 @@ const Blog = (prop: BlogProps) => {
   );
 };
 
-Blog.Layout = MainLayout;
+BlogPage.Layout = MainLayout;
 
-export default Blog;
+export default BlogPage;

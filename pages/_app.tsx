@@ -1,19 +1,19 @@
 import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
+import Head from "next/head";
 import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { SWRConfig } from "swr";
 import axiosClient from "../api-client/axios-client";
 import { store } from "../app/store";
+import logo from '../assets/image/logo/logo.png';
 import { EmptyLayout } from "../components/layout/empty";
 import ToggleColorMode from "../components/layout/ToggleMode";
 import { AppPropsWithLayout } from "../models";
-import { createEmotionCache } from "../utils";
-import "../styles/globals.css";
 import "../styles/editor.css";
+import "../styles/globals.css";
 import "../styles/phaohoa.css";
-import Head from "next/head";
-import logo from '../assets/image/logo/logo.png';
+import { createEmotionCache } from "../utils";
 
 const clientSideEmotionCache = createEmotionCache();
 

@@ -1,6 +1,6 @@
-import { MainLayout } from '../../components/layout';
-import * as React from 'react';
 import dynamic from 'next/dynamic';
+import * as React from 'react';
+import { MainLayout } from '../../components/layout';
 
 let CustomEditor: any;
 if (typeof window !== "undefined") {

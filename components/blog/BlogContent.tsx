@@ -68,9 +68,9 @@ export default function BlogContent({ data }: IBlogContentProps) {
                       color: "primary.main",
                     }}
                   >
-                    {data.author}
+                    {`${data.author.last_name} ${data.author.first_name}`}
                   </Box>
-                  {" - " + new Date(data?.createdAt).toLocaleDateString()}
+                  {" - " + new Date(data?.created_at).toLocaleDateString()}
                 </Typography>
               </Box>
               <Stack direction="row" spacing={3}>

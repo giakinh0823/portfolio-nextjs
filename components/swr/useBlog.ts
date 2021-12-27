@@ -1,39 +1,24 @@
 import useSWR from "swr";
-import {
-  getAllPost,
-  getAllPostWidthParams,
-  getPostBySlug,
-} from "../../api-client/strapiApi";
+import { blogApi } from "../../api-client/blogApi";
+import { Blog, ListResponse } from "../../models";
 
-export function useBlogs() {
-  const { data, error } = useSWR(`blogs`, () =>
-    getAllPostWidthParams({
-      sort: { value: "id", type: "desc" },
-      pagination: { page: 0, pageSize: 3 },
-    })
+export function useBlogs(params: any) {
+  const { data, error } = useSWR<ListResponse<Blog>, Error>(
+    `blogs/${Object.keys(params)
+      .map((key) => `${key}=${params[key]}`)
+      .join("&")}`,
+    () => blogApi.getAll(params)
   );
 
   return {
-    blogs: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-export function useBlogsWithParam(params: any) {
-  const { data, error } = useSWR(`blogs${params}`, () =>
-    getAllPostWidthParams(params)
-  );
-
-  return {
-    blogs: data,
+    blogs: data?.results || [],
     isLoading: !error && !data,
     isError: error,
   };
 }
 
 export function useBlog(slug: string) {
-  const { data, error } = useSWR(`blog/${slug}`, () => getPostBySlug(slug));
+  const { data, error } = useSWR(`blog/${slug}`, () => blogApi.getBySlug(slug));
 
   return {
     blog: data,

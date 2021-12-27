@@ -1,7 +1,7 @@
 import * as React from "react";
-import { MainLayout } from "../../../components/layout/main";
-import Seo from '../../../components/common/seo/Seo';
 import avatar from '../../../assets/image/avatar.png';
+import Seo from '../../../components/common/seo/Seo';
+import { MainLayout } from "../../../components/layout/main";
 
 export interface TopicsProps {}
 

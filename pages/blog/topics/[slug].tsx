@@ -1,13 +1,10 @@
-import { useRouter } from "next/router";
 import * as React from "react";
-import {
-  getAllPostWidthParams,
-  getAllTopic,
-} from "../../../api-client/strapiApi";
+import { blogApi } from "../../../api-client/blogApi";
+import { topicApi } from "../../../api-client/topicApi";
 import BlogTopic from "../../../components/blog/BlogTopic";
 import { MainLayout } from "../../../components/layout/main";
-import { useBlogsWithParam } from "../../../components/swr/useBlog";
-import { useTopicWithParam } from "../../../components/swr/useTopic";
+import { Blog, ListResponse } from "../../../models";
+import { Topic } from "../../../models/topic";
 
 export interface TopicSlugProps {
   blogs: any;
@@ -15,41 +12,51 @@ export interface TopicSlugProps {
 }
 
 const TopicSlug = ({ blogs, slug }: TopicSlugProps) => {
-  const [data, setData] = React.useState(blogs);
+  const [data, setData] = React.useState<ListResponse<Blog>>(blogs);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const loadMore = React.useCallback(() => {
     (async () => {
-      if (
-        !data?.meta?.pagination?.page ||
-        data?.meta?.pagination?.page >= data?.meta?.pagination?.pageCount
-      ) {
+      if (loading || !data?.next) {
         return;
       }
       try {
         setLoading(true);
-        const blogs = await getAllPostWidthParams({
-          sort: { value: "id", type: "desc" },
-          filters: {
-            column: ["topics", "name"],
-            operator: "$eq",
-            value: slug,
-          },
-          pagination: { page: data?.meta?.pagination?.page + 1, pageSize: 3 },
+        const search = new URL(data.next).search.substring(1);
+        const params =
+          data && data.next != null
+            ? JSON.parse(
+                '{"' +
+                  decodeURI(search)
+                    .replace(/"/g, '\\"')
+                    .replace(/&/g, '","')
+                    .replace(/=/g, '":"') +
+                  '"}'
+              )
+            : {};
+        const response = await blogApi.getAll({
+          ...params,
+          topics__slug: slug,
         });
-        setData({ data: [...data?.data, ...blogs.data], meta: blogs?.meta });
+        const oldData = data?.results ? data.results : [];
+        setData({
+          results: [...oldData, ...response.results],
+          count: response.count,
+          next: response.next,
+          previous: response.previous,
+        });
         setLoading(false);
       } catch (e) {
         console.log(e);
         setLoading(false);
       }
     })();
-  }, [data, slug]);
+  }, [data, slug, loading]);
 
   return (
     <>
-      {blogs && blogs.data.length > 0 && (
-        <BlogTopic blogs={data?.data} loadMore={loadMore} loading={loading} />
+      {data && data.results.length > 0 && (
+        <BlogTopic blogs={data?.results} loadMore={loadMore} loading={loading} />
       )}
     </>
   );
@@ -61,14 +68,8 @@ export default TopicSlug;
 
 export async function getStaticProps(context: any) {
   try {
-    const blogs = await getAllPostWidthParams({
-      sort: { value: "id", type: "desc" },
-      filters: {
-        column: ["topics", "name"],
-        operator: "$eq",
-        value: context?.params?.slug,
-      },
-      pagination: { page: 0, pageSize: 3 },
+    const blogs = await blogApi.getAll({
+      topics__slug: context.params.slug,
     });
     if (!blogs) {
       return {
@@ -92,15 +93,12 @@ export async function getStaticProps(context: any) {
 }
 
 export async function getStaticPaths() {
-  const topics = await getAllTopic();
+  const topics = await topicApi.getAll({});
 
   // Get the paths we want to pre-render based on posts
-  const paths = topics?.data?.map((topic: any) => ({
+  const paths = topics.map((topic: Topic) => ({
     params: { slug: topic.name },
   }));
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: blocking } will server-render pages
-  // on-demand if the path doesn't exist.
   return { paths, fallback: "blocking" };
 }
