@@ -49,7 +49,7 @@ export async function getStaticProps(context: any) {
 }
 
 export async function getStaticPaths() {
-  const blogs = await blogApi.getAll({page_size: 100});
+  const blogs = await blogApi.getAll({page_size: 50});
 
   // Get the paths we want to pre-render based on posts
   const paths = blogs.results.map((post: any) => ({
