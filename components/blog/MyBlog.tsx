@@ -18,7 +18,7 @@ export interface IMyBlogProps {
 }
 
 const MyBlog = ({ blogs, isLoading }: IMyBlogProps) => {
-  const [loadingVideo, setLoadingVideo] = React.useState(true);
+  const [loadingVideo, setLoadingVideo] = React.useState(false);
 
   React.useEffect(() => {
     (async () => {
@@ -27,7 +27,7 @@ const MyBlog = ({ blogs, isLoading }: IMyBlogProps) => {
       });
     })();
     return () => {
-      setLoadingVideo(true);
+      setLoadingVideo(false);
     };
   }, []);
 

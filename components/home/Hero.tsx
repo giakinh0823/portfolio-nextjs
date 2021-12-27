@@ -18,7 +18,7 @@ export interface HeroProps {}
 const HeroSection = (props: HeroProps) => {
   const ref = React.useRef(null);
   const inViewport = useIntersection(ref, 0.1);
-  const [loadingVideo, setLoadingVideo] = React.useState(true);
+  const [loadingVideo, setLoadingVideo] = React.useState(false);
 
   React.useEffect(() => {
     (async () => {
@@ -27,7 +27,7 @@ const HeroSection = (props: HeroProps) => {
       });
     })();
     return () => {
-      setLoadingVideo(true);
+      setLoadingVideo(false);
     }
   }, []);
 
