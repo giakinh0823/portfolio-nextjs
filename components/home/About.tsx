@@ -9,7 +9,7 @@ export interface AboutProps {}
 const AboutSection = (props: AboutProps) => {
   const ref = React.useRef(null);
   const inViewport = useIntersection(ref, 0.1);
-  const [loadingVideo, setLoadingVideo] = React.useState(false);
+  const [loadingVideo, setLoadingVideo] = React.useState(true);
 
   React.useEffect(() => {
     (async () => {
@@ -18,7 +18,7 @@ const AboutSection = (props: AboutProps) => {
       });
     })();
     return () => {
-      setLoadingVideo(false);
+      setLoadingVideo(true);
     }
   }, []);
 
