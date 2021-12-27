@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosClient = axios.create({
-	baseURL: 'https://api.hagiakinh.me/api/',
+	baseURL: 'https://hagiakinh-api.herokuapp.com/api/',
 	headers: {
 		'Content-Type': 'application/json',
 	},
