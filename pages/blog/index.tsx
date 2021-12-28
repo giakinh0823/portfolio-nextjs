@@ -34,7 +34,8 @@ const BlogPage = (prop: BlogProps) => {
       ) : (
         <SkeletonAllBlog />
       )}
-      {frontends.blogs ? (
+      {(frontends.blogs && frontends.blogs.length && !frontends.isLoading) >
+      0 ? (
         <AllBlog
           blogs={frontends.blogs ? frontends.blogs : []}
           link={"/blog/topics/front-end"}
@@ -43,7 +44,7 @@ const BlogPage = (prop: BlogProps) => {
       ) : (
         <SkeletonAllBlog />
       )}
-      {backends.blogs ? (
+      {(backends.blogs && backends.blogs.length && !backends.isLoading) > 0 ? (
         <AllBlog
           blogs={backends.blogs ? backends.blogs : []}
           link={`/blog/topics/backend`}
@@ -52,14 +53,14 @@ const BlogPage = (prop: BlogProps) => {
       ) : (
         <SkeletonAllBlog />
       )}
-      {uxuis.blogs && (
+      {(uxuis.blogs && uxuis.blogs.length && !uxuis.isLoading) > 0 && (
         <AllBlog
           blogs={uxuis.blogs ? uxuis.blogs : []}
           link={`/blog/topics/ux-ui`}
           title="UX/UI"
         />
       )}
-      {tools.blogs ? (
+      {tools.blogs && tools.blogs.length > 0 && !tools.isLoading ? (
         <AllBlog
           blogs={tools.blogs ? tools.blogs : []}
           link={`/blog/topics/tools`}

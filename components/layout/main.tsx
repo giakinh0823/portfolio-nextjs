@@ -6,11 +6,9 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { LayoutProps } from "../../models";
 import { colorAction, selectColor } from "../../redux/color/colorSlice";
-import CrcularProgress from "../common/progress/CrcularProgress";
-import dynamic from "next/dynamic";
-import { WindowRounded } from "@mui/icons-material";
-import Header from "../common/header/index";
 import Footer from "../common/footer/index";
+import Header from "../common/header/index";
+import GooeyLoading from "../common/Loading/GooeyLoading";
 
 
 // const HeaderDynamic = dynamic(() => import("../common/header"));
@@ -81,13 +79,13 @@ export function MainLayout({ children }: LayoutProps) {
               <Box
                 sx={{
                   width: "100%",
-                  height: "60vh",
+                  height: "80vh",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                 }}
               >
-                <CrcularProgress />
+                <GooeyLoading/>
               </Box>
             ) : (
               children
@@ -130,7 +128,7 @@ export function MainLayout({ children }: LayoutProps) {
             alignItems: "center",
           }}
         >
-          <CrcularProgress />
+          <GooeyLoading/>
         </Box>
       )}
     </>

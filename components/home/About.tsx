@@ -1,7 +1,9 @@
-import { Container, Skeleton, Stack, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import Image from "next/image";
 import * as React from "react";
 import { isMobile } from "react-device-detect";
+import about from "../../assets/image/about4.jpg";
 import { useIntersection } from "../../utils/useIntersection";
 
 export interface AboutProps {}
@@ -9,18 +11,6 @@ export interface AboutProps {}
 const AboutSection = (props: AboutProps) => {
   const ref = React.useRef(null);
   const inViewport = useIntersection(ref, 0.1);
-  const [loadingVideo, setLoadingVideo] = React.useState(true);
-
-  React.useEffect(() => {
-    (async () => {
-      fetch("/video/about2.mp4").then((res: any) => {
-        setLoadingVideo(false);
-      });
-    })();
-    return () => {
-      setLoadingVideo(true);
-    }
-  }, []);
 
   return (
     <Box
@@ -63,19 +53,7 @@ const AboutSection = (props: AboutProps) => {
                 overflow: "hidden",
               }}
             >
-              {!loadingVideo ? (
-                <video
-                  autoPlay
-                  loop
-                  width="100%"
-                  height="100%"
-                  style={{ transform: "scale(1.4)" }}
-                >
-                  <source src={"/video/about2.mp4"} type="video/mp4" />
-                </video>
-              ) : (
-                <Skeleton variant="rectangular" height="100%" width="100%" />
-              )}
+              <Image src={about} alt="Chatbot" width={800} height={800}/>
             </Box>
           </Box>
           <Box

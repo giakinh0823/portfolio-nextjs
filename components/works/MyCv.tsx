@@ -20,7 +20,7 @@ const MyCv = (props: IMyCvProps) => {
         }}
       >
         <Grid container spacing={3}>
-          <Grid item xs={4}>
+          <Grid item xs={12} md={4}>
             <Box
               sx={{
                 display: "flex",
@@ -31,8 +31,14 @@ const MyCv = (props: IMyCvProps) => {
               <Box
                 sx={{
                   borderRadius: "50%",
-                  width: "90%",
-                  height: "90%",
+                  width: {
+                    xs: "60%",
+                    md: "90%",
+                  },
+                  height: {
+                    xs: "60%",
+                    md: "90%",
+                  },
                   overflow: "hidden",
                   borderWidth: "6px",
                   borderStyle: "solid",
@@ -44,14 +50,46 @@ const MyCv = (props: IMyCvProps) => {
                   <Image src={avatar} alt="avatar" width={500} height={460} />
                 </div>
               </Box>
+              <Box
+                pt={{ xs: 4, md: 6 }}
+                display={{ xs: "block", md: "none" }}
+                sx={{ width: "100%" }}
+              >
+                <Typography
+                  variant="h1"
+                  component="h1"
+                  color="textPrimary"
+                  sx={{
+                    textTransform: "uppercase",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                  textAlign="center"
+                >
+                  Kinh Ha Gia
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h2"
+                  color="textPrimary"
+                  sx={{
+                    textTransform: "uppercase",
+                    fontFamily: "monospace",
+                    opacity: 0.8,
+                  }}
+                  textAlign="center"
+                >
+                  Full Stack Developer
+                </Typography>
+              </Box>
               <Box pl={{ xs: 0, md: 4 }}>
                 <ListCVBar listCV={listBar} />
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={12} md={8}>
             <Box>
-              <Box pt={{xs: 0, md: 6}}>
+              <Box pt={{ xs: 0, md: 6 }} display={{ xs: "none", md: "block" }}>
                 <Typography
                   variant="h1"
                   component="h1"

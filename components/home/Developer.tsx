@@ -53,10 +53,10 @@ const DeverloperSection = (props: DeverloperProps) => {
               }
             >
               <DeveloperItem
-                color="#7451cb"
+                color="secondary.main"
                 title="Android Developer"
                 subtitle="React Native Developer"
-                video={mode == "dark" ? "/video/dev.mp4" : undefined}
+                description="Vì tôi hiểu rõ về React nên việc làm việc với React Native rất dễ dàng. Tôi sử dụng expo để viết mã React Native. Nắm vững và hiểu rõ các kiến thức trong React Native."
               />
             </Box>
           </Grid>
@@ -81,10 +81,10 @@ const DeverloperSection = (props: DeverloperProps) => {
               }
             >
               <DeveloperItem
-                color="#ffab66"
+                color="primary.main"
                 title="Web Developer"
                 subtitle="Fullstack Developer"
-                video={mode == "dark" ? undefined : "/video/dev.mp4"}
+                description="Tôi có kinh nghiệm làm việc với Django Rest Framework trong thời gian viết phần phụ trợ cho các trang web mà tôi làm việc. Tôi biết cách sử dụng JWT trong Django, cơ sở dữ liệu với sqlite3, máy chủ SQL, PostgreSQL,quản lý môi trường với Docker, Quản lý công việc với Celery. Biết cách sử dụng Channles và Redis."
               />
             </Box>
           </Grid>
@@ -109,10 +109,10 @@ const DeverloperSection = (props: DeverloperProps) => {
               }
             >
               <DeveloperItem
-                color="#8cd3ff"
+                color="primary.main"
                 title="Backend Developer"
                 subtitle="Java Developer"
-                video={mode == "dark" ? undefined : "/video/hero2.mp4"}
+                description="Tôi cực kỳ thành thạo trong việc sử dụng ngôn ngữ này để học tập và dạy kèm và làm việc. Tôi làm servlet với java và đang tìm hiểu springboot và android."
               />
             </Box>
           </Grid>
@@ -137,10 +137,10 @@ const DeverloperSection = (props: DeverloperProps) => {
               }
             >
               <DeveloperItem
-                color="#7451cb"
+                color="secondary.main"
                 title="Tool Developer"
                 subtitle="Python Developer"
-                video={mode == "dark" ? "/video/hero2.mp4" : undefined}
+                description="Tôi có thể mã chương trình phụ trợ Django bằng python, thu thập dữ liệu bằng selenium, và có thể làm việc với các bảng mở rộng."
               />
             </Box>
           </Grid>
@@ -154,14 +154,14 @@ interface DeveloperItemProps {
   color: string;
   title: string;
   subtitle: string;
-  video?: string;
+  description?: string;
 }
 
 const DeveloperItem = React.memo(function DeveloperItem({
   color,
   title,
   subtitle,
-  video,
+  description,
 }: DeveloperItemProps) {
   return (
     <Box
@@ -173,7 +173,13 @@ const DeveloperItem = React.memo(function DeveloperItem({
         position: "relative",
       }}
     >
-      <Stack>
+      <Stack
+        sx={{
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
+        }}
+      >
         <Typography variant="body1" color="#efefefd9">
           {title}
         </Typography>
@@ -186,41 +192,15 @@ const DeveloperItem = React.memo(function DeveloperItem({
         >
           {subtitle}
         </Typography>
-      </Stack>
-      {video && (
-        <Box
+        <Typography
           sx={{
-            width: {
-              xs: "120px",
-              md: "150px",
-            },
-            height: {
-              xs: "120px",
-              md: "150px",
-            },
-            position: "absolute",
-            top: {
-              xs: "70%",
-              md: "50%",
-            },
-            right: "40px",
-            borderRadius: "50%",
-            overflow: "hidden",
-            transform: "translateY(-50%)",
-            transition: "all 0.8s linear",
+            color: "white",
+            mt: 2,
           }}
         >
-          <video
-            autoPlay
-            loop
-            width="100%"
-            height="100%"
-            style={{ transform: "scale(1.4)" }}
-          >
-            <source src={video} type="video/mp4" />
-          </video>
-        </Box>
-      )}
+          {description}
+        </Typography>
+      </Stack>
     </Box>
   );
 });

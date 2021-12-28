@@ -1,14 +1,14 @@
-import { red } from "@mui/material/colors";
+import { pink, red, teal } from "@mui/material/colors";
 import {
   createTheme,
   responsiveFontSizes,
-  ThemeProvider,
+  ThemeProvider
 } from "@mui/material/styles";
 import * as React from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectMode, modeAction } from "../../redux/mode/modeSlice";
 import { ToastContainer } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { colorAction, selectColor } from "../../redux/color/colorSlice";
+import { modeAction, selectMode } from "../../redux/mode/modeSlice";
 
 export default function ToggleColorMode({ children }: any) {
   const mode = useAppSelector(selectMode);
@@ -33,7 +33,7 @@ export default function ToggleColorMode({ children }: any) {
             main: color,
           },
           secondary: {
-            main: "#8072e0",
+            main: teal.A400,
           },
           error: {
             main: red.A400,

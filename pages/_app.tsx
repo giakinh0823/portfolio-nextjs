@@ -13,6 +13,7 @@ import { AppPropsWithLayout } from "../models";
 import "../styles/editor.css";
 import "../styles/globals.css";
 import "../styles/phaohoa.css";
+import "../styles/loading.css";
 import { createEmotionCache } from "../utils";
 
 const clientSideEmotionCache = createEmotionCache();

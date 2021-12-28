@@ -5,31 +5,21 @@ import {
   Link as MuiLink,
   Skeleton,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import Link from "next/link";
 import * as React from "react";
 import { isMobile } from "react-device-detect";
 import { useIntersection } from "../../utils/useIntersection";
+import avatar from "../../assets/image/hero3.jpg";
+import Image from "next/image";
 
 export interface HeroProps {}
 
 const HeroSection = (props: HeroProps) => {
   const ref = React.useRef(null);
   const inViewport = useIntersection(ref, 0.1);
-  const [loadingVideo, setLoadingVideo] = React.useState(true);
-
-  React.useEffect(() => {
-    (async () => {
-      await fetch("/video/hero.mp4").then((res: any) => {
-        setLoadingVideo(false);
-      });
-    })();
-    return () => {
-      setLoadingVideo(true);
-    }
-  }, []);
 
   return (
     <Box
@@ -131,19 +121,7 @@ const HeroSection = (props: HeroProps) => {
                 overflow: "hidden",
               }}
             >
-              {!loadingVideo ? (
-                <video
-                  autoPlay
-                  loop
-                  width="100%"
-                  height="100%"
-                  style={{ transform: "scale(1.5)" }}
-                >
-                  <source src={"/video/hero.mp4"} type="video/mp4" />
-                </video>
-              ) : (
-                <Skeleton variant="rectangular" height="100%" width="100%" />
-              )}
+              <Image src={avatar} height={800} width={800} alt="Avatar" />
             </Box>
           </Box>
         </Stack>

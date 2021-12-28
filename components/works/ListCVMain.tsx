@@ -17,7 +17,7 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
               sx={{
                 fontWeight: "bold",
                 textTransform: "uppercase",
-                width: '100%',
+                width: "100%",
                 borderBottomWidth: "3px",
                 borderBottomStyle: "solid",
                 borderBottomColor: "primary.main",
@@ -36,6 +36,7 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
                       sx={{
                         fontWeight: "bold",
                         textTransform: "uppercase",
+                        transition: "all 0.3s ease-in-out",
                       }}
                     >
                       {content.header}
@@ -63,7 +64,11 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
                   </Box>
                   <Box component="ul">
                     {content.content.list?.map((item: any, index: number) => (
-                      <Box component="li" key={index} sx={{marginBottom: "5px"}}>
+                      <Box
+                        component="li"
+                        key={index}
+                        sx={{ marginBottom: "5px" }}
+                      >
                         <Box>
                           <Typography
                             variant="body1"

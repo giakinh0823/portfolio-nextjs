@@ -8,23 +8,23 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectMode } from "../../../redux/mode/modeSlice";
 import UseSwitchesCustom from "../SwitchDarkMode";
 import { ROUTE_LIST } from "./routes";
-import { colorAction, selectColor } from '../../../redux/color/colorSlice';
+import { colorAction, selectColor } from "../../../redux/color/colorSlice";
 
-export const HeaderDesktop = () => {
+export const HeaderDesktop = React.memo(function HeaderDesktop() {
   const router = useRouter();
   const [fixed, setFixed] = React.useState(false);
   const mode = useAppSelector(selectMode);
-  const color = useAppSelector(selectColor)
+  const color = useAppSelector(selectColor);
   const dispatch = useAppDispatch();
   const [selectedValue, setSelectedValue] = React.useState(color);
 
   React.useEffect(() => {
     dispatch(colorAction.getColor());
-  }, [dispatch])
+  }, [dispatch]);
 
   React.useEffect(() => {
     setSelectedValue(color);
-  },[color])
+  }, [color]);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -124,11 +124,11 @@ export const HeaderDesktop = () => {
                   }}
                 />
                 <Radio
-                  {...controlProps("#ff7e29")}
+                  {...controlProps("#ff5722")}
                   sx={{
-                    color: "#ff7e29",
+                    color: "#ff5722",
                     "&.Mui-checked": {
-                      color: "#ff7e29",
+                      color: "#ff5722", 
                     },
                   }}
                 />
@@ -149,4 +149,4 @@ export const HeaderDesktop = () => {
       </Box>
     </Slide>
   );
-};
+});

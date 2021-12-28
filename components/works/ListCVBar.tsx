@@ -18,6 +18,11 @@ export default function ListCVBar({ listCV }: IListCVBarProps) {
                 sx={{
                   fontWeight: "bold",
                   textTransform: "uppercase",
+                  transition: "all 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "translateX(5px) scale(1.04)",
+                    cursor: "pointer"
+                  }
                 }}
               >
                 {item.header}
