@@ -96,11 +96,11 @@ export function HeaderMobile(props: HeaderMobileProps) {
                 }}
               />
               <Radio
-                {...controlProps("#ff7e29")}
+                {...controlProps("#ff5722")}
                 sx={{
-                  color: "#ff7e29",
+                  color: "#ff5722",
                   "&.Mui-checked": {
-                    color: "#ff7e29",
+                    color: "#ff5722",
                   },
                 }}
               />
