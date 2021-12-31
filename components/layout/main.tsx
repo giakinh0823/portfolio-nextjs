@@ -6,9 +6,11 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { LayoutProps } from "../../models";
 import { colorAction, selectColor } from "../../redux/color/colorSlice";
+import ChatbotMessage from "../chatbot/ChatbotMessage";
 import Footer from "../common/footer/index";
 import Header from "../common/header/index";
 import GooeyLoading from "../common/Loading/GooeyLoading";
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 
 // const HeaderDynamic = dynamic(() => import("../common/header"));
@@ -114,8 +116,8 @@ export function MainLayout({ children }: LayoutProps) {
     
           `}
             </Script>
+            <ChatbotMessage/>
           </Box>
-
           <Footer />
         </Stack>
       ) : (
