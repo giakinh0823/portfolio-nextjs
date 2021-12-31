@@ -106,7 +106,6 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                 setIsJoin(Boolean(response?.id));
                 setMessage(response?.messages);
               }
-              setLoading(false);
             }
             messageBoxRef.current.scrollTop =
               messageBoxRef.current.scrollHeight;
@@ -164,7 +163,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
           position: "fixed",
           bottom: "24px",
           right: "24px",
-          zIndex: "1000",
+          zIndex: "16777271",
           backgroundColor: "primary.main",
           borderRadius: "50%",
           width: "61px",
@@ -194,6 +193,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
             position: "absolute",
             top: "-570px",
             borderRadius: "20px",
+            zIndex: "16777271",
             "@keyframes slideIn": {
               from: {
                 transform: "translateX(100%)",
