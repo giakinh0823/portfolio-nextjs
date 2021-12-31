@@ -320,9 +320,10 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                       color: "#000",
                       "& .MuiOutlinedInput-root": {
                         borderRadius: "20px",
+                        color: "#000"
                       },
                       "& label.Mui-focused": {
-                        color: "transparent",
+                        color: "#000",
                       },
                       "& .MuiOutlinedInput-notchedOutline": {
                         border: "none",
