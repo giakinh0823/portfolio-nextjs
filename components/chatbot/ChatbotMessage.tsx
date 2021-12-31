@@ -233,7 +233,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                   />
                 </Box>
                 <Box>
-                  <Typography variant="body1" ml={1} fontWeight="bold">
+                  <Typography variant="body1" ml={1} fontWeight="bold" sx={{color: "primary.main"}}>
                     hagiakinh.me
                   </Typography>
                 </Box>
@@ -317,6 +317,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                     fullWidth
                     {...register("message")}
                     sx={{
+                      color: "#000",
                       "& .MuiOutlinedInput-root": {
                         borderRadius: "20px",
                       },
