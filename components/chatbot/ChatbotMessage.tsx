@@ -26,9 +26,8 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
   const [loading, setLoading] = React.useState<boolean>(true);
 
   const groupsSocket = React.useMemo(
-    () =>
-      // new WebSocket(`ws://127.0.0.1:8000/ws/groups/giakinh0823/`),
-      new WebSocket(`wss://hagiakinh-api.herokuapp.com/ws/groups/giakinh0823/`),
+    // () => new WebSocket(`ws://127.0.0.1:8000/ws/groups/giakinh0823/`),
+    new WebSocket(`wss://hagiakinh-api.herokuapp.com/ws/groups/giakinh0823/`),
     []
   );
 
@@ -63,10 +62,10 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
     () =>
       chatbotId
         ? // new WebSocket(
-          //   `ws://127.0.0.1:8000/ws/chat/${
-          //     chatbotId ? chatbotId : "new-chatbot"
-          //   }/`
-          // )
+          //     `ws://127.0.0.1:8000/ws/chat/${
+          //       chatbotId ? chatbotId : "new-chatbot"
+          //     }/`
+          //   )
           new WebSocket(
             `wss://hagiakinh-api.herokuapp.com/ws/chat/${
               chatbotId ? chatbotId : "new-chatbot"
@@ -110,6 +109,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
             messageBoxRef.current.scrollTop =
               messageBoxRef.current.scrollHeight;
           } catch (error) {}
+          messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
         })();
       };
     }
@@ -175,7 +175,13 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
       >
         <IconButton
           sx={{ width: "61px", height: "61px" }}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            setIsOpen(!isOpen);
+            if (isJoin) {
+              messageBoxRef.current.scrollTop =
+                messageBoxRef.current.scrollHeight;
+            }
+          }}
         >
           <SmartToyIcon sx={{ color: "white" }} />
         </IconButton>
@@ -233,12 +239,22 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                   />
                 </Box>
                 <Box>
-                  <Typography variant="body1" ml={1} fontWeight="bold" sx={{color: "primary.main"}}>
+                  <Typography
+                    variant="body1"
+                    ml={1}
+                    fontWeight="bold"
+                    sx={{ color: "primary.main" }}
+                  >
                     hagiakinh.me
                   </Typography>
                 </Box>
                 <Box ml="auto">
-                  <IconButton color="primary" onClick={() => setIsOpen(false)}>
+                  <IconButton
+                    color="primary"
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  >
                     <CloseOutlinedIcon />
                   </IconButton>
                 </Box>
@@ -320,7 +336,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                       color: "#000",
                       "& .MuiOutlinedInput-root": {
                         borderRadius: "20px",
-                        color: "#000"
+                        color: "#000",
                       },
                       "& label.Mui-focused": {
                         color: "#000",
