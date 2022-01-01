@@ -27,7 +27,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
 
   const groupsSocket = React.useMemo(
     // () => new WebSocket(`ws://127.0.0.1:8000/ws/groups/giakinh0823/`),
-    new WebSocket(`wss://hagiakinh-api.herokuapp.com/ws/groups/giakinh0823/`),
+    () => new WebSocket(`wss://hagiakinh-api.herokuapp.com/ws/groups/giakinh0823/`),
     []
   );
 
