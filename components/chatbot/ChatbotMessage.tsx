@@ -13,10 +13,14 @@ import CrcularProgress from "../common/progress/CrcularProgress";
 
 export interface IChatbotMessageProps {}
 
+const socket_url = "wss://hagiakinh-api.herokuapp.com"
+// const socket_url = "ws://127.0.0.1:8000";
+
+
 const ChatbotMessage = (props: IChatbotMessageProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { register, handleSubmit, reset } = useForm();
-  const [isJoin, setIsJoin] = React.useState(false);
+  const [isJoin, setIsJoin] = React.useState(Boolean(localStorage.getItem("chatbot_id")));
   const [chatbotId, setChatbotId] = React.useState<any>();
   const [message, setMessage] = React.useState<any[]>([]);
   const messageBoxRef = React.useRef<any>();
@@ -26,8 +30,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
   const [loading, setLoading] = React.useState<boolean>(true);
 
   const groupsSocket = React.useMemo(
-    // () => new WebSocket(`ws://127.0.0.1:8000/ws/groups/giakinh0823/`),
-    () => new WebSocket(`wss://hagiakinh-api.herokuapp.com/ws/groups/giakinh0823/`),
+    () => new WebSocket(`${socket_url}/ws/groups/giakinh0823/`),
     []
   );
 
@@ -46,7 +49,6 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
       const data = await chatbotApi.join({});
       localStorage.setItem("chatbot_id", data?.chatbot_id);
       localStorage.setItem("user_id", data?.user_id);
-      setChatbotId(data?.chatbot_id);
       setClient(data?.user_id);
       setIsJoin(true);
       groupsSocket.send(
@@ -62,13 +64,8 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
     () =>
       chatbotId
         ? 
-        // new WebSocket(
-        //       `ws://127.0.0.1:8000/ws/chat/${
-        //         chatbotId ? chatbotId : "new-chatbot"
-        //       }/`
-        //     )
           new WebSocket(
-            `wss://hagiakinh-api.herokuapp.com/ws/chat/${
+            `${socket_url}/ws/chat/${
               chatbotId ? chatbotId : "new-chatbot"
             }/`
           )
