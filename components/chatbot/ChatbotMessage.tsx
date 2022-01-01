@@ -61,11 +61,12 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
   const chatSocket = React.useMemo(
     () =>
       chatbotId
-        ? // new WebSocket(
-          //     `ws://127.0.0.1:8000/ws/chat/${
-          //       chatbotId ? chatbotId : "new-chatbot"
-          //     }/`
-          //   )
+        ? 
+        // new WebSocket(
+        //       `ws://127.0.0.1:8000/ws/chat/${
+        //         chatbotId ? chatbotId : "new-chatbot"
+        //       }/`
+        //     )
           new WebSocket(
             `wss://hagiakinh-api.herokuapp.com/ws/chat/${
               chatbotId ? chatbotId : "new-chatbot"
@@ -275,6 +276,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                   <>
                     <Box sx={{ marginTop: "auto" }}></Box>
                     {message.map((item: any, index: number) => (
+                      item.message && (
                       <Box
                         key={index}
                         sx={{
@@ -292,7 +294,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                         }}
                       >
                         <Typography variant="body1">{item.message}</Typography>
-                      </Box>
+                      </Box>)
                     ))}
                     <div ref={messageEndRef}></div>
                   </>
@@ -331,7 +333,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                     autoComplete="off"
                     size="small"
                     fullWidth
-                    {...register("message")}
+                    {...register("message", {required: true })}
                     sx={{
                       color: "#000",
                       "& .MuiOutlinedInput-root": {
