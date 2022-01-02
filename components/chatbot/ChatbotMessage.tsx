@@ -16,7 +16,7 @@ export interface IChatbotMessageProps {}
 
 const ws_schema = window.location.protocol === "https:" ? "wss" : "ws";
 const hots = window.location.protocol === "https:" ? "hagiakinh-api.herokuapp.com" : "127.0.0.1:8000";
-const socket_url = `${ws_schema}://${window.location.host}`;
+const socket_url = `${ws_schema}://${hots}`;
 // const socket_url = "wss://hagiakinh-api.herokuapp.com"
 // const socket_url = "ws://127.0.0.1:8000";
 
