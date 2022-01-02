@@ -174,11 +174,15 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
         <IconButton
           sx={{ width: "61px", height: "61px" }}
           onClick={() => {
-            setIsOpen(!isOpen);
             if (isJoin) {
               messageBoxRef.current.scrollTop =
                 messageBoxRef.current.scrollHeight;
             }
+            setIsOpen(!isOpen);
+            // if (isJoin) {
+            //   messageBoxRef.current.scrollTop =
+            //     messageBoxRef.current.scrollHeight;
+            // }
           }}
         >
           <SmartToyIcon sx={{ color: "white" }} />
