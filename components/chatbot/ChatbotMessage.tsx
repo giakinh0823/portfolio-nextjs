@@ -13,7 +13,10 @@ import CrcularProgress from "../common/progress/CrcularProgress";
 
 export interface IChatbotMessageProps {}
 
-const socket_url = "wss://hagiakinh-api.herokuapp.com"
+
+const ws_schema = window.location.protocol === "https:" ? "wss" : "ws";
+const socket_url = `${ws_schema}://${window.location.host}`;
+// const socket_url = "wss://hagiakinh-api.herokuapp.com"
 // const socket_url = "ws://127.0.0.1:8000";
 
 
