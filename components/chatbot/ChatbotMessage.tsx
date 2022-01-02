@@ -34,6 +34,10 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
   const hots = window.location.protocol === "https:" ? "hagiakinh-api.herokuapp.com" : "127.0.0.1:8000";
   const socket_url = `${ws_schema}://${hots}`;
 
+  React.useEffect(() => {
+      messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
+  }, [loading])
+
   const groupsSocket = React.useMemo(
     () => new WebSocket(`${socket_url}/ws/groups/giakinh0823/`),
     [socket_url]
@@ -119,7 +123,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
         })();
       };
     }
-  }, [chatbotId, chatSocket, message]);
+  }, [chatbotId, chatSocket, message, client]);
 
   React.useEffect(() => {
     (async () => {
@@ -290,7 +294,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                         key={index}
                         sx={{
                           maxWidth: "75%",
-                          backgroundColor: "primary.main",
+                          backgroundColor: client == item.user.id ? "#e4e6eb" : "primary.main",
                           color: "white",
                           padding: "10px 12px",
                           borderRadius: "14px",
