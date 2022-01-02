@@ -294,8 +294,8 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                         key={index}
                         sx={{
                           maxWidth: "75%",
-                          backgroundColor: client == item.user.id ? "#e4e6eb" : "primary.main",
-                          color: "white",
+                          backgroundColor: client == item.user.id ?"primary.main" : "#e4e6eb",
+                          color: client == item.user.id ? "white" : "#050505",
                           padding: "10px 12px",
                           borderRadius: "14px",
                           boxShadow: "rgba(0, 0, 0, 0.08) 0px 4px 12px",
