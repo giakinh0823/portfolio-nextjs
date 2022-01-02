@@ -85,7 +85,9 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
         const data = JSON.parse(e.data);
         const newMessage = [...message, data];
         setMessage(newMessage);
-        toast.success(`🦄 bot đã gửi cho bạn một tin nhắn: ${data.message}`, {autoClose: 3000});
+        if(data.user.id !== client){
+          toast.success(`🦄 bot đã gửi cho bạn một tin nhắn: ${data.message}`, {autoClose: 3000});
+        }
         messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
       };
 
