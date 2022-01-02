@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import chatbotApi from "../../api-client/chatbotApi";
 import catImage from "../../assets/image/cat.webp";
 import CrcularProgress from "../common/progress/CrcularProgress";
+import { toast } from "react-toastify";
 
 export interface IChatbotMessageProps {}
 
@@ -84,6 +85,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
         const data = JSON.parse(e.data);
         const newMessage = [...message, data];
         setMessage(newMessage);
+        toast.success(`🦄 bot đã gửi cho bạn một tin nhắn: ${data.message}`, {autoClose: 3000});
         messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
       };
 
