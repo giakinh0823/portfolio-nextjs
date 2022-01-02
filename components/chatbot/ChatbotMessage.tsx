@@ -13,10 +13,6 @@ import CrcularProgress from "../common/progress/CrcularProgress";
 
 export interface IChatbotMessageProps {}
 
-
-const ws_schema = window.location.protocol === "https:" ? "wss" : "ws";
-const hots = window.location.protocol === "https:" ? "hagiakinh-api.herokuapp.com" : "127.0.0.1:8000";
-const socket_url = `${ws_schema}://${hots}`;
 // const socket_url = "wss://hagiakinh-api.herokuapp.com"
 // const socket_url = "ws://127.0.0.1:8000";
 
@@ -33,9 +29,13 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
   const messageEndRef = React.useRef<any>();
   const [loading, setLoading] = React.useState<boolean>(true);
 
+  const ws_schema = window.location.protocol === "https:" ? "wss" : "ws";
+  const hots = window.location.protocol === "https:" ? "hagiakinh-api.herokuapp.com" : "127.0.0.1:8000";
+  const socket_url = `${ws_schema}://${hots}`;
+
   const groupsSocket = React.useMemo(
     () => new WebSocket(`${socket_url}/ws/groups/giakinh0823/`),
-    []
+    [socket_url]
   );
 
   React.useEffect(() => {
@@ -75,7 +75,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
           )
         : undefined,
 
-    [chatbotId]
+    [chatbotId, socket_url]
   );
 
   React.useEffect(() => {
