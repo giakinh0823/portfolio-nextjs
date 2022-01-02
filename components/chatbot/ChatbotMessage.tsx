@@ -298,7 +298,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                           color: client == item.user.id ? "white" : "#050505",
                           padding: "10px 12px",
                           borderRadius: "14px",
-                          boxShadow: "rgba(0, 0, 0, 0.08) 0px 4px 12px",
+                          // boxShadow: "rgba(0, 0, 0, 0.08) 0px 4px 12px",
                           marginLeft:
                             client == item.user.id ? "auto" : undefined,
                           marginRight:
