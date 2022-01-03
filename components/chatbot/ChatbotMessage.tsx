@@ -34,10 +34,6 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
   const hots = window.location.protocol === "https:" ? "hagiakinh-api.herokuapp.com" : "127.0.0.1:8000";
   const socket_url = `${ws_schema}://${hots}`;
 
-  React.useEffect(() => {
-      messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
-  }, [loading])
-
   const groupsSocket = React.useMemo(
     () => new WebSocket(`${socket_url}/ws/groups/giakinh0823/`),
     [socket_url]
