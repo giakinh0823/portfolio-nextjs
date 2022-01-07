@@ -14,6 +14,7 @@ import "../styles/editor.css";
 import "../styles/globals.css";
 import "../styles/phaohoa.css";
 import "../styles/loading.css";
+import "../styles/bouncing.scss";
 import { createEmotionCache } from "../utils";
 
 const clientSideEmotionCache = createEmotionCache();
