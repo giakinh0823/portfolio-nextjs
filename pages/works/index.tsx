@@ -17,7 +17,7 @@ const Works = (props: WorksProps) => {
         shareImage={avatar.src}
       />
       <MyCv />
-      <div className="bouncing">
+      {/* <div className="bouncing">
         <div className="fall">
           <div className="walls">
             <div className="wall">
@@ -96,7 +96,7 @@ const Works = (props: WorksProps) => {
             <div className="ball"></div>
           </div>
         </div>
-      </div>
+      </div> */}
     </Box>
   );
 };
