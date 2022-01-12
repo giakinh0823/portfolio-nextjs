@@ -290,15 +290,15 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                         key={index}
                         sx={{
                           maxWidth: "75%",
-                          backgroundColor: client == item.user.id ?"primary.main" : "#e4e6eb",
-                          color: client == item.user.id ? "white" : "#050505",
+                          backgroundColor: client == item?.user?.id ?"primary.main" : "#e4e6eb",
+                          color: client == item?.user?.id ? "white" : "#050505",
                           padding: "10px 12px",
                           borderRadius: "14px",
                           // boxShadow: "rgba(0, 0, 0, 0.08) 0px 4px 12px",
                           marginLeft:
-                            client == item.user.id ? "auto" : undefined,
+                            client == item?.user?.id ? "auto" : undefined,
                           marginRight:
-                            client == item.user.id ? undefined : "auto",
+                            client == item?.user?.id ? undefined : "auto",
                           marginBottom: "10px",
                         }}
                       >
