@@ -143,7 +143,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
         messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
       } catch (error) {
         setLoading(false);
-        setJoin(false);
+        setIsJoin(false);
       }
     })();
   }, [isJoin, chatSocket, chatbotId]);
