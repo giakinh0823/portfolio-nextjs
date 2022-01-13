@@ -58,7 +58,7 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
                           fontWeight: "500",
                         }}
                       >
-                        {content.content.description}
+                        {content?.content?.description}
                       </Typography>
                     </Box>
                   </Box>

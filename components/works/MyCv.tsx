@@ -140,10 +140,11 @@ const listBar = [
     header: "Skills & Qualities",
     contents: [
       `Programming experience C, Java, Python, Javascript, Typescript`,
-      `Experience in web interface programming includes HTML, CSS. JS, SASS, SCSS, Reatcjs, Nextjs, React Native, Antd,  Material-ui, Redux, Redux Saga, React Query, Axios, React-hook-form, useSWR,..`,
-      `Backend programming experience includes Django, Servlet, Django Rest  Framework, Redis, Channel, Celery`,
-      `Experience in making tools with selenium`,
-      `Experience with tools such as Git, Gitlab, Nodejs, SQLserver, Azure, Docker, Nginx, Firebase,..`,
+      `Experience in web interface programming includes HTML, CSS. JS, SASS, SCSS, Reatcjs, Nextjs, React Native, Antd,  Material-ui, Redux, Redux Saga, React Query, Axios, React-hook-form, useSWR,...`,
+      `Backend programming experience includes Django, Java Servlet, Nodejs Express, Django Rest  Framework, Redis, Channels, Celery, Websocket,...`,
+      `Experience in making tools with Selenium`,
+      'Experience with tools such as Git, Gitlab, Azure, Docker, Docker compose, Nginx, Firebase,...',
+      'Experience with database such as SQL Server, MongoDB, Postgresql, Sqlite3,...',
     ],
   },
   {
@@ -257,15 +258,15 @@ const listSkill = [
     contents: [
       {
         content: {
-          description: `In addition to the experience and working with the above real projects. I also learn and practice regularly about Python, Selenium, Nodejs, Java, Django, Reactjs, Nextjs, React Native. Especially in the past time I have focused on React.`,
+          description: "",
           list: [
-            "Java: I am extremely proficient in using this language for study and tutoring.",
-            "Python: I can code Django backend with python, crawl data with selenium",
-            "Django: I have experience working with Django Rest Framework during my time writing backends for the websites that I work on. I know how to use JWT in Django, database with sqlite3, SQL server, manage environment with Docker, Manage Tasks with Celery. Know how to use channels and redis.",
-            "Nodejs I have worked on a few small projects, such as product management. Working with Mongodb to manage the database.",
-            "Reactjs: I made quite a few projects about it. I use redux, redux-toolkit, redux saga to manage states and fetch api actions. I use axios to fetch api. Also, I use react-hook-form, react-router-dom… and many other tools. I can use both Typescript and Javascript to write Reactjs code. Manage and limit rendering of unnecessary components with memo and useCallback. Using both antd and Mui-v5 proficiently in making interfaces for Reactjs. Proficient in scss style module in Reactjs. Use React Query to manage server-side state data.",
-            "Nextjs: I understand and apply the basics and fetch api for production. Understand SEO in Nextjs. Use useSWR for server-side state and data management. Know how to use timing with CSR, SSR, SSG and ISR.",
-            "React Native: Since I have a strong understanding of React, working with React Native is very easy. I use expo to code React Native. Understand the knowledge basic in React Native.",
+            "Java: I have experience in Java Core, doing Java Web with Servlet, Making Selenium tools with Java.",
+            "Python: I have experience in web programming Django with Python, Tools with Selenium.",
+            "Django: I do web with Django and Django Rest Framework. Experience working with Channels, Websocket, JWT, Celery and Celery Beat in Django.",
+            "Reactjs/ Nextjs: I have experience working with Reactjs through many personal and client projects. I write Reactjs and Nextjs with TypeScript. Experience with several libraries such as Redux, Redux Toolkit, Redux Saga, React Query, Axios, React-Hook-Form, Mui-v5, Antd, Swiper, React-router-dom, Chartjs, Swr..",
+            "React Native: I've been working on React-native for a while through a few small personal projects.",
+            "Database: I have experience working with several databases such as SQL Server, MongoDB, Postgresql, Sqlite3, .. Fluently use SQL Server to query data.",
+            "HTML/CSS/SCSS: I'm good at cutting hmtl/css. Experienced in working with SCSS. Proficient in using a few libraries such as Tailwind Css, Bootstrap, ..",
           ],
         },
       },
