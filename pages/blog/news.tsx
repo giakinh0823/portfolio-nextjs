@@ -57,6 +57,7 @@ const News = (prop: BlogProps) => {
 
   const onSearch = React.useCallback((input: string) => {
     if (input) {
+      setData({} as any);
       (async () => {
         try {
           setLoading(true);
