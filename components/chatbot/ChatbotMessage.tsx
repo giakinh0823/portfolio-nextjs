@@ -17,11 +17,12 @@ export interface IChatbotMessageProps {}
 // const socket_url = "wss://hagiakinh-api.herokuapp.com"
 // const socket_url = "ws://127.0.0.1:8000";
 
-
 const ChatbotMessage = (props: IChatbotMessageProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { register, handleSubmit, reset } = useForm();
-  const [isJoin, setIsJoin] = React.useState(Boolean(localStorage.getItem("chatbot_id")));
+  const [isJoin, setIsJoin] = React.useState(
+    Boolean(localStorage.getItem("chatbot_id"))
+  );
   const [chatbotId, setChatbotId] = React.useState<any>();
   const [message, setMessage] = React.useState<any[]>([]);
   const messageBoxRef = React.useRef<any>();
@@ -31,7 +32,10 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
   const [loading, setLoading] = React.useState<boolean>(true);
 
   const ws_schema = window.location.protocol === "https:" ? "wss" : "ws";
-  const hots = window.location.protocol === "https:" ? "hagiakinh-api.herokuapp.com" : "127.0.0.1:8000";
+  const hots =
+    window.location.protocol === "https:"
+      ? "hagiakinh-api.herokuapp.com"
+      : "127.0.0.1:8000";
   const socket_url = `${ws_schema}://${hots}`;
 
   const groupsSocket = React.useMemo(
@@ -68,11 +72,8 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
   const chatSocket = React.useMemo(
     () =>
       chatbotId
-        ? 
-          new WebSocket(
-            `${socket_url}/ws/chat/${
-              chatbotId ? chatbotId : "new-chatbot"
-            }/`
+        ? new WebSocket(
+            `${socket_url}/ws/chat/${chatbotId ? chatbotId : "new-chatbot"}/`
           )
         : undefined,
 
@@ -85,8 +86,8 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
         const data = JSON.parse(e.data);
         const newMessage = [...message, data];
         setMessage(newMessage);
-        if(data.user.id != client){
-          toast.success(`🦄 Bot: ${data.message}`, {autoClose: 3000});
+        if (data.user.id != client) {
+          toast.success(`🦄 Bot: ${data.message}`, { autoClose: 3000 });
         }
         messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
       };
@@ -285,27 +286,40 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                 {!loading ? (
                   <>
                     <Box sx={{ marginTop: "auto" }}></Box>
-                    {message.map((item: any, index: number) => (
-                      item.message && (
-                      <Box
-                        key={index}
-                        sx={{
-                          maxWidth: "75%",
-                          backgroundColor: client == item?.user?.id ?"primary.main" : "#e4e6eb",
-                          color: client == item?.user?.id ? "white" : "#050505",
-                          padding: "10px 12px",
-                          borderRadius: "14px",
-                          // boxShadow: "rgba(0, 0, 0, 0.08) 0px 4px 12px",
-                          marginLeft:
-                            client == item?.user?.id ? "auto" : undefined,
-                          marginRight:
-                            client == item?.user?.id ? undefined : "auto",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        <Typography variant="body1">{item.message}</Typography>
-                      </Box>)
-                    ))}
+                    {message.map(
+                      (item: any, index: number) =>
+                        item.message && (
+                          <Box
+                            key={index}
+                            sx={{
+                              maxWidth: "75%",
+                              backgroundColor:
+                                client == item?.user?.id
+                                  ? "primary.main"
+                                  : "#e4e6eb",
+                              color:
+                                client == item?.user?.id ? "white" : "#050505",
+                              padding: "10px 12px",
+                              borderRadius: "14px",
+                              // boxShadow: "rgba(0, 0, 0, 0.08) 0px 4px 12px",
+                              marginLeft:
+                                client == item?.user?.id ? "auto" : undefined,
+                              marginRight:
+                                client == item?.user?.id ? undefined : "auto",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                wordBreak: "break-all",
+                              }}
+                            >
+                              {item.message}
+                            </Typography>
+                          </Box>
+                        )
+                    )}
                     <div ref={messageEndRef}></div>
                   </>
                 ) : (
@@ -343,7 +357,7 @@ const ChatbotMessage = (props: IChatbotMessageProps) => {
                     autoComplete="off"
                     size="small"
                     fullWidth
-                    {...register("message", {required: true })}
+                    {...register("message", { required: true })}
                     sx={{
                       color: "#000",
                       "& .MuiOutlinedInput-root": {
