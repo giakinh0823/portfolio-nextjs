@@ -45,7 +45,7 @@ const MyBlog = ({ blogs, isLoading }: IMyBlogProps) => {
               <Grid item xs={12} md={6}>
                 <Box sx={{ width: "100%" }}>
                   <Grid container spacing={3}>
-                    {(!Boolean(blogs) || isLoading) &&
+                    {(!blogs || isLoading) &&
                       [1, 2, 3].map((item, index) => (
                         <Grid item xs={12} key={index}>
                           <SkeletonNewBlog />
