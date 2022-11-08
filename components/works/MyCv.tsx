@@ -46,7 +46,7 @@ const MyCv = (props: IMyCvProps) => {
                   alignSelf: "center",
                 }}
               >
-                <div style={{ transform: "scale(1)" }}>
+                <div style={{ transform: "scale(1.1)" }}>
                   <Image src={avatar} alt="avatar" width={500} height={460} />
                 </div>
               </Box>
