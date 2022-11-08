@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import Image from "next/image";
 import * as React from "react";
 import { isMobile } from "react-device-detect";
-import about from "../../assets/image/about4.jpg";
+import about from "../../assets/image/hero3.jpg";
 import { useIntersection } from "../../utils/useIntersection";
 
 export interface AboutProps {}
@@ -93,9 +93,9 @@ const AboutSection = (props: AboutProps) => {
                 fontWeight="500"
                 textAlign={{ xs: "center", md: "left" }}
               >
-                Chuyên gia
+                Java
               </Box>{" "}
-              lập trình web app
+              Developer
             </Typography>
             <Typography
               component="p"
@@ -118,7 +118,7 @@ const AboutSection = (props: AboutProps) => {
               fontWeight="400"
               textAlign={{ xs: "center", md: "left" }}
             >
-              Tôi là một nhà phát triển full-stack với niềm đam mê xây dựng giao
+              Tôi là một nhà phát triển phần mềm với niềm đam mê xây dựng giao
               diện người dùng đẹp, trực quan và hiệu quả.
             </Typography>
           </Box>

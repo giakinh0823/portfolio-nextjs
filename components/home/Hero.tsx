@@ -12,7 +12,7 @@ import Link from "next/link";
 import * as React from "react";
 import { isMobile } from "react-device-detect";
 import { useIntersection } from "../../utils/useIntersection";
-import avatar from "../../assets/image/hero3.jpg";
+import avatar from "../../assets/image/avatar1.jpg";
 import Image from "next/image";
 
 export interface HeroProps {}
