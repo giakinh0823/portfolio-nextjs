@@ -6,7 +6,7 @@ import background from "../../assets/image/background.png";
 import ListCVBar from "./ListCVBar";
 import ListCVMain from "./ListCVMain";
 
-export interface IMyCvProps {}
+export interface IMyCvProps { }
 
 const MyCv = (props: IMyCvProps) => {
   return (
@@ -139,12 +139,84 @@ const listBar = [
   {
     header: "Skills & Qualities",
     contents: [
-      `Programming experience C, Java, Python, Javascript, Typescript`,
-      `Experience in web interface programming includes HTML, CSS. JS, SASS, SCSS, Reatcjs, Nextjs, React Native, Antd,  Material-ui, Redux, Redux Saga, React Query, Axios, React-hook-form, useSWR,...`,
-      `Backend programming experience includes Django, Java Servlet, Nodejs Express, Django Rest  Framework, Redis, Channels, Celery, Websocket,...`,
-      `Experience in making tools with Selenium`,
-      'Experience with tools such as Git, Gitlab, Azure, Docker, Docker compose, Nginx, Firebase,...',
-      'Experience with database such as SQL Server, MongoDB, Postgresql, Sqlite3,...',
+      {
+        title: "Java",
+        skills: [
+          "Java core: Java Core and Object- Oriented Programming (OOP), Junit, Multithreading and Concurrency, Exception Handling, JDBC",
+          "Java Web: JSTL, JSP, Tiles, Servlet",
+          "Framework: Spring MVC, JPA, Hibernate, Thymeleaf",
+          "Build Tool: Maven",
+        ]
+      },
+      {
+        title: "Python",
+        skills: [
+          "Web: Django, Django Rest Framework, Channels, JWT, Celery and Celery Beat",
+          "Tool: Selenium",
+        ]
+      },
+      {
+        title: "C#",
+        skills: [
+          ".NET Core: LINQ, Degrade, Event, Multithreading",
+          "Framework: Entity Framework Core",
+          "WinForms",
+        ]
+      },
+      {
+        title: "Front-end",
+        skills: [
+          "Basic: HTML5, CSS3, JavaScript, TypeScript, Bootstrap, Jquery, Ajax",
+          "Library: Reactjs, Redux, Redux Toolkit, Redux Saga, Axios, React Hook Form, Antd, Mui-v5, Tailwindcss, React Query",
+          "Framework: Nextjs, useSWR",
+          "Build tool: npm, yarn",
+        ]
+      },
+      {
+        title: "Database",
+        skills: [
+          "SQL: MSSQL, MySQL, PostgreSQL, Sqlite3",
+          "NoSQL: MongoDB, Redis",
+          "Understanding the basic query: select, update, delete, joins, procedure, trigger, events",
+        ]
+      },
+      {
+        title: "Message Queue",
+        skills: [
+          "Redis, Kafka, RabbitMQ",
+        ]
+      },
+      {
+        title: "Server",
+        skills: [
+          "Apache Tomcat, Glassfish Server, Heroku, AWS, Azure, Orcale, Nginx",
+        ]
+      },
+      {
+        title: "CI/CD",
+        skills: [
+          "Docker, Docker-compose",
+        ]
+      },
+      {
+        title: "VCS",
+        skills: [
+          "Git, Gitlab, GitHub",
+        ]
+      },
+      {
+        title: "Tools",
+        skills: [
+          "Dev tools: Visual Studio Code, Visual Studio, Eclipse, NetBeans, IntelliJ, PyCharm",
+          "Postman, Jenkin, Rancher",
+        ]
+      },
+      {
+        title: "OS",
+        skills: [
+          "Linux (Ubuntu)",
+        ]
+      },
     ],
   },
   {
@@ -174,19 +246,32 @@ const listBar = [
   },
   {
     header: "Language",
-    contents: [`English`, `Vietnamese`, `Japanese`],
+    contents: [`English`, `Vietnamese`],
   },
 ];
 
 const listSkill = [
   {
+    header: "OBJECTIVE",
+    contents: [
+      {
+        content: {
+          description: `I am a software engineer starting with Back-end Developer. With an advantage I can do both Front-end and Back-end. I want to work in a professional technology environment and always do my best for the company the products I participate in. From there I can develop myself better. It's not just that I must be, but I like to do it simply that I have a strong passion for my industry.`,
+        },
+      },
+    ],
+  },
+  {
     header: "Education",
     contents: [
       {
         header: "FPT University",
-        time: "2019 - present",
+        time: "Software Engineering (2019 – Present)",
         content: {
-          description: `Here I learned a lot of things. School work helps me learn languages like Java, C, Java web, Web design, .. and computer knowledge. It has helped me solve many problems before. In addition to the knowledge of programming, I also learned about skills in the working environment and a lot of interesting things here.`,
+          list: [
+            "70% Scholarship for 4 years at FPT University ($8700)",
+            "GPA: 8.4",
+          ],
         },
       },
     ],
@@ -195,79 +280,185 @@ const listSkill = [
     header: "Experience",
     contents: [
       {
-        header: "Frontend Developer",
+        header: "Team project (University)",
+        time: "05/2022 - Present",
+        content: {
+          description:
+            "I do a final project about an application development project. Online learning project. Manage courses, quizzes, questions, lessons including videos, documents.",
+          list: [
+            "Java Servlet to code the Back-end and Tiles for template layout.",
+            "Use SQL Server to store data.",
+            "Front-end uses Tailwincss, Flowbite and Jquery, Swiper.",
+            "AWS to host the website and SQL Server.",
+            "Gitlab manager source and work with the team.",
+            "Team size: 5",
+            "Source code: https://gitlab.com/kinhhghe153111/summer2022-se1617-g3",
+          ],
+        },
+      },
+      {
+        header: "Personal project (University)",
+        time: "01/2022 - 03/2022",
+        content: {
+          description:
+            "I do a term-end project in the subject of Java Web. Project on task management, events, timetable with calendar.",
+          list: [
+            "Java Servlet to code the Back-end.",
+            "Use SQL Server to store data.",
+            "Front-end uses Tailwincss, Flowbite and Jquery, Fullcalendar.",
+            "Oracle to host the website.",
+            "Team size: 1",
+            "Source code: https://github.com/giakinh0823/assignment_calendar",
+          ],
+        },
+      },
+      {
+        header: "Portfolio project",
+        time: "11/2021 - 01/2022",
+        content: {
+          description:
+            "I work on portfolio and blog projects.",
+          list: [
+            "Python Django to code the Back-end and bot chat.",
+            "Django Rest Framework to code the APIs.",
+            "Nextjs written in TypeScript for Front-end.",
+            "On the admin side use Reactjs and TypeScript.",
+            "Vercel to host the Front-end and Heroku to host the Back-end.",
+            "Team size: 1",
+            "Demo: hagiakinh.me",
+            "Source code: https://github.com/giakinh0823/portfolio-nextjs",
+          ],
+        },
+      },
+      {
+        header: "Freelance (Front-end Developer)",
         time: "10/2021 - 11/2021",
         content: {
           description:
-            "I joined the frontend code project with Nextjs for the delivery startup S-ONE.",
+            "I joined the Front-end code project with Nextjs for the delivery startup S-ONE.",
           list: [
-            "I use TypeScript to code Nextjs",
-            "Use GitLab to manage and work with the team.",
-            "I use Antd to design the website.",
+            "Use TypeScript to code Nextjs.",
+            "Use Axios call APIs from server.",
+            "GitLab to manage and work with the team.",
+            "Antd to design the website.",
+            "Team size: 3",
+            "Demo: https://s-one.vn/",
           ],
         },
       },
       {
-        header: "Full-Stack Developer",
+        header: "Freelance (Full-Stack Developer)",
         time: "05/2021 - 09/2021",
         content: {
           description:
-            "I participated in a project to code on products to buy, sell, and trade Facebook services. I do backend with Django and frontend with Reactjs.",
+            "I participated in a project to code on products to buy, sell, and trade Facebook services. I do Back-end with Django and Front-end with Reactjs.",
           list: [
-            "I use Django Rest Framework to make web API.",
-            "For the frontend I use redux, and the redux toolkit to manage the state for the site.",
-            "I use Material-ui to design the website",
-            "I use many other tools like react-route-dom, Axios, Chartjs, react-hookform,…",
+            "Django Rest Framework to make web APIs.",
+            "For the Front-end, use redux, and the redux toolkit to manage the state for the site.",
+            "Use Axios to call APIs from server.",
+            "Use Mui-v5 for UI website.",
+            "Using Docker to build the environment.",
+            "Team size: 1",
           ],
         },
       },
       {
-        header: "Full-Stack Developer",
-        time: "02/2021 - 04/2021",
-        content: {
-          description:
-            "I take full responsibility for the Hara startup project to participate in the FPT Edu Bizcontest. Project for startups about crowdfunding. I work in the field of getting data, design, code backend, frontend.",
-          list: [
-            "I use selenium tool to perform data retrieval to perform product testing.",
-            "Use the Stripe API to make payments.",
-            "Use channels, websocket to code messaging and notification functions for the website",
-            "Using selenium to get data",
-            "Use reactjs as frontend",
-          ],
-        },
-      },
-      {
-        header: "Full-Stack Developer",
-        time: "12/2020 – 03/2021",
+        header: "FPT AI Conference 2021 (FAIC 2021)",
+        time: "12/2020 - 03/2021",
         content: {
           description:
             "I work here as a product developer and creator for Scholar to participate in the FAIC 2021 conference. Here I undertake and implement the project myself. With experience through self-study and inquiry.",
           list: [
-            "Using selenium tool to get data from google site.",
-            "I use JavaScript, the Chartjs library to display word cloud, help users understand the authors",
-            "Using NLTK library to analyze natural language to display word cloud",
-            "Using Docker to build the environment",
+            "Using selenium tool to crawl data from google site.",
+            "Use JavaScript, the Chartjs library to display word cloud.",
+            "Using NLTK library to analyze natural language to display word cloud.",
+            "Using Docker to build the environment.",
             "Use Celery to manage tasks, schedule time to crawl data from Google Scholar to update articles by authors.",
+            "Team size: 3",
+            "Source code: https://github.com/giakinh0823/fpt_google_scholar",
           ],
         },
       },
     ],
   },
   {
-    header: "Skills - Qualities",
+    header: "CERTIFICATIONS",
     contents: [
       {
         content: {
           description: "",
           list: [
-            "Java: I have experience in Java Core, doing Java Web with Servlet, Making Selenium tools with Java.",
-            "Python: I have experience in web programming Django with Python, Tools with Selenium.",
-            "Django: I do web with Django and Django Rest Framework. Experience working with Channels, Websocket, JWT, Celery and Celery Beat in Django.",
-            "Reactjs/ Nextjs: I have experience working with Reactjs through many personal and client projects. I write Reactjs and Nextjs with TypeScript. Experience with several libraries such as Redux, Redux Toolkit, Redux Saga, React Query, Axios, React-Hook-Form, Mui-v5, Antd, Swiper, React-router-dom, Chartjs, Swr..",
-            "React Native: I've been working on React-native for a while through a few small personal projects.",
-            "Database: I have experience working with several databases such as SQL Server, MongoDB, Postgresql, Sqlite3, .. Fluently use SQL Server to query data.",
-            "HTML/CSS/SCSS: I'm good at cutting hmtl/css. Experienced in working with SCSS. Proficient in using a few libraries such as Tailwind Css, Bootstrap, ..",
+            {
+              title: "Coursera: Software Development Lifecycle (March 2022)",
+              link: "https://www.coursera.org/account/accomplishments/specialization/certificate/36DPVVMUGBHW",
+            },
+            {
+              title: "Coursera: CertNexus Certified Ethical Emerging Technologist (June 2022)",
+              link: "https://www.coursera.org/account/accomplishments/specialization/certificate/UQQWV67GP8YD",
+            },
+            {
+              title: "Coursera: Web Design for Everybody: Basics of Web Development & Coding (October 2021)",
+              link: "https://www.coursera.org/account/accomplishments/specialization/certificate/2QWZX4L8TSPS",
+            },
+            {
+              title: "Coursera: Computer Communications (June 2021)",
+              link: "https://www.coursera.org/account/accomplishments/specialization/certificate/FC9PQCJBU9SD",
+            },
+            {
+              title: "Coursera: Academic Skills for University Success (April 2021)",
+              link: "https://www.coursera.org/account/accomplishments/specialization/certificate/AW8GJ5NQCTXA",
+            }
           ],
+        },
+      },
+    ],
+  },
+  {
+    header: "HONORS & AWARDS",
+    contents: [
+      {
+        content: {
+          list: [
+            "70% scholarship for 4 years studying at FPT University ($8700) (2019)",
+            "The second prize for the provincial excellent student in computer science (2019)",
+            "Second prize in Quang Binh University's Youth Informatics (2018)",
+            "Third prize for students with excellent computer skills at the provincial level (2017)",
+            "Prize to encourage excellent students to exceed the provincial computer level (2016)",
+            "Third prize for students with excellent computer skills at provincial level (2016)",
+          ],
+        },
+      },
+    ],
+  },
+  {
+    header: "ACTIVITIES",
+    contents: [
+      {
+        header: "Mentor recruits club members JS Club",
+        time: "Mentor - (04-2022 - 05-2022)",
+        content: {
+          description: "Activities to recruit professional members of the JS Club.",
+        },
+      },
+      {
+        header: "FPT AI Conference 2021 (FAIC 2021)",
+        time: "Author and Presenter- (08-2021)",
+        content: {
+          description: `Author article and presenter about "A Google-based Scholar Information System for FPT Education"`,
+        },
+      },
+      {
+        header: "Lecturer JavaScript Class of JS Club",
+        time: "Lecturer - (03-2021 - 04-2021)",
+        content: {
+          description: `Teaching Java core to club members.`,
+        },
+      },
+      {
+        header: "Japanese Software Engineer Club",
+        time: "Author and Presenter- (08-2021)",
+        content: {
+          description: `JS Club is a Japanese Software Engineer Club - a club about Japanese and Programming.`,
         },
       },
     ],

@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import Link from "next/link";
 import * as React from "react";
 
 export interface IListCVMainProps {
@@ -11,12 +12,8 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
       {listCV.map((item: any, index: number) => (
         <Box key={index}>
           <Box>
-            <Typography
-              variant="h5"
-              color="textPrimary"
+            <Box
               sx={{
-                fontWeight: "bold",
-                textTransform: "uppercase",
                 width: "100%",
                 borderBottomWidth: "3px",
                 borderBottomStyle: "solid",
@@ -24,35 +21,52 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
                 marginBottom: "10px",
               }}
             >
-              {item.header}
-            </Typography>
+              <Typography
+                variant="subtitle1"
+                color="textPrimary"
+                sx={{
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
+                  transition: "all 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "translateX(15px) scale(1.04)",
+                    cursor: "pointer"
+                  }
+                }}
+              >
+                {item.header}
+              </Typography>
+            </Box>
             <Box>
               {item.contents.map((content: any, index: number) => (
                 <Box key={index}>
                   <Box>
                     <Typography
-                      variant="h6"
+                      variant="subtitle2"
                       color="textPrimary"
                       sx={{
                         fontWeight: "bold",
-                        textTransform: "uppercase",
                         transition: "all 0.3s ease-in-out",
+                        "&:hover": {
+                          transform: "translateX(15px) scale(1.04)",
+                          cursor: "pointer"
+                        }
                       }}
                     >
                       {content.header}
                     </Typography>
                     <Typography
-                      variant="subtitle1"
+                      variant="caption"
                       color="textPrimary"
                       sx={{
-                        fontWeight: "500",
+                        fontWeight: "bold",
                       }}
                     >
                       {content.time}
                     </Typography>
                     <Box>
                       <Typography
-                        variant="body1"
+                        variant="subtitle2"
                         color="textPrimary"
                         sx={{
                           fontWeight: "500",
@@ -62,16 +76,16 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
                       </Typography>
                     </Box>
                   </Box>
-                  <Box component="ul">
+                  <Box component="ul" margin="0">
                     {content.content.list?.map((item: any, index: number) => (
                       <Box
                         component="li"
                         key={index}
                         sx={{ marginBottom: "5px" }}
                       >
-                        <Box>
+                        {typeof item === "string" ? <Box>
                           <Typography
-                            variant="body1"
+                            variant="subtitle2"
                             color="textPrimary"
                             sx={{
                               fontWeight: "500",
@@ -79,7 +93,25 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
                           >
                             {item}
                           </Typography>
-                        </Box>
+                        </Box> :
+                          <Box sx={{
+                            "&:hover": {
+                              textDecoration: "underline",
+                              cursor: "pointer"
+                            }
+                          }}>
+                            <Link href={item.link}>
+                              <Typography
+                                variant="subtitle2"
+                                color="textPrimary"
+                                sx={{
+                                  fontWeight: "500",
+                                }}
+                              >
+                                {item.title}
+                              </Typography>
+                            </Link>
+                          </Box>}
                       </Box>
                     ))}
                   </Box>

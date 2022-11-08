@@ -10,7 +10,7 @@ export default function ListCVBar({ listCV }: IListCVBarProps) {
     <Box pt={4}>
       {listCV.map((item: any, index: number) => {
         return (
-          <Box key={index} sx={{padding: "10px 0" }}>
+          <Box key={index} sx={{ padding: "10px 0" }}>
             <Box>
               <Typography
                 variant="h6"
@@ -29,17 +29,17 @@ export default function ListCVBar({ listCV }: IListCVBarProps) {
               </Typography>
               {item.contents.map((content: any, index: number) => {
                 return (
-                  <Box key={index} sx={{padding: "10px 0" }}>
+                  <Box key={index} sx={{ padding: "10px 0" }}>
                     {typeof content === "string" ? (
                       <Box>
-                        <Typography variant="body1" color="textPrimary" fontWeight="500">
+                        <Typography variant="body2" color="textPrimary" fontWeight="500">
                           {content}
                         </Typography>
                       </Box>
                     ) : (
                       <Box>
                         <Typography
-                          variant="body1"
+                          variant="body2"
                           color="textPrimary"
                           sx={{
                             fontWeight: "bold",
@@ -48,9 +48,43 @@ export default function ListCVBar({ listCV }: IListCVBarProps) {
                         >
                           {content.header}
                         </Typography>
-                        <Typography variant="body1" color="textPrimary" fontWeight="500" sx={{wordWrap: "break-word"}}>
+                        <Typography
+                          variant="body2"
+                          color="textPrimary"
+                          sx={{
+                            fontWeight: "bold",
+                            transition: "all 0.3s ease-in-out",
+                            "&:hover": {
+                              transform: "translateX(5px) scale(1.04)",
+                              cursor: "pointer"
+                            }
+                          }}
+                        >
+                          {content.title}
+                        </Typography>
+                        <Typography variant="body1" color="textPrimary" fontWeight="500" sx={{ wordWrap: "break-word" }}>
                           {content.content}
                         </Typography>
+                        <Box component="ul" margin={"0"}>
+                          {content.skills?.map((item: any, index: number) => (
+                            <Box
+                              component="li"
+                              key={index}
+                            >
+                              <Box>
+                                <Typography
+                                  variant="subtitle2"
+                                  color="textPrimary"
+                                  sx={{
+                                    fontWeight: "500",
+                                  }}
+                                >
+                                  {item}
+                                </Typography>
+                              </Box>
+                            </Box>
+                          ))}
+                        </Box>
                       </Box>
                     )}
                   </Box>
