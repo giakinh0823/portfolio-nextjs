@@ -54,9 +54,9 @@ const DeverloperSection = (props: DeverloperProps) => {
             >
               <DeveloperItem
                 color="secondary.main"
-                title="Android Developer"
-                subtitle="React Native Developer"
-                description="Vì tôi hiểu rõ về React nên việc làm việc với React Native rất dễ dàng. Tôi sử dụng expo để viết mã React Native. Nắm vững và hiểu rõ các kiến thức trong React Native."
+                title="Java Developer"
+                subtitle="Java Developer"
+                description=""
               />
             </Box>
           </Grid>
@@ -82,9 +82,9 @@ const DeverloperSection = (props: DeverloperProps) => {
             >
               <DeveloperItem
                 color="primary.main"
-                title="Web Developer"
-                subtitle="Fullstack Developer"
-                description="Tôi có kinh nghiệm làm việc với Django Rest Framework trong thời gian viết phần phụ trợ cho các trang web mà tôi làm việc. Tôi biết cách sử dụng JWT trong Django, cơ sở dữ liệu với sqlite3, máy chủ SQL, PostgreSQL,quản lý môi trường với Docker, Quản lý công việc với Celery. Biết cách sử dụng Channles và Redis."
+                title="Backend Developer"
+                subtitle="Spring Boot"
+                description=""
               />
             </Box>
           </Grid>
@@ -110,9 +110,9 @@ const DeverloperSection = (props: DeverloperProps) => {
             >
               <DeveloperItem
                 color="primary.main"
-                title="Backend Developer"
-                subtitle="Java Developer"
-                description="Tôi cực kỳ thành thạo trong việc sử dụng ngôn ngữ này để học tập và dạy kèm và làm việc. Tôi làm servlet với java và đang tìm hiểu springboot và android."
+                title="Front Developer"
+                subtitle="Reactjs & Nextjs"
+                description=""
               />
             </Box>
           </Grid>
@@ -138,9 +138,9 @@ const DeverloperSection = (props: DeverloperProps) => {
             >
               <DeveloperItem
                 color="secondary.main"
-                title="Tool Developer"
-                subtitle="Python Developer"
-                description="Tôi có thể mã chương trình phụ trợ Django bằng python, thu thập dữ liệu bằng selenium, và có thể làm việc với các bảng mở rộng."
+                title="C#"
+                subtitle=".NET Core"
+                description=""
               />
             </Box>
           </Grid>

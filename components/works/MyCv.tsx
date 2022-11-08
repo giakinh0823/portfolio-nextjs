@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
-import avatar from "../../assets/image/avatar.png";
+import avatar from "../../assets/image/avatarcv.jpg";
 import background from "../../assets/image/background.png";
 import ListCVBar from "./ListCVBar";
 import ListCVMain from "./ListCVMain";
@@ -46,7 +46,7 @@ const MyCv = (props: IMyCvProps) => {
                   alignSelf: "center",
                 }}
               >
-                <div style={{ transform: "scale(1.3)" }}>
+                <div style={{ transform: "scale(1)" }}>
                   <Image src={avatar} alt="avatar" width={500} height={460} />
                 </div>
               </Box>
@@ -280,8 +280,21 @@ const listSkill = [
     header: "Experience",
     contents: [
       {
+        header: "Giaohangtietkiem - GHTKPay",
+        time: "08/2022 - Present",
+        content: {
+          description:
+            "Linking service, activating e-wallet deposit and withdrawal, bank reconciliation. Bank account creation service.",
+          list: [
+            "Spring Framework, Java, Apache Kafka, Spring Boot",
+            "Microservice, Spring Cloud",
+            "Docker, Redis, MySQL",
+          ],
+        },
+      },
+      {
         header: "Team project (University)",
-        time: "05/2022 - Present",
+        time: "05/2022 - 08/2022",
         content: {
           description:
             "I do a final project about an application development project. Online learning project. Manage courses, quizzes, questions, lessons including videos, documents.",

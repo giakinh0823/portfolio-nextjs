@@ -11,10 +11,10 @@ export const ROUTE_LIST = [
 	// 	label: 'Tutorial',
 	// 	path: '/tutorial',
 	// },
-	{
-		label: 'Blog',
-		path: '/blog',
-	},
+	// {
+	// 	label: 'Blog',
+	// 	path: '/blog',
+	// },
 	// {
 	// 	label: 'New Post',
 	// 	path: '/blog/new-blog',

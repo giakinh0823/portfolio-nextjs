@@ -239,60 +239,35 @@ const skills = [
   createData(
     "Programming Languages",
     "Java",
-    "Tôi cực kỳ thành thạo trong việc sử dụng ngôn ngữ này để học tập và dạy kèm và làm việc."
-  ),
-  createData(
-    "Crawl data",
-    "Python",
-    "Tôi có thể mã chương trình phụ trợ Django bằng python, thu thập dữ liệu bằng selenium, và có thể làm việc với các bảng mở rộng."
+    ""
   ),
   createData(
     "Backend",
-    "Django",
-    "Tôi có kinh nghiệm làm việc với Django Rest Framework trong thời gian viết phần phụ trợ cho các trang web mà tôi làm việc. Tôi biết cách sử dụng JWT trong Django, cơ sở dữ liệu với sqlite3, máy chủ SQL, quản lý môi trường với Docker, Quản lý công việc với Celery. Biết cách sử dụng các kênh và redis."
+    "Spring Boot",
+    ""
   ),
   createData(
     "Javascript",
-    "Nodejs",
-    "Tôi đã làm việc trên một số dự án nhỏ, chẳng hạn như quản lý sản phẩm, xóa sản phẩm cấp độ 1, cấp độ 2, v.v. Làm việc với Mongodb để quản lý cơ sở dữ liệu."
-  ),
-  createData(
-    "UX/UI",
-    "Reactjs",
-    "Tôi đã thực hiện khá nhiều dự án về nó. Tôi sử dụng redux, redux-toolkit, redux saga để quản lý các trạng thái và tìm nạp các hành động của api. Tôi sử dụng axios để tìm nạp api. Ngoài ra, tôi sử dụng react-hook-form, react-router-dom… và nhiều công cụ khác. Tôi có thể sử dụng cả Typecript và Javascript để viết mã Reactjs. Quản lý và hạn chế kết xuất các thành phần không cần thiết với memo và useCallback. Sử dụng thành thạo cả antd và Mui-v5 trong việc tạo giao diện cho Reactjs. Thành thạo mô-đun kiểu scss trong Reactjs. Sử dụng Truy vấn React để quản lý dữ liệu trạng thái phía máy chủ."
-  ),
-  createData(
-    "SEO",
-    "Nextjs",
-    "Tôi hiểu và áp dụng những kiến thức cơ bản cũng như tìm nạp api cho quá trình sản xuất. Hiểu SEO trong Nextjs. Sử dụng useSWR cho trạng thái phía máy chủ và quản lý dữ liệu. Biết cách sử dụng định thời với CSR, SSR, SSG và ISR."
-  ),
-  createData(
-    "Mobile",
-    "React Native",
-    "Vì tôi hiểu rõ về React nên việc làm việc với React Native rất dễ dàng. Tôi sử dụng expo để viết mã React Native. Nắm vững và hiểu rõ các kiến thức trong React Native."
+    "Reactjs & Nextjs",
+    ""
   ),
 ];
 
 const experiences = [
   createData(
     "Frontend Developer",
-    "Nextjs",
-    "Tôi đã tham gia dự án mã giao diện người dùng với Next Js cho công ty khởi nghiệp phân phối S-ONE. Tôi sử dụng TypeScript để viết mã Nextjs. Sử dụng GitHub để quản lý và làm việc với nhóm. Tôi sử dụng Antd để thiết kế trang web"
+    "ReactJs & Nextjs",
+    ""
   ),
   createData(
-    "Full-Stack Developer",
-    "Django - React",
-    "Tôi đã tham gia vào một dự án viết mã trên các sản phẩm để mua, bán và kinh doanh các dịch vụ của Facebook. Tôi làm phần phụ trợ với Django và giao diện người dùng với Reactjs, tôi sử dụng Django Rest Framework để tạo API web. Đối với giao diện người dùng, tôi sử dụng redux và bộ công cụ redux để quản lý trạng thái cho trang web. Tôi sử dụng Material-ui để thiết kế trang web. Tôi sử dụng nhiều công cụ khác như react-route-dom, Axios, Chartjs, react-hook-form,…"
+    "Backend Developer",
+    "Spring Boot",
+    ""
   ),
   createData(
-    "Full-Stack Developer",
-    "Django - React",
-    "Tôi hoàn toàn chịu trách nhiệm về dự án khởi nghiệp Hara tham gia cuộc thi FPT Edu Biz. Dự án dành cho các công ty khởi nghiệp về huy động vốn từ cộng đồng. Tôi làm việc trong lĩnh vực lấy dữ liệu, thiết kế, code backend, frontend. Tôi sử dụng công cụ selen để thực hiện truy xuất dữ liệu nhằm thực hiện kiểm tra sản phẩm. Sử dụng API Stripe để thanh toán. Sử dụng các kênh, websocket để viết mã các chức năng nhắn tin, thông báo cho website. Sử dụng selen để lấy dữ liệu. Sử dụng reactjs làm giao diện người dùng"
-  ),
-  createData(
-    "Full-Stack Developer",
-    "Django - Selenium",
-    "Tôi làm việc tại đây với tư cách là nhà phát triển sản phẩm và người sáng tạo cho Scholar tham gia hội nghị FAIC 2021. Tại đây tôi tự đảm nhận và thực hiện dự án. Với kinh nghiệm qua quá trình tự học và tìm hiểu. Sử dụng công cụ selen để lấy dữ liệu từ trang web của Google. Tôi sử dụng JavaScript, thư viện Chartjs để hiển thị đám mây từ, giúp người dùng hiểu các tác giả. Sử dụng thư viện NLTK để phân tích ngôn ngữ tự nhiên để hiển thị đám mây từ. Sử dụng Docker để xây dựng môi trường. Sử dụng Celery để quản lý công việc, lên lịch thời gian thu thập dữ liệu từ Google Scholar để cập nhật các bài viết của các tác giả."
+    "Microservice",
+    "Spring Boot",
+    ""
   ),
 ];
 
@@ -300,6 +275,6 @@ const educations = [
   createData(
     "FPT University",
     "Bachelor of Information Technology",
-    "Ở đây tôi đã học được rất nhiều điều. Công việc ở trường giúp tôi học các ngôn ngữ như Java, C, Java web, thiết kế Web, .. và kiến thức máy tính. Nó đã giúp tôi giải quyết nhiều vấn đề trước đây. Ngoài kiến thức về lập trình, mình còn được học về các kỹ năng trong môi trường làm việc và rất nhiều điều thú vị tại đây"
+    ""
   ),
 ];
