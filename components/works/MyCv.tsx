@@ -144,8 +144,9 @@ const listBar = [
         skills: [
           "Java core: Java Core and Object- Oriented Programming (OOP), Junit, Multithreading and Concurrency, Exception Handling, JDBC",
           "Java Web: JSTL, JSP, Tiles, Servlet",
-          "Framework: Spring MVC, JPA, Hibernate, Thymeleaf",
+          "Framework: Spring Boot, Spring Cloud, Spring MVC, JPA, Hibernate, Thymeleaf",
           "Build Tool: Maven",
+          "Microservice",
         ]
       },
       {
@@ -183,7 +184,7 @@ const listBar = [
       {
         title: "Message Queue",
         skills: [
-          "Redis, Kafka, RabbitMQ",
+          "Kafka, RabbitMQ",
         ]
       },
       {
@@ -402,23 +403,55 @@ const listSkill = [
           description: "",
           list: [
             {
-              title: "Coursera: Software Development Lifecycle (March 2022)",
+              title: "AWS Certified Database - Specialty",
+              link: "https://www.amazon.com/courses/certificates/0595f7a1-a522-4dc3-9675-fe76e8bf3d11?ref_=cm_sw_r_cp_ud_aloc_cert_8GP720DD44TCXHMWH708",
+            },
+            {
+              title: "AWS Technical Essentials",
+              link: "https://www.amazon.com/courses/certificates/4c7076ff-9f7e-4c0a-a109-9d53e4f036a8?ref_=cm_sw_r_cp_ud_aloc_cert_A9DP4Y4A0N8FSG5ZP0Z1",
+            },
+            {
+              title: "AWS Cloud Practitioner Essentials",
+              link: "https://www.amazon.com/courses/certificates/efe63745-6b85-4017-8d7e-f9a8c212b302?ref_=cm_sw_r_cp_ud_aloc_cert_03G2SK1HSYVEK3JFZ3E9",
+            },
+            {
+              title: "Configure and Deploy AWS Client VPN",
+              link: "https://www.amazon.com/courses/certificates/c6990d6c-309c-407b-821a-e0bd2f5ea3e6?ref_=cm_sw_r_cp_ud_aloc_cert_4AQQGE5F6PADYQ1V9J91",
+            },
+            {
+              title: "Introduction to Database Migration",
+              link: "https://www.amazon.com/courses/certificates/287727ca-f783-403d-9e2f-d44246f0a823?ref_=cm_sw_r_cp_ud_aloc_cert_6QB9ZYGYQSP2ZEZVWGXE",
+            },
+            {
+              title: "Introduction to EC2 Auto Scaling",
+              link: "https://www.amazon.com/courses/certificates/2dcd1ff1-2a68-4ee4-a211-0210e4236759?ref_=cm_sw_r_cp_ud_aloc_cert_MD5ZAXN729V1R6HP1Q8F",
+            },
+            {
+              title: "Migrating from Redis to Amazon ElastiCache",
+              link: "https://www.amazon.com/courses/certificates/5ed4b600-6c2f-4133-938c-dbf3a8fcbe08?ref_=cm_sw_r_cp_ud_aloc_cert_GGQD941ZVG9613XCKCGG",
+            },
+            {
+              title: "Entrepreneurship Capstone (November 8, 2022)- Entrepreneurship Capstone",
+              link: "https://coursera.org/share/b3fd128e815cb04f775aa31e7f6353e1",
+            },
+            {
+              title: "Software Development Lifecycle (March 2022) - University of Minnesota",
               link: "https://www.coursera.org/account/accomplishments/specialization/certificate/36DPVVMUGBHW",
             },
             {
-              title: "Coursera: CertNexus Certified Ethical Emerging Technologist (June 2022)",
+              title: "CertNexus Certified Ethical Emerging Technologist (June 2022) - CertNexus",
               link: "https://www.coursera.org/account/accomplishments/specialization/certificate/UQQWV67GP8YD",
             },
             {
-              title: "Coursera: Web Design for Everybody: Basics of Web Development & Coding (October 2021)",
+              title: "Web Design for Everybody: Basics of Web Development & Coding (October 2021) - University of Michigan",
               link: "https://www.coursera.org/account/accomplishments/specialization/certificate/2QWZX4L8TSPS",
             },
             {
-              title: "Coursera: Computer Communications (June 2021)",
+              title: "Computer Communications (June 2021) - University of Colorado System",
               link: "https://www.coursera.org/account/accomplishments/specialization/certificate/FC9PQCJBU9SD",
             },
             {
-              title: "Coursera: Academic Skills for University Success (April 2021)",
+              title: "Academic Skills for University Success (April 2021) - The University of Sydney",
               link: "https://www.coursera.org/account/accomplishments/specialization/certificate/AW8GJ5NQCTXA",
             }
           ],
