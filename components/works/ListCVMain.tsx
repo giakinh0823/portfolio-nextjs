@@ -59,7 +59,7 @@ export default function ListCVMain({ listCV }: IListCVMainProps) {
                       variant="caption"
                       color="textPrimary"
                       sx={{
-                        fontWeight: "bold",
+                        fontWeight: "500",
                       }}
                     >
                       {content.time}

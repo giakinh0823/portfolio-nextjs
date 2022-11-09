@@ -47,7 +47,7 @@ const MyCv = (props: IMyCvProps) => {
                 }}
               >
                 <div style={{ transform: "scale(1.1)" }}>
-                  <Image src={avatar} alt="avatar" width={500} height={460} />
+                  <Image src={avatar} alt="avatar" width={500} height={480} />
                 </div>
               </Box>
               <Box
@@ -167,18 +167,17 @@ const listBar = [
       {
         title: "Front-end",
         skills: [
-          "Basic: HTML5, CSS3, JavaScript, TypeScript, Bootstrap, Jquery, Ajax",
-          "Library: Reactjs, Redux, Redux Toolkit, Redux Saga, Axios, React Hook Form, Antd, Mui-v5, Tailwindcss, React Query",
-          "Framework: Nextjs, useSWR",
+          "Basic: HTML5, CSS3, JavaScript, TypeScript, Jquery",
+          "Library: Reactjs",
+          "Framework: Nextjs",
           "Build tool: npm, yarn",
         ]
       },
       {
         title: "Database",
         skills: [
-          "SQL: MSSQL, MySQL, PostgreSQL, Sqlite3",
-          "NoSQL: MongoDB, Redis",
-          "Understanding the basic query: select, update, delete, joins, procedure, trigger, events",
+          "SQL: MSSQL, MySQL, PostgreSQL",
+          "NoSQL: Redis",
         ]
       },
       {
@@ -208,7 +207,7 @@ const listBar = [
       {
         title: "Tools",
         skills: [
-          "Dev tools: Visual Studio Code, Visual Studio, Eclipse, NetBeans, IntelliJ, PyCharm",
+          "Dev tools: Visual Studio Code, Visual Studio, NetBeans, IntelliJ",
           "Postman, Jenkin, Rancher",
         ]
       },
@@ -403,31 +402,31 @@ const listSkill = [
           description: "",
           list: [
             {
-              title: "AWS Certified Database - Specialty",
+              title: "AWS Certified Database - Specialty - AWS Training & Certification",
               link: "https://www.amazon.com/courses/certificates/0595f7a1-a522-4dc3-9675-fe76e8bf3d11?ref_=cm_sw_r_cp_ud_aloc_cert_8GP720DD44TCXHMWH708",
             },
             {
-              title: "AWS Technical Essentials",
+              title: "AWS Technical Essentials - AWS Training & Certification",
               link: "https://www.amazon.com/courses/certificates/4c7076ff-9f7e-4c0a-a109-9d53e4f036a8?ref_=cm_sw_r_cp_ud_aloc_cert_A9DP4Y4A0N8FSG5ZP0Z1",
             },
             {
-              title: "AWS Cloud Practitioner Essentials",
+              title: "AWS Cloud Practitioner Essentials - AWS Training & Certification",
               link: "https://www.amazon.com/courses/certificates/efe63745-6b85-4017-8d7e-f9a8c212b302?ref_=cm_sw_r_cp_ud_aloc_cert_03G2SK1HSYVEK3JFZ3E9",
             },
             {
-              title: "Configure and Deploy AWS Client VPN",
+              title: "Configure and Deploy AWS Client VPN - AWS Training & Certification",
               link: "https://www.amazon.com/courses/certificates/c6990d6c-309c-407b-821a-e0bd2f5ea3e6?ref_=cm_sw_r_cp_ud_aloc_cert_4AQQGE5F6PADYQ1V9J91",
             },
             {
-              title: "Introduction to Database Migration",
+              title: "Introduction to Database Migration - AWS Training & Certification",
               link: "https://www.amazon.com/courses/certificates/287727ca-f783-403d-9e2f-d44246f0a823?ref_=cm_sw_r_cp_ud_aloc_cert_6QB9ZYGYQSP2ZEZVWGXE",
             },
             {
-              title: "Introduction to EC2 Auto Scaling",
+              title: "Introduction to EC2 Auto Scaling - AWS Training & Certification",
               link: "https://www.amazon.com/courses/certificates/2dcd1ff1-2a68-4ee4-a211-0210e4236759?ref_=cm_sw_r_cp_ud_aloc_cert_MD5ZAXN729V1R6HP1Q8F",
             },
             {
-              title: "Migrating from Redis to Amazon ElastiCache",
+              title: "Migrating from Redis to Amazon ElastiCache - AWS Training & Certification",
               link: "https://www.amazon.com/courses/certificates/5ed4b600-6c2f-4133-938c-dbf3a8fcbe08?ref_=cm_sw_r_cp_ud_aloc_cert_GGQD941ZVG9613XCKCGG",
             },
             {
